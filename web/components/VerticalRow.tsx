@@ -7,34 +7,39 @@ type VerticalRowProps = {
 
 export function VerticalRow({ index, title, tags, description }: VerticalRowProps) {
   return (
-    <div className="vertical-row grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 py-8 lg:py-10">
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-6 gap-y-3 py-10 border-b border-[color:var(--color-phosphor-faint)]">
+      {/* Index tactique */}
       <div className="lg:col-span-1">
-        <span className="font-mono text-sm text-[color:var(--color-forest)] tabular-nums">
-          {index}
+        <span className="font-mono text-[10px] tracking-[0.22em] text-[color:var(--color-hazard)]">
+          /{index}
         </span>
       </div>
 
+      {/* Titre macro */}
       <div className="lg:col-span-4">
-        <h3 className="text-2xl lg:text-3xl font-bold tracking-tight">
+        <h3 className="macro text-[clamp(28px,3.5vw,48px)] text-[color:var(--color-phosphor)] leading-[0.9]">
           {title}
         </h3>
       </div>
 
-      <div className="lg:col-span-3">
-        <ul className="flex flex-wrap gap-2">
-          {tags.map((t) => (
-            <li
-              key={t}
-              className="text-xs uppercase tracking-wider px-2.5 py-1 border border-[color:var(--color-charcoal)]/20 rounded-pill text-[color:var(--color-charcoal)]/70"
-            >
-              {t}
-            </li>
-          ))}
-        </ul>
+      {/* Tags monospace, séparés par tube */}
+      <div className="lg:col-span-3 flex flex-wrap items-start gap-x-3 gap-y-1">
+        {tags.map((t, i) => (
+          <span
+            key={t}
+            className="font-mono text-[10px] uppercase tracking-[0.15em] text-[color:var(--color-phosphor-dim)]"
+          >
+            {t}
+            {i < tags.length - 1 && (
+              <span className="ml-3 text-[color:var(--color-phosphor-faint)]">|</span>
+            )}
+          </span>
+        ))}
       </div>
 
+      {/* Description data-monospace */}
       <div className="lg:col-span-4">
-        <p className="text-base lg:text-lg text-[color:var(--color-charcoal)]/75 leading-relaxed">
+        <p className="font-mono text-[13px] text-[color:var(--color-phosphor-dim)] leading-[1.6] max-w-[55ch]">
           {description}
         </p>
       </div>

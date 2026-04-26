@@ -4,6 +4,7 @@ type KitKind = "decouverte" | "pro" | "secours";
 
 type KitCardProps = {
   kind: KitKind;
+  index: string;          // "01", "02", "03" — typographie tactique
   eyebrow: string;
   price: string;
   priceNote: string;
@@ -12,11 +13,13 @@ type KitCardProps = {
   features: string[];
   cta: string;
   href: string;
-  highlight?: boolean;
+  /** Détermine la taille bento (1 ou 2 colonnes) */
+  span?: 1 | 2;
 };
 
 export function KitCard({
   kind,
+  index,
   eyebrow,
   price,
   priceNote,
@@ -25,56 +28,77 @@ export function KitCard({
   features,
   cta,
   href,
-  highlight,
+  span = 1,
 }: KitCardProps) {
+  const isHazard = kind === "secours";
+
   return (
     <article
-      className={`kit-card rounded-lg p-8 flex flex-col ${
-        highlight ? "shadow-2xl shadow-[color:var(--color-charcoal)]/10 -translate-y-2" : ""
+      className={`group relative border border-[color:var(--color-phosphor-faint)] hover:border-[color:var(--color-phosphor)] transition-colors duration-150 bg-[color:var(--color-substrate-2)] ${
+        span === 2 ? "md:col-span-2" : ""
       }`}
       data-kit={kind}
     >
-      <p className="eyebrow text-[color:var(--color-charcoal)]/70 mb-6">
-        {eyebrow}
-      </p>
+      {/* Bandeau supérieur : index + tag */}
+      <header className="flex items-center justify-between px-5 py-3 border-b border-[color:var(--color-phosphor-faint)]">
+        <span
+          className="font-mono text-[10px] tracking-[0.2em] uppercase text-[color:var(--color-phosphor-dim)]"
+        >
+          UNIT&nbsp;/&nbsp;{index}
+        </span>
+        <span
+          className={`font-mono text-[10px] tracking-[0.2em] uppercase ${
+            isHazard ? "text-[color:var(--color-hazard)]" : "text-[color:var(--color-phosphor-faint)]"
+          }`}
+        >
+          {eyebrow}
+        </span>
+      </header>
 
-      <div className="mb-8">
-        <p className="text-5xl font-bold tracking-tight tabular-nums">
-          {price}
+      {/* Bloc principal — macro typo + meta */}
+      <div className="px-5 py-8">
+        {/* Numéro de prix en macro typographie */}
+        <div className="flex items-baseline gap-3 mb-1">
+          <span className="macro text-[clamp(48px,7vw,80px)] text-[color:var(--color-phosphor)]">
+            {price}
+          </span>
+          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-phosphor-faint)]">
+            {priceNote}
+          </span>
+        </div>
+
+        <hr className="divider-solid mb-6 mt-2" />
+
+        <h3 className="macro text-[clamp(20px,2.4vw,32px)] text-[color:var(--color-phosphor)] mb-4 leading-[0.95]">
+          {title}
+        </h3>
+
+        <p className="font-mono text-[13px] text-[color:var(--color-phosphor-dim)] leading-[1.55] mb-8 max-w-[55ch]">
+          {description}
         </p>
-        <p className="text-sm text-[color:var(--color-charcoal)]/55 mt-1">
-          {priceNote}
-        </p>
+
+        {/* Liste features — table tactique */}
+        <ul className="font-mono text-[12px] text-[color:var(--color-phosphor)] space-y-1.5 mb-10">
+          {features.map((f, i) => (
+            <li key={f} className="grid grid-cols-[auto_1fr] gap-3 items-baseline">
+              <span className="text-[color:var(--color-hazard)] tabular-nums">
+                /{String(i + 1).padStart(2, "0")}
+              </span>
+              <span className="text-[color:var(--color-phosphor-dim)]">{f}</span>
+            </li>
+          ))}
+        </ul>
+
+        <Link
+          href={href}
+          className={`btn-tactical w-full justify-between ${
+            isHazard ? "btn-tactical-hazard" : ""
+          }`}
+        >
+          <span>{cta}</span>
+          <span aria-hidden>{">>"}</span>
+        </Link>
       </div>
-
-      <h3 className="text-2xl font-bold leading-snug mb-4 text-[color:var(--color-charcoal)]">
-        {title}
-      </h3>
-      <p className="text-base text-[color:var(--color-charcoal)]/70 mb-8">
-        {description}
-      </p>
-
-      <ul className="space-y-3 mb-10 flex-1">
-        {features.map((f) => (
-          <li
-            key={f}
-            className="flex items-start gap-3 text-sm text-[color:var(--color-charcoal)]/85"
-          >
-            <span
-              className="mt-2 block w-1.5 h-1.5 rounded-full bg-[color:var(--color-forest)] flex-shrink-0"
-              aria-hidden
-            />
-            <span>{f}</span>
-          </li>
-        ))}
-      </ul>
-
-      <Link
-        href={href}
-        className="inline-flex items-center justify-center bg-[color:var(--color-forest)] hover:bg-[color:var(--color-charcoal)] text-[color:var(--color-sand)] px-6 py-3 rounded-md text-sm font-medium transition-colors"
-      >
-        {cta}&nbsp;›
-      </Link>
     </article>
   );
 }

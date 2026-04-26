@@ -30,17 +30,17 @@ export function PreorderForm() {
 
   if (state === "success") {
     return (
-      <div className="bg-[color:var(--color-sand)]/10 border border-[color:var(--color-sand)]/20 rounded-lg p-8">
-        <p className="eyebrow text-[color:var(--color-moss)] mb-4">
-          Merci&nbsp;!
+      <div className="border border-[color:var(--color-uplink)] bg-[color:var(--color-substrate-2)] p-8">
+        <p className="font-mono text-[10px] tracking-[0.22em] text-[color:var(--color-uplink)] uppercase mb-4">
+          [ TX&nbsp;ACK&nbsp;/&nbsp;200&nbsp;OK ]
         </p>
-        <h3 className="text-2xl font-bold mb-3">
-          Vous êtes inscrit·e à la pré-commande.
+        <h3 className="macro text-[clamp(28px,3vw,40px)] text-[color:var(--color-phosphor)] mb-4 leading-[0.95]">
+          INSCRIPTION CONFIRMÉE.
         </h3>
-        <p className="text-[color:var(--color-sand)]/85">
-          Un email de confirmation arrive dans votre boîte. Le prochain
-          message MAILLON vous parvient le jour du lancement officiel,
-          en juin 2026.
+        <p className="font-mono text-[13px] text-[color:var(--color-phosphor-dim)] leading-[1.6]">
+          Un message de confirmation est en transit vers votre boîte. Le
+          prochain transmit MAILLON vous parvient à la livraison du
+          premier batch — juin&nbsp;2026.
         </p>
       </div>
     );
@@ -49,15 +49,24 @@ export function PreorderForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-[color:var(--color-sand)]/10 border border-[color:var(--color-sand)]/20 rounded-lg p-8 space-y-6"
+      className="border border-[color:var(--color-phosphor-faint)] bg-[color:var(--color-substrate-2)] p-6 lg:p-8 space-y-5"
       noValidate
     >
+      <div className="flex items-center justify-between border-b border-[color:var(--color-phosphor-faint)] pb-3 mb-2">
+        <span className="font-mono text-[10px] tracking-[0.22em] text-[color:var(--color-hazard)] uppercase">
+          [ FORM&nbsp;/&nbsp;PRÉCOMMANDE ]
+        </span>
+        <span className="font-mono text-[10px] tracking-[0.18em] text-[color:var(--color-phosphor-faint)] uppercase">
+          REV&nbsp;0.1.0
+        </span>
+      </div>
+
       <div>
         <label
           htmlFor="email"
-          className="block text-sm font-medium mb-2"
+          className="block font-mono text-[10px] tracking-[0.2em] uppercase text-[color:var(--color-phosphor-dim)] mb-2"
         >
-          Adresse email
+          // Adresse email
         </label>
         <input
           id="email"
@@ -66,42 +75,43 @@ export function PreorderForm() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="vous@exemple.fr"
-          className="w-full bg-transparent border border-[color:var(--color-sand)]/25 rounded-md px-4 py-3 text-[color:var(--color-sand)] placeholder:text-[color:var(--color-sand)]/40 focus:outline-none focus:border-[color:var(--color-moss)]"
+          className="w-full bg-transparent border border-[color:var(--color-phosphor-faint)] px-4 py-3 font-mono text-[13px] text-[color:var(--color-phosphor)] placeholder:text-[color:var(--color-phosphor-faint)] focus:outline-none focus:border-[color:var(--color-hazard)]"
+          autoComplete="email"
         />
       </div>
 
       <div>
         <label
           htmlFor="interest"
-          className="block text-sm font-medium mb-2"
+          className="block font-mono text-[10px] tracking-[0.2em] uppercase text-[color:var(--color-phosphor-dim)] mb-2"
         >
-          Kit d&apos;intérêt principal
+          // Kit ciblé
         </label>
         <select
           id="interest"
           value={interest}
           onChange={(e) => setInterest(e.target.value)}
-          className="w-full bg-[color:var(--color-forest)] border border-[color:var(--color-sand)]/25 rounded-md px-4 py-3 text-[color:var(--color-sand)] focus:outline-none focus:border-[color:var(--color-moss)]"
+          className="w-full bg-[color:var(--color-substrate)] border border-[color:var(--color-phosphor-faint)] px-4 py-3 font-mono text-[13px] text-[color:var(--color-phosphor)] focus:outline-none focus:border-[color:var(--color-hazard)]"
         >
-          <option value="decouverte">Kit Découverte — 99 €</option>
-          <option value="pro">Kit Pro — 399 €</option>
-          <option value="secours">Kit Secours — 1 199 €</option>
-          <option value="sur-mesure">Sur-mesure (devis flotte)</option>
+          <option value="decouverte">UNIT&nbsp;01 — Découverte&nbsp;/&nbsp;99&nbsp;€</option>
+          <option value="pro">UNIT&nbsp;02 — Pro&nbsp;/&nbsp;399&nbsp;€</option>
+          <option value="secours">UNIT&nbsp;03 — Secours&nbsp;/&nbsp;1&nbsp;199&nbsp;€</option>
+          <option value="sur-mesure">UNIT&nbsp;XX — Sur-mesure (devis flotte)</option>
         </select>
       </div>
 
       <div>
         <label
           htmlFor="usage"
-          className="block text-sm font-medium mb-2"
+          className="block font-mono text-[10px] tracking-[0.2em] uppercase text-[color:var(--color-phosphor-dim)] mb-2"
         >
-          Usage prévu
+          // Théâtre d&apos;usage
         </label>
         <select
           id="usage"
           value={usage}
           onChange={(e) => setUsage(e.target.value)}
-          className="w-full bg-[color:var(--color-forest)] border border-[color:var(--color-sand)]/25 rounded-md px-4 py-3 text-[color:var(--color-sand)] focus:outline-none focus:border-[color:var(--color-moss)]"
+          className="w-full bg-[color:var(--color-substrate)] border border-[color:var(--color-phosphor-faint)] px-4 py-3 font-mono text-[13px] text-[color:var(--color-phosphor)] focus:outline-none focus:border-[color:var(--color-hazard)]"
         >
           <option value="outdoor">Outdoor / randonnée / alpinisme</option>
           <option value="secours">Secours bénévole / asso</option>
@@ -116,29 +126,22 @@ export function PreorderForm() {
       <button
         type="submit"
         disabled={state === "submitting"}
-        className="w-full inline-flex items-center justify-center bg-[color:var(--color-signal)] hover:bg-[color:var(--color-sand)] hover:text-[color:var(--color-forest)] text-[color:var(--color-charcoal)] px-6 py-4 rounded-md text-base font-semibold transition-colors disabled:opacity-50"
+        className="btn-tactical btn-tactical-hazard w-full justify-between disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        {state === "submitting" ? "Envoi…" : "Réserver ma pré-commande ›"}
+        <span>{state === "submitting" ? "TX EN COURS…" : "TRANSMETTRE"}</span>
+        <span aria-hidden>{">>"}</span>
       </button>
 
       {state === "error" && (
-        <p className="text-sm text-[color:var(--color-signal)]">
-          Un souci est survenu, réessayez dans un instant ou écrivez à
-          bonjour@maillon.fr.
+        <p className="font-mono text-[12px] text-[color:var(--color-hazard)]">
+          [ ERR&nbsp;/&nbsp;TX&nbsp;FAIL ] · réessayer ou écrire à bonjour@maillon.fr
         </p>
       )}
 
-      <p className="text-xs text-[color:var(--color-sand)]/60 leading-relaxed">
-        Nous utilisons votre email uniquement pour vous prévenir du
-        lancement et vous proposer la pré-commande. Aucune transmission à
-        un tiers, hébergement UE, désabonnement en un clic. Voir notre{" "}
-        <a
-          href="/confidentialite"
-          className="underline underline-offset-2 hover:text-[color:var(--color-sand)]"
-        >
-          politique de confidentialité
-        </a>
-        .
+      <p className="font-mono text-[10px] tracking-[0.05em] text-[color:var(--color-phosphor-faint)] leading-[1.6] border-t border-[color:var(--color-phosphor-faint)] pt-4">
+        Email utilisé uniquement pour vous prévenir du lancement. Hébergement&nbsp;UE,
+        désabonnement en un clic. Voir{" "}
+        <a href="/confidentialite" className="maillon-link">politique de confidentialité</a>.
       </p>
     </form>
   );

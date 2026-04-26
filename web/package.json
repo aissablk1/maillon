@@ -17,6 +17,7 @@
   "dependencies": {
     "@prisma/client": "^6.2.1",
     "better-auth": "^1.2.0",
+    "motion": "^12.38.0",
     "mqtt": "^5.10.3",
     "next": "^15.1.6",
     "react": "^19.0.0",

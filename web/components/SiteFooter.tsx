@@ -2,162 +2,59 @@ import Link from "next/link";
 
 export function SiteFooter() {
   return (
-    <footer className="bg-[color:var(--color-charcoal)] text-[color:var(--color-sand)]/80 pt-20 pb-10">
-      <div className="mx-auto max-w-7xl px-6 lg:px-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-10">
-          <div className="col-span-2">
-            <p className="font-bold tracking-[0.18em] text-sm text-[color:var(--color-sand)] mb-4">
-              MAILLON
-            </p>
-            <p className="text-base text-[color:var(--color-sand)]/70 max-w-md leading-relaxed">
-              Communications mesh longue portée pour pros et particuliers
-              en France et Europe francophone. Sans abonnement, sans
-              satellite, sans licence.
-            </p>
-            <p className="mt-6 text-sm text-[color:var(--color-sand)]/50 font-mono">
-              Bande EU&nbsp;868 MHz · marqué CE · Meshtastic Approved
-            </p>
-          </div>
+    <footer className="border-t border-[color:var(--color-phosphor-faint)] mt-32">
+      {/* Strip de transmission ASCII */}
+      <div className="border-b border-[color:var(--color-phosphor-faint)] py-3 px-6 lg:px-10 font-mono text-[10px] tracking-[0.2em] text-[color:var(--color-phosphor-faint)] uppercase flex flex-wrap items-center gap-x-6 gap-y-1">
+        <span>{">>>"} TRANSMISSION OK</span>
+        <span className="text-[color:var(--color-phosphor-dim)]">EU&nbsp;868.0–868.6&nbsp;MHz</span>
+        <span>ETSI&nbsp;EN&nbsp;300&nbsp;220</span>
+        <span>HOP_LIMIT=3</span>
+        <span>DUTY_CYCLE&nbsp;1%</span>
+        <span className="ml-auto text-[color:var(--color-phosphor-faint)]">
+          REV&nbsp;0.1.0&nbsp;/&nbsp;{new Date().toISOString().slice(0, 10)}
+        </span>
+      </div>
 
-          <nav aria-labelledby="footer-produit">
-            <p
-              id="footer-produit"
-              className="eyebrow text-[color:var(--color-moss)] mb-4"
-            >
-              Produit
-            </p>
-            <ul className="space-y-3 text-sm">
-              <li>
-                <Link href="/kits/decouverte" className="hover:text-[color:var(--color-sand)]">
-                  Kit Découverte
-                </Link>
-              </li>
-              <li>
-                <Link href="/kits/pro" className="hover:text-[color:var(--color-sand)]">
-                  Kit Pro
-                </Link>
-              </li>
-              <li>
-                <Link href="/kits/secours" className="hover:text-[color:var(--color-sand)]">
-                  Kit Secours
-                </Link>
-              </li>
-              <li>
-                <Link href="/saas" className="hover:text-[color:var(--color-sand)]">
-                  Fleet Manager SaaS
-                </Link>
-              </li>
-              <li>
-                <Link href="/accessoires" className="hover:text-[color:var(--color-sand)]">
-                  Accessoires
-                </Link>
-              </li>
-            </ul>
-          </nav>
-
-          <nav aria-labelledby="footer-ressources">
-            <p
-              id="footer-ressources"
-              className="eyebrow text-[color:var(--color-moss)] mb-4"
-            >
-              Ressources
-            </p>
-            <ul className="space-y-3 text-sm">
-              <li>
-                <Link href="/blog" className="hover:text-[color:var(--color-sand)]">
-                  Journal
-                </Link>
-              </li>
-              <li>
-                <Link href="/cas-usage" className="hover:text-[color:var(--color-sand)]">
-                  Cas d&apos;usage
-                </Link>
-              </li>
-              <li>
-                <Link href="/docs" className="hover:text-[color:var(--color-sand)]">
-                  Documentation
-                </Link>
-              </li>
-              <li>
-                <Link href="/faq" className="hover:text-[color:var(--color-sand)]">
-                  FAQ
-                </Link>
-              </li>
-              <li>
-                <Link href="/communaute" className="hover:text-[color:var(--color-sand)]">
-                  Communauté FR
-                </Link>
-              </li>
-            </ul>
-          </nav>
-
-          <nav aria-labelledby="footer-entreprise">
-            <p
-              id="footer-entreprise"
-              className="eyebrow text-[color:var(--color-moss)] mb-4"
-            >
-              Entreprise
-            </p>
-            <ul className="space-y-3 text-sm">
-              <li>
-                <Link href="/manifeste" className="hover:text-[color:var(--color-sand)]">
-                  Manifeste
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="hover:text-[color:var(--color-sand)]">
-                  Contact
-                </Link>
-              </li>
-              <li>
-                <Link href="/presse" className="hover:text-[color:var(--color-sand)]">
-                  Presse
-                </Link>
-              </li>
-              <li>
-                <Link href="/recrutement" className="hover:text-[color:var(--color-sand)]">
-                  Recrutement
-                </Link>
-              </li>
-            </ul>
-          </nav>
-        </div>
-
-        <hr className="border-[color:var(--color-sand)]/15 my-12" />
-
-        <div className="flex flex-col md:flex-row md:justify-between gap-6 text-xs text-[color:var(--color-sand)]/55">
-          <p>
-            © {new Date().getFullYear()} MAILLON SAS · Société française basée à
-            Paris.
+      <div className="grid grid-cols-[2fr_1fr_1fr] gap-6 px-6 lg:px-10 py-12 max-w-7xl mx-auto">
+        <div>
+          <p className="macro text-[clamp(48px,8vw,96px)] text-[color:var(--color-phosphor)] mb-4">
+            MAILLON
+            <span className="text-[color:var(--color-hazard)]">.</span>
           </p>
-          <ul className="flex flex-wrap gap-x-5 gap-y-2">
-            <li>
-              <Link href="/mentions-legales" className="hover:text-[color:var(--color-sand)]">
-                Mentions légales
-              </Link>
-            </li>
-            <li>
-              <Link href="/confidentialite" className="hover:text-[color:var(--color-sand)]">
-                Confidentialité
-              </Link>
-            </li>
-            <li>
-              <Link href="/cgv" className="hover:text-[color:var(--color-sand)]">
-                CGV
-              </Link>
-            </li>
-            <li>
-              <Link href="/cgu" className="hover:text-[color:var(--color-sand)]">
-                CGU SaaS
-              </Link>
-            </li>
-            <li>
-              <Link href="/cookies" className="hover:text-[color:var(--color-sand)]">
-                Cookies
-              </Link>
-            </li>
-          </ul>
+          <p className="font-mono text-[13px] text-[color:var(--color-phosphor-dim)] max-w-md leading-relaxed">
+            Communications mesh radio longue portée pour la France. Sans
+            abonnement satellite, sans licence ARCEP, sans dépendance
+            opérateur. Bande EU&nbsp;868&nbsp;MHz · marquage CE · firmware
+            Meshtastic upstream.
+          </p>
         </div>
+
+        <nav aria-label="Produit" className="text-[11px] uppercase tracking-[0.15em]">
+          <p className="text-[color:var(--color-hazard)] mb-3">[ PRODUIT ]</p>
+          <ul className="space-y-2 text-[color:var(--color-phosphor-dim)]">
+            <li><Link href="/kits/decouverte" className="hover:text-[color:var(--color-phosphor)]">Kit&nbsp;01&nbsp;/&nbsp;Découverte</Link></li>
+            <li><Link href="/kits/pro" className="hover:text-[color:var(--color-phosphor)]">Kit&nbsp;02&nbsp;/&nbsp;Pro</Link></li>
+            <li><Link href="/kits/secours" className="hover:text-[color:var(--color-phosphor)]">Kit&nbsp;03&nbsp;/&nbsp;Secours</Link></li>
+            <li><Link href="/saas" className="hover:text-[color:var(--color-phosphor)]">Console&nbsp;Fleet</Link></li>
+          </ul>
+        </nav>
+
+        <nav aria-label="Légal" className="text-[11px] uppercase tracking-[0.15em]">
+          <p className="text-[color:var(--color-hazard)] mb-3">[ LÉGAL ]</p>
+          <ul className="space-y-2 text-[color:var(--color-phosphor-dim)]">
+            <li><Link href="/mentions-legales" className="hover:text-[color:var(--color-phosphor)]">Mentions</Link></li>
+            <li><Link href="/confidentialite" className="hover:text-[color:var(--color-phosphor)]">Confidentialité</Link></li>
+            <li><Link href="/cgv" className="hover:text-[color:var(--color-phosphor)]">CGV</Link></li>
+            <li><Link href="/cookies" className="hover:text-[color:var(--color-phosphor)]">Cookies</Link></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div className="border-t border-[color:var(--color-phosphor-faint)] py-3 px-6 lg:px-10 font-mono text-[10px] tracking-[0.2em] text-[color:var(--color-phosphor-faint)] uppercase flex flex-wrap items-center justify-between gap-2">
+        <span>© {new Date().getFullYear()} MAILLON SAS · Paris</span>
+        <span className="text-[color:var(--color-hazard-dim)]">
+          n&apos;est&nbsp;PAS&nbsp;un&nbsp;substitut&nbsp;au&nbsp;112
+        </span>
       </div>
     </footer>
   );

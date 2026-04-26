@@ -2,96 +2,62 @@ import Link from "next/link";
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 bg-[color:var(--color-sand)]/85 backdrop-blur-md border-b border-[color:var(--color-charcoal)]/8">
-      <div className="mx-auto max-w-7xl px-6 lg:px-10 h-16 flex items-center justify-between">
+    <header className="sticky top-0 z-50 bg-[color:var(--color-substrate)]/95 backdrop-blur-sm border-b border-[color:var(--color-phosphor-faint)]">
+      <div className="grid grid-cols-[auto_1fr_auto] items-center gap-8 px-6 py-3 lg:px-10">
+        {/* Bloc logo + uplink indicator */}
         <Link
           href="/"
-          aria-label="Retour à l'accueil MAILLON"
+          aria-label="MAILLON — accueil"
           className="flex items-center gap-3"
         >
-          <span className="block w-7 h-7 relative">
-            <svg
-              viewBox="0 0 32 32"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden
-            >
-              <circle cx="16" cy="8" r="3" fill="var(--color-forest)" />
-              <circle cx="8" cy="20" r="3" fill="var(--color-forest)" />
-              <circle cx="24" cy="20" r="3" fill="var(--color-forest)" />
-              <line
-                x1="16"
-                y1="8"
-                x2="8"
-                y2="20"
-                stroke="var(--color-forest)"
-                strokeWidth="1.5"
-              />
-              <line
-                x1="16"
-                y1="8"
-                x2="24"
-                y2="20"
-                stroke="var(--color-forest)"
-                strokeWidth="1.5"
-              />
-              <line
-                x1="8"
-                y1="20"
-                x2="24"
-                y2="20"
-                stroke="var(--color-forest)"
-                strokeWidth="1.5"
-              />
-            </svg>
-          </span>
-          <span className="font-bold tracking-[0.18em] text-sm text-[color:var(--color-charcoal)]">
+          <span className="uplink-indicator" aria-hidden />
+          <span className="font-mono text-[10px] tracking-[0.22em] text-[color:var(--color-phosphor)] font-bold">
             MAILLON
+            <span className="text-[color:var(--color-phosphor-faint)]">®</span>
           </span>
         </Link>
 
+        {/* Navigation centrale — monospace, asymétrique */}
         <nav
           aria-label="Navigation principale"
-          className="hidden md:flex items-center gap-8 text-sm"
+          className="hidden md:flex items-center gap-6 justify-center text-[10px] tracking-[0.18em] uppercase"
         >
           <Link
-            href="#kits"
-            className="text-[color:var(--color-charcoal)]/75 hover:text-[color:var(--color-forest)]"
+            href="/#kits"
+            className="text-[color:var(--color-phosphor-dim)] hover:text-[color:var(--color-phosphor)]"
           >
-            Kits
+            // Kits
           </Link>
           <Link
             href="/saas"
-            className="text-[color:var(--color-charcoal)]/75 hover:text-[color:var(--color-forest)]"
+            className="text-[color:var(--color-phosphor-dim)] hover:text-[color:var(--color-phosphor)]"
           >
-            Fleet Manager
+            // Console
           </Link>
           <Link
             href="/cas-usage"
-            className="text-[color:var(--color-charcoal)]/75 hover:text-[color:var(--color-forest)]"
+            className="text-[color:var(--color-phosphor-dim)] hover:text-[color:var(--color-phosphor)]"
           >
-            Cas d&apos;usage
-          </Link>
-          <Link
-            href="/blog"
-            className="text-[color:var(--color-charcoal)]/75 hover:text-[color:var(--color-forest)]"
-          >
-            Journal
+            // Terrain
           </Link>
           <Link
             href="/communaute"
-            className="text-[color:var(--color-charcoal)]/75 hover:text-[color:var(--color-forest)]"
+            className="text-[color:var(--color-phosphor-dim)] hover:text-[color:var(--color-phosphor)]"
           >
-            Communauté
+            // Réseau
           </Link>
         </nav>
 
-        <Link
-          href="#preorder"
-          className="hidden sm:inline-flex items-center bg-[color:var(--color-forest)] text-[color:var(--color-sand)] px-5 py-2.5 rounded-md text-sm font-medium hover:bg-[color:var(--color-charcoal)] transition-colors"
-        >
-          Pré-commander&nbsp;›
-        </Link>
+        {/* Bloc droit — CTA + freq */}
+        <div className="flex items-center gap-4">
+          <span className="hidden lg:inline-block font-mono text-[10px] tracking-[0.15em] text-[color:var(--color-phosphor-faint)]">
+            EU&nbsp;868.0&nbsp;MHz
+          </span>
+          <Link href="/#preorder" className="btn-tactical btn-tactical-hazard text-[10px] py-2 px-4">
+            <span>PRÉCOMMANDE</span>
+            <span aria-hidden>{">>"}</span>
+          </Link>
+        </div>
       </div>
     </header>
   );

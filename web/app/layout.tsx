@@ -1,29 +1,32 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Archivo_Black, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
+// Macro-typographie structurelle — Archivo Black uppercase tracking négatif.
+// (Inter est explicitement banni par ~/.claude/design-anti-slop.md §4.)
+const archivoBlack = Archivo_Black({
   subsets: ["latin"],
-  variable: "--font-inter",
+  weight: ["400"],
+  variable: "--font-archivo",
   display: "swap",
-  weight: ["400", "500", "600", "700", "800"],
 });
 
+// Micro-typographie data/télémétrie — JetBrains Mono.
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-jetbrains",
   display: "swap",
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://maillon.fr"),
   title: {
-    default: "MAILLON — Le réseau qui porte loin",
+    default: "MAILLON / RÉSEAU MESH 868 MHZ",
     template: "%s · MAILLON",
   },
   description:
-    "Solutions de communication mesh longue portée jusqu'à 300 km. Sans abonnement, sans satellite, sans licence. Kits préconfigurés et SaaS de gestion de flotte pour secours, BTP, agriculture, événementiel et outdoor.",
+    "Communications mesh radio longue portée — 30 km à vue, 300 km en relais. Sans abonnement satellite, sans licence, sans dépendance opérateur. Kits préconfigurés et console de flotte pour secours bénévoles, BTP, événementiel et outdoor.",
   keywords: [
     "mesh longue portée",
     "Meshtastic France",
@@ -31,34 +34,22 @@ export const metadata: Metadata = {
     "LoRa 868 MHz",
     "talkie sans abonnement",
     "secours bénévoles",
-    "comms BTP zone blanche",
     "alternative Garmin inReach",
   ],
   authors: [{ name: "MAILLON" }],
-  creator: "MAILLON",
-  publisher: "MAILLON",
   alternates: {
     canonical: "https://maillon.fr",
-    languages: {
-      "fr-FR": "https://maillon.fr",
-    },
+    languages: { "fr-FR": "https://maillon.fr" },
   },
   openGraph: {
     type: "website",
     locale: "fr_FR",
     url: "https://maillon.fr",
     siteName: "MAILLON",
-    title: "MAILLON — Le réseau qui porte loin",
+    title: "MAILLON / RÉSEAU MESH 868 MHZ",
     description:
-      "Communication mesh longue portée jusqu'à 300 km. Kits prêts à l'emploi et SaaS de gestion de flotte. Sans abonnement, sans satellite.",
-    images: [
-      {
-        url: "/og.png",
-        width: 1200,
-        height: 630,
-        alt: "MAILLON — Le réseau qui porte loin",
-      },
-    ],
+      "Communications mesh radio longue portée — 30 km à vue, 300 km en relais. Sans abonnement, sans satellite, sans licence.",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "MAILLON" }],
   },
   robots: {
     index: true,
@@ -71,11 +62,6 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
-  },
 };
 
 export default function RootLayout({
@@ -84,7 +70,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fr" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+    <html lang="fr" className={`${archivoBlack.variable} ${jetbrainsMono.variable}`}>
       <body>{children}</body>
     </html>
   );

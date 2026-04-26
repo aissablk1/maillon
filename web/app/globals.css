@@ -1,49 +1,86 @@
 @import "tailwindcss";
 
+/*
+ * MAILLON — Direction esthétique : Brutaliste raw / Tactical Telemetry CRT
+ * Référence : ~/.claude/design-anti-slop.md §3 (direction #8) + brutalist-skill.md
+ *
+ * Substrate : DARK exclusivement. Jamais de mode light.
+ * Pas de gradient violet, pas de border-radius (tout en angles 90°),
+ * pas d'ombre douce. Bordures solides et inversions de fond.
+ */
+
 @theme {
-  /* Couleurs MAILLON — voir docs/12-brand-identity.md */
-  --color-forest: #1F3D2E;          /* vert profond */
-  --color-moss: #4A8B6A;            /* vert vif */
-  --color-sand: #F5F0E6;            /* sable / fond clair */
-  --color-charcoal: #1A1F1C;        /* charbon / texte */
-  --color-signal: #E87D2C;          /* orange signal / SOS */
-  --color-cobalt: #2854A8;          /* bleu B2B */
-  --color-warning: #E8A22C;
-  --color-danger: #D14444;
+  /* ─── Palette CRT déclassifiée ─── */
+  --color-substrate: #0A0A0A;        /* Deactivated CRT — fond principal */
+  --color-substrate-2: #121212;      /* Deuxième niveau d'élévation */
+  --color-substrate-3: #1A1A1A;      /* Troisième niveau (data row hover) */
+  --color-phosphor: #EAEAEA;         /* White phosphor — texte principal */
+  --color-phosphor-dim: #8A8A8A;     /* Phosphor degraded — meta, subtitles */
+  --color-phosphor-faint: #4A4A4A;   /* Phosphor very degraded — captions, dividers */
+  --color-hazard: #E61919;           /* Aviation/Hazard Red — alerts, SOS, accents critiques */
+  --color-hazard-dim: #8A0F0F;       /* Hazard degraded — bordures, hover */
+  --color-uplink: #4AF626;           /* Terminal green — UN seul indicateur d'uplink */
 
-  /* Typographie */
-  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  /* ─── Typographie ─── */
+  --font-archivo: "Archivo Black", "Arial Black", sans-serif;
+  --font-mono: var(--font-jetbrains), "JetBrains Mono", "IBM Plex Mono", monospace;
 
-  /* Espacement éditorial */
-  --spacing-section: 9rem;
-  --spacing-section-sm: 5.5rem;
+  /* ─── Scale Bimodale (sauts ×3+ pour la hiérarchie brutalist) ─── */
+  --text-tag: 10px;        /* Métadonnées, navigation, unités */
+  --text-data: 13px;       /* Tabulaires, télémétrie */
+  --text-body: 15px;       /* Corps lisible (rare) */
+  --text-display-s: 32px;  /* Sous-titre structurel */
+  --text-display-m: 64px;  /* Titre de section */
+  --text-display-l: 144px; /* Macro-typographie viewport-bleeding */
 
-  /* Radii */
-  --radius-card: 0.75rem;
-  --radius-pill: 999px;
+  /* ─── Spacing ─── */
+  --space-px: 1px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-24: 96px;
+  --space-32: 128px;
 }
 
-/* Reset typographique */
+/* ─── Reset typographique ─── */
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  font-feature-settings: "ss01" on, "cv11" on;
+  font-feature-settings: "ss01" on, "tnum" on;
 }
 
 body {
-  background: var(--color-sand);
-  color: var(--color-charcoal);
-  font-family: var(--font-sans);
-  font-size: 17px;
-  line-height: 1.6;
+  background: var(--color-substrate);
+  color: var(--color-phosphor);
+  font-family: var(--font-mono);
+  font-size: var(--text-data);
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  /* Scanlines CRT subtiles, opacité minimale pour lisibilité */
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(234, 234, 234, 0.012) 0px,
+      rgba(234, 234, 234, 0.012) 1px,
+      transparent 1px,
+      transparent 3px
+    );
 }
 
 /* Sélection */
 ::selection {
-  background: var(--color-forest);
-  color: var(--color-sand);
+  background: var(--color-hazard);
+  color: var(--color-phosphor);
+}
+
+/* Aucun border-radius par défaut — angle 90° absolu sauf override explicite */
+* {
+  border-radius: 0 !important;
 }
 
 /* Liens */
@@ -52,97 +89,166 @@ a {
   text-decoration: none;
 }
 
-/* Hero typographie spécifique : tracking serré, ligature */
-.maillon-hero {
-  font-weight: 750;
-  letter-spacing: -0.025em;
-  line-height: 1.02;
+a.maillon-link {
+  border-bottom: 1px solid var(--color-phosphor-faint);
+  transition: border-color 120ms linear, color 120ms linear;
 }
 
-/* Petites uppercase épigraphiques */
-.eyebrow {
-  font-size: 12px;
+a.maillon-link:hover {
+  border-bottom-color: var(--color-hazard);
+  color: var(--color-hazard);
+}
+
+/* ─── Macro-typographie ─── */
+.macro {
+  font-family: var(--font-archivo);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.85;
+  text-transform: uppercase;
+}
+
+.tag {
+  font-family: var(--font-mono);
+  font-size: var(--text-tag);
+  font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
+  color: var(--color-phosphor-dim);
+}
+
+.data {
+  font-family: var(--font-mono);
+  font-size: var(--text-data);
+  font-feature-settings: "tnum" on, "zero" on;
+}
+
+/* ─── Cadres ASCII tactiques ─── */
+.ascii-frame::before {
+  content: "[ ";
+  color: var(--color-hazard);
+}
+
+.ascii-frame::after {
+  content: " ]";
+  color: var(--color-hazard);
+}
+
+/* Crosshair aux intersections de grille */
+.crosshair {
+  position: relative;
+}
+
+.crosshair::before,
+.crosshair::after {
+  content: "";
+  position: absolute;
+  background: var(--color-phosphor-faint);
+}
+
+.crosshair::before {
+  top: -4px;
+  bottom: -4px;
+  left: 50%;
+  width: 1px;
+  transform: translateX(-50%);
+}
+
+.crosshair::after {
+  left: -4px;
+  right: -4px;
+  top: 50%;
+  height: 1px;
+  transform: translateY(-50%);
+}
+
+/* ─── Boutons / CTA brutalist ─── */
+.btn-tactical {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-6);
+  font-family: var(--font-mono);
+  font-size: var(--text-data);
   font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-phosphor);
+  background: transparent;
+  color: var(--color-phosphor);
+  transition: background 80ms linear, color 80ms linear, border-color 80ms linear;
+  cursor: pointer;
 }
 
-/* Lien chevron typographique français */
-.chevron-link::after {
-  content: "\00A0\203A";
-  font-weight: 400;
+.btn-tactical:hover,
+.btn-tactical:focus-visible {
+  background: var(--color-phosphor);
+  color: var(--color-substrate);
 }
 
-/* Reduced motion */
+.btn-tactical-hazard {
+  border-color: var(--color-hazard);
+  color: var(--color-hazard);
+}
+
+.btn-tactical-hazard:hover,
+.btn-tactical-hazard:focus-visible {
+  background: var(--color-hazard);
+  color: var(--color-substrate);
+}
+
+/* ─── Divisions structurelles ─── */
+.divider-solid {
+  border: 0;
+  border-top: 1px solid var(--color-phosphor-faint);
+  margin: 0;
+}
+
+.divider-hazard {
+  border: 0;
+  border-top: 2px solid var(--color-hazard);
+  margin: 0;
+}
+
+/* ─── Focus visible (a11y obligatoire) ─── */
+:focus-visible {
+  outline: 2px solid var(--color-hazard);
+  outline-offset: 2px;
+}
+
+/* ─── Reduced motion ─── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+
+  body {
+    background-image: none;
+  }
 }
 
-/* Diagramme mesh — simple pulse SVG */
-@keyframes pulse-node {
-  0%, 100% { opacity: 0.4; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.15); }
-}
-
-.mesh-node {
-  animation: pulse-node 3s ease-in-out infinite;
-  transform-origin: center;
-}
-
-.mesh-node:nth-child(2) { animation-delay: 0.4s; }
-.mesh-node:nth-child(3) { animation-delay: 0.8s; }
-.mesh-node:nth-child(4) { animation-delay: 1.2s; }
-.mesh-node:nth-child(5) { animation-delay: 1.6s; }
-.mesh-node:nth-child(6) { animation-delay: 2s; }
-.mesh-node:nth-child(7) { animation-delay: 2.4s; }
-
-/* Transition douce sur les boutons */
-.btn-primary,
-.btn-secondary {
-  transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
-              background 180ms ease,
-              border-color 180ms ease,
-              color 180ms ease;
-}
-
-.btn-primary:hover {
-  transform: translateY(-1px);
-}
-
-/* Tableau des kits — bordure éditoriale */
-.kit-card {
+/* ─── Indicateur uplink (UN seul élément autorisé en terminal-green) ─── */
+.uplink-indicator {
   position: relative;
-  background: white;
-  border: 1px solid rgba(26, 31, 28, 0.08);
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: var(--color-uplink);
+  box-shadow: 0 0 8px var(--color-uplink);
 }
 
-.kit-card::before {
+.uplink-indicator::after {
   content: "";
   position: absolute;
-  top: -1px;
-  left: -1px;
-  right: -1px;
-  height: 4px;
-  background: var(--color-forest);
+  inset: -4px;
+  border: 1px solid var(--color-uplink);
+  opacity: 0.4;
+  animation: uplink-pulse 2s ease-in-out infinite;
 }
 
-.kit-card[data-kit="pro"]::before {
-  background: var(--color-charcoal);
-}
-
-.kit-card[data-kit="secours"]::before {
-  background: var(--color-signal);
-}
-
-/* Grille section verticale */
-.vertical-row {
-  border-bottom: 1px solid rgba(26, 31, 28, 0.08);
-}
-
-.vertical-row:last-child {
-  border-bottom: none;
+@keyframes uplink-pulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0; transform: scale(2); }
 }
