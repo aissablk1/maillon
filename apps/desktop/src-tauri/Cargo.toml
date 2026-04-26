@@ -1,0 +1,54 @@
+[package]
+name = "maillon-console"
+version = "0.1.0"
+description = "MAILLON Console — application desktop opérateur du réseau mesh radio souverain"
+authors = ["MAILLON"]
+edition = "2021"
+rust-version = "1.77"
+
+# Voir https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+name = "maillon_console_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2.0.3", features = [] }
+
+[dependencies]
+# Tauri 2 — runtime fenêtre + IPC
+tauri = { version = "2.1", features = [] }
+tauri-plugin-shell = "2.0"
+
+# Async runtime
+tokio = { version = "1.41", features = ["full"] }
+
+# Sérialisation des payloads IPC
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# SDK officiel Meshtastic Rust — communication avec les nœuds (Serial/BLE/TCP)
+# Référence : https://github.com/meshtastic/rust
+meshtastic = "0.1"
+
+# Bluetooth Low Energy multi-plateformes (CoreBluetooth, BlueZ, WinRT)
+btleplug = "0.11"
+
+# Logs structurés
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# Erreurs ergonomiques pour propagation IPC
+thiserror = "2.0"
+
+[features]
+# Active les DevTools en debug uniquement
+default = ["custom-protocol"]
+custom-protocol = ["tauri/custom-protocol"]
+
+[profile.release]
+panic = "abort"
+codegen-units = 1
+lto = true
+opt-level = "s"
+strip = true

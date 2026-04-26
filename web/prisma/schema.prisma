@@ -1,0 +1,362 @@
+// MAILLON — Schéma Prisma
+// Multi-tenant strict : chaque table métier embarque org_id.
+// RLS Postgres documentée plus bas (à activer manuellement, hors Prisma).
+// Hypertables Timescale (positions, telemetry, audit_log) : voir prisma/migrations/README.md.
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  // TimescaleDB pour les hypertables, postgis pour les geofences en GeoJSON.
+  extensions = [timescaledb, postgis]
+}
+
+// ──────────────────────────────────────────────────────────────────────────
+// Identités
+// ──────────────────────────────────────────────────────────────────────────
+
+enum MemberRole {
+  OWNER
+  ADMIN
+  OPERATOR
+  VIEWER
+}
+
+enum OrgPlan {
+  TRIAL
+  STARTER
+  PRO
+  ENTERPRISE
+}
+
+model User {
+  id            String       @id @default(cuid())
+  email         String       @unique
+  name          String?
+  // bcrypt/argon2 — jamais en clair, jamais loggé.
+  passwordHash  String
+  // TOTP secret chiffré au repos (pgcrypto côté DB recommandé en prod).
+  totpSecret    String?      @map("totp_secret")
+  totpEnabled   Boolean      @default(false) @map("totp_enabled")
+  emailVerified DateTime?    @map("email_verified")
+  createdAt     DateTime     @default(now()) @map("created_at")
+  updatedAt     DateTime     @updatedAt @map("updated_at")
+
+  memberships   Membership[]
+  sessions      Session[]
+  auditLogs     AuditLog[]
+
+  @@map("users")
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  userId    String   @map("user_id")
+  // Cookie httpOnly + secure. Token hashé côté DB.
+  tokenHash String   @unique @map("token_hash")
+  expiresAt DateTime @map("expires_at")
+  ip        String?
+  userAgent String?  @map("user_agent")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
+  @@map("sessions")
+}
+
+model Organization {
+  id            String         @id @default(cuid())
+  name          String
+  slug          String         @unique
+  plan          OrgPlan        @default(TRIAL)
+  maxNodes      Int            @default(10) @map("max_nodes")
+  // Préférences libres (timezone, defaults UI, alertes par défaut).
+  settings      Json           @default("{}")
+  createdAt     DateTime       @default(now()) @map("created_at")
+  updatedAt     DateTime       @updatedAt @map("updated_at")
+
+  memberships   Membership[]
+  nodes         Node[]
+  nodeGroups    NodeGroup[]
+  geofences     GeoFence[]
+  messages      Message[]
+  alerts        Alert[]
+  auditLogs     AuditLog[]
+  subscription  Subscription?
+  invoices      Invoice[]
+
+  @@map("organizations")
+}
+
+model Membership {
+  id        String      @id @default(cuid())
+  userId    String      @map("user_id")
+  orgId     String      @map("org_id")
+  role      MemberRole  @default(VIEWER)
+  createdAt DateTime    @default(now()) @map("created_at")
+
+  user      User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  org       Organization @relation(fields: [orgId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, orgId])
+  @@index([orgId])
+  @@map("memberships")
+}
+
+// ──────────────────────────────────────────────────────────────────────────
+// Inventaire matériel
+// ──────────────────────────────────────────────────────────────────────────
+
+enum NodeType {
+  HANDHELD
+  FIXED_RELAY
+  VEHICLE
+  SENSOR
+  GATEWAY
+}
+
+enum NodeStatus {
+  PROVISIONED
+  ACTIVE
+  INACTIVE
+  LOST
+  DECOMMISSIONED
+}
+
+model Node {
+  id            String      @id @default(cuid())
+  orgId         String      @map("org_id")
+  // Identifiant matériel Meshtastic (8 hex). Unique global.
+  hardwareId    String      @unique @map("hardware_id")
+  name          String
+  type          NodeType    @default(HANDHELD)
+  status        NodeStatus  @default(PROVISIONED)
+  // PSK kit chiffré au repos (à stocker via pgcrypto / app-level KMS en prod).
+  pskEncrypted  String?     @map("psk_encrypted")
+  firmwareVer   String?     @map("firmware_version")
+  lastSeenAt    DateTime?   @map("last_seen_at")
+  lastBatteryPc Int?        @map("last_battery_pc")
+  // Dernière position connue dénormalisée pour affichage rapide.
+  lastLat       Float?      @map("last_lat")
+  lastLon       Float?      @map("last_lon")
+  metadata      Json        @default("{}")
+  createdAt     DateTime    @default(now()) @map("created_at")
+  updatedAt     DateTime    @updatedAt @map("updated_at")
+
+  org           Organization      @relation(fields: [orgId], references: [id], onDelete: Cascade)
+  groupMembers  NodeGroupMember[]
+
+  @@index([orgId])
+  @@index([orgId, status])
+  @@map("nodes")
+}
+
+model NodeGroup {
+  id        String              @id @default(cuid())
+  orgId     String              @map("org_id")
+  name      String
+  color     String?
+  createdAt DateTime            @default(now()) @map("created_at")
+
+  org       Organization        @relation(fields: [orgId], references: [id], onDelete: Cascade)
+  members   NodeGroupMember[]
+
+  @@index([orgId])
+  @@map("node_groups")
+}
+
+model NodeGroupMember {
+  nodeId  String     @map("node_id")
+  groupId String     @map("group_id")
+
+  node    Node       @relation(fields: [nodeId], references: [id], onDelete: Cascade)
+  group   NodeGroup  @relation(fields: [groupId], references: [id], onDelete: Cascade)
+
+  @@id([nodeId, groupId])
+  @@map("node_group_members")
+}
+
+// ──────────────────────────────────────────────────────────────────────────
+// Géofences (polygones GeoJSON, alertes entrée/sortie)
+// ──────────────────────────────────────────────────────────────────────────
+
+model GeoFence {
+  id           String        @id @default(cuid())
+  orgId        String        @map("org_id")
+  name         String
+  // Polygone GeoJSON (FeatureCollection ou Polygon). PostGIS exploitable via raw SQL.
+  polygon      Json
+  alertsConfig Json          @default("{}") @map("alerts_config")
+  active       Boolean       @default(true)
+  createdAt    DateTime      @default(now()) @map("created_at")
+
+  org          Organization  @relation(fields: [orgId], references: [id], onDelete: Cascade)
+
+  @@index([orgId])
+  @@map("geofences")
+}
+
+// ──────────────────────────────────────────────────────────────────────────
+// Données temps série (HYPERTABLES Timescale — voir prisma/migrations/README.md)
+// ──────────────────────────────────────────────────────────────────────────
+
+// Position : hypertable, partition par ts. Pas de @id Prisma usuel — clé composite.
+model Position {
+  nodeId    String   @map("node_id")
+  ts        DateTime
+  orgId     String   @map("org_id")
+  lat       Float
+  lon       Float
+  altitudeM Float?   @map("altitude_m")
+  accuracyM Float?   @map("accuracy_m")
+  // BLE, MQTT, MANUAL, IMPORT — origine de la position.
+  source    String   @default("MQTT")
+
+  @@id([nodeId, ts])
+  @@index([orgId, ts])
+  @@map("positions")
+}
+
+model Telemetry {
+  nodeId    String   @map("node_id")
+  ts        DateTime
+  orgId     String   @map("org_id")
+  // batteryPc, voltage, temperature, rssi, snr, etc.
+  key       String
+  valueNum  Float?   @map("value_num")
+  valueText String?  @map("value_text")
+
+  @@id([nodeId, ts, key])
+  @@index([orgId, ts])
+  @@map("telemetry")
+}
+
+// ──────────────────────────────────────────────────────────────────────────
+// Messagerie (chiffrée bout-en-bout côté app, on stocke uniquement le ciphertext)
+// ──────────────────────────────────────────────────────────────────────────
+
+model Message {
+  id               String        @id @default(cuid())
+  orgId            String        @map("org_id")
+  nodeFrom         String        @map("node_from")
+  nodeTo           String?       @map("node_to")
+  channel          String?
+  ts               DateTime      @default(now())
+  // Ciphertext Meshtastic. MAILLON ne possède pas la clé — pas de déchiffrement serveur.
+  contentEncrypted Bytes         @map("content_encrypted")
+
+  org              Organization  @relation(fields: [orgId], references: [id], onDelete: Cascade)
+
+  @@index([orgId, ts])
+  @@map("messages")
+}
+
+// ──────────────────────────────────────────────────────────────────────────
+// Alertes
+// ──────────────────────────────────────────────────────────────────────────
+
+enum AlertSeverity {
+  INFO
+  WARNING
+  CRITICAL
+}
+
+model Alert {
+  id        String         @id @default(cuid())
+  orgId     String         @map("org_id")
+  // GEOFENCE_ENTER, GEOFENCE_LEAVE, BATTERY_LOW, OFFLINE, SOS, ...
+  type      String
+  severity  AlertSeverity  @default(WARNING)
+  ts        DateTime       @default(now())
+  payload   Json           @default("{}")
+  ackBy     String?        @map("ack_by")
+  ackAt     DateTime?      @map("ack_at")
+
+  org       Organization   @relation(fields: [orgId], references: [id], onDelete: Cascade)
+
+  @@index([orgId, ts])
+  @@index([orgId, ackAt])
+  @@map("alerts")
+}
+
+// ──────────────────────────────────────────────────────────────────────────
+// Audit log (hypertable en prod)
+// ──────────────────────────────────────────────────────────────────────────
+
+model AuditLog {
+  id      String   @id @default(cuid())
+  orgId   String   @map("org_id")
+  userId  String?  @map("user_id")
+  action  String
+  target  String?
+  ts      DateTime @default(now())
+  ip      String?
+  payload Json     @default("{}")
+
+  org     Organization @relation(fields: [orgId], references: [id], onDelete: Cascade)
+  user    User?        @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([orgId, ts])
+  @@map("audit_log")
+}
+
+// ──────────────────────────────────────────────────────────────────────────
+// Facturation (Stripe)
+// ──────────────────────────────────────────────────────────────────────────
+
+model Subscription {
+  id           String       @id @default(cuid())
+  orgId        String       @unique @map("org_id")
+  plan         OrgPlan
+  stripeId     String?      @unique @map("stripe_id")
+  startedAt    DateTime     @default(now()) @map("started_at")
+  periodEndAt  DateTime?    @map("period_end_at")
+  cancelledAt  DateTime?    @map("cancelled_at")
+
+  org          Organization @relation(fields: [orgId], references: [id], onDelete: Cascade)
+
+  @@map("subscriptions")
+}
+
+model Invoice {
+  id        String       @id @default(cuid())
+  orgId     String       @map("org_id")
+  stripeId  String?      @unique @map("stripe_id")
+  amountEur Int          @map("amount_eur") // en centimes
+  status    String
+  issuedAt  DateTime     @default(now()) @map("issued_at")
+  pdfUrl    String?      @map("pdf_url")
+
+  org       Organization @relation(fields: [orgId], references: [id], onDelete: Cascade)
+
+  @@index([orgId, issuedAt])
+  @@map("invoices")
+}
+
+// ──────────────────────────────────────────────────────────────────────────
+// Note RLS (Row-Level Security)
+// ──────────────────────────────────────────────────────────────────────────
+//
+// Activer en SQL après migration :
+//
+//   ALTER TABLE nodes        ENABLE ROW LEVEL SECURITY;
+//   ALTER TABLE positions    ENABLE ROW LEVEL SECURITY;
+//   ALTER TABLE telemetry    ENABLE ROW LEVEL SECURITY;
+//   ALTER TABLE messages     ENABLE ROW LEVEL SECURITY;
+//   ALTER TABLE alerts       ENABLE ROW LEVEL SECURITY;
+//   ALTER TABLE geofences    ENABLE ROW LEVEL SECURITY;
+//   ALTER TABLE audit_log    ENABLE ROW LEVEL SECURITY;
+//
+// Policy type (à adapter pour chaque table) :
+//
+//   CREATE POLICY tenant_isolation ON nodes
+//     USING (org_id = current_setting('app.current_org_id', true));
+//
+// Le backend doit exécuter `SET LOCAL app.current_org_id = '<org_id>'`
+// au début de chaque transaction utilisateur.

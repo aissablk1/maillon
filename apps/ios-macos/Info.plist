@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDisplayName</key>
+	<string>MAILLON</string>
+	<key>CFBundleName</key>
+	<string>MAILLON</string>
+	<key>CFBundleIdentifier</key>
+	<string>fr.maillon.app</string>
+	<key>CFBundleShortVersionString</key>
+	<string>0.1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>fr_FR</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UIColorName</key>
+		<string>LaunchBackground</string>
+	</dict>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+
+	<!-- Permissions Bluetooth — obligatoires pour la communication avec les nœuds Meshtastic -->
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>MAILLON utilise le Bluetooth pour se connecter à votre nœud Meshtastic et communiquer sur le réseau mesh longue portée. Sans cette autorisation, l'application ne peut pas fonctionner.</string>
+
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>MAILLON utilise le Bluetooth pour échanger des données avec votre nœud Meshtastic à proximité.</string>
+
+	<!-- Localisation — utilisée pour afficher votre position relative aux autres nœuds du réseau -->
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>MAILLON utilise votre position uniquement quand l'application est ouverte, pour vous situer sur la carte du réseau mesh et estimer la portée des nœuds proches. La localisation n'est jamais transmise sans votre consentement explicite.</string>
+
+	<!-- Mode arrière-plan : maintien de la connexion BLE quand l'app n'est pas au premier plan -->
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>bluetooth-central</string>
+		<string>bluetooth-peripheral</string>
+	</array>
+
+	<!-- Sécurité réseau : pas d'HTTP en clair toléré -->
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<false/>
+	</dict>
+</dict>
+</plist>

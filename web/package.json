@@ -1,0 +1,37 @@
+{
+  "name": "maillon-web",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Site MAILLON — landing + SaaS Fleet Manager (Next.js 15 + Tailwind v4 + Prisma + Better-Auth + MQTT)",
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate deploy",
+    "db:studio": "prisma studio",
+    "bridge": "tsx lib/mqtt-bridge.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.2.1",
+    "better-auth": "^1.2.0",
+    "mqtt": "^5.10.3",
+    "next": "^15.1.6",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.0.0",
+    "@types/node": "^22.10.5",
+    "@types/react": "^19.0.7",
+    "@types/react-dom": "^19.0.3",
+    "postcss": "^8.5.1",
+    "prisma": "^6.2.1",
+    "tailwindcss": "^4.0.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  }
+}

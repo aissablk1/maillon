@@ -1,0 +1,51 @@
+# Dépendances
+node_modules/
+**/node_modules/
+
+# Builds
+.next/
+.turbo/
+out/
+build/
+dist/
+target/
+**/target/
+
+# Apple
+.DS_Store
+*.xcodeproj/xcuserdata/
+DerivedData/
+
+# Android
+.gradle/
+local.properties
+*.iml
+.idea/
+
+# Tauri
+src-tauri/target/
+
+# Données et secrets
+.env
+.env.local
+.env.*.local
+.data/
+.maillon-registry-technical.jsonl
+.maillon-registry-nominal.jsonl
+.maillon-preconfig-registry.jsonl
+
+# IDE
+.vscode/
+.fleet/
+
+# Backups locaux (convention workspace)
+_backup/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Logs
+*.log

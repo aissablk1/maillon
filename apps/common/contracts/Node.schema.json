@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://maillon.fr/schemas/Node.schema.json",
+  "title": "MaillonNode",
+  "description": "Représentation canonique d'un nœud Meshtastic dans MAILLON. Contrat partagé entre app iOS/macOS (Swift), app Android (Kotlin) et app Desktop (Rust+TS).",
+  "type": "object",
+  "required": [
+    "nodeNum",
+    "longName",
+    "shortName",
+    "lastHeard",
+    "channel"
+  ],
+  "properties": {
+    "nodeNum": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4294967295,
+      "description": "Identifiant unique 32 bits du nœud Meshtastic (uint32)."
+    },
+    "longName": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 39,
+      "description": "Nom long affichable, max 39 octets UTF-8 (limite firmware Meshtastic)."
+    },
+    "shortName": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4,
+      "description": "Nom court, max 4 caractères ASCII."
+    },
+    "hwModel": {
+      "type": "string",
+      "description": "Modèle hardware (TBEAM_S3, TECHO, RAK4631, STATION_G2, etc.)."
+    },
+    "firmwareVersion": {
+      "type": "string",
+      "description": "Version firmware Meshtastic (ex: 2.7.22)."
+    },
+    "lastHeard": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp ISO 8601 UTC du dernier message reçu."
+    },
+    "rssi": {
+      "type": ["integer", "null"],
+      "description": "Puissance signal reçu en dBm (négatif). Null si jamais reçu."
+    },
+    "snr": {
+      "type": ["number", "null"],
+      "description": "Signal-to-Noise Ratio en dB. Null si jamais reçu."
+    },
+    "battery": {
+      "type": ["object", "null"],
+      "properties": {
+        "level": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 101,
+          "description": "Niveau batterie 0-100 %, ou 101 = alimenté secteur."
+        },
+        "voltage": {
+          "type": "number",
+          "description": "Tension batterie en volts."
+        }
+      },
+      "required": ["level"]
+    },
+    "position": {
+      "type": ["object", "null"],
+      "properties": {
+        "lat": { "type": "number", "minimum": -90, "maximum": 90 },
+        "lon": { "type": "number", "minimum": -180, "maximum": 180 },
+        "altitude": { "type": ["number", "null"], "description": "Altitude mètres." },
+        "precisionBits": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 32,
+          "description": "Précision GPS en bits (10 bits = ~20 km de flou pour MQTT public)."
+        },
+        "ts": { "type": "string", "format": "date-time" }
+      },
+      "required": ["lat", "lon", "ts"]
+    },
+    "channel": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 7,
+      "description": "Index du canal Meshtastic (0 = primaire, 1-7 = secondaires). NE JAMAIS stocker un nom de canal ici, uniquement l'index."
+    },
+    "isFavorite": {
+      "type": "boolean",
+      "default": false,
+      "description": "Marqué favori côté client local. Pas synchronisé avec le firmware."
+    }
+  },
+  "additionalProperties": false
+}

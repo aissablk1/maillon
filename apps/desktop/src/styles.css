@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+/*
+ * MAILLON — design tokens (cohérents avec apps/common/design-tokens.md)
+ * Tailwind v4 : configuration CSS-only via @theme. Les noms d'utilitaires
+ * (bg-forest, text-sand, etc.) sont générés automatiquement.
+ */
+
+@theme {
+  /* Couleurs marque */
+  --color-forest: #1f3d2e;
+  --color-moss: #4a8b6a;
+  --color-sand: #f5f0e6;
+  --color-charcoal: #1a1f1c;
+  --color-signal: #e87d2c;
+  --color-cobalt: #2854a8;
+  --color-warning: #e8a22c;
+  --color-danger: #d14444;
+
+  /* Typographie */
+  --font-sans:
+    "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono:
+    "JetBrains Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    monospace;
+
+  /* Échelle typographique desktop */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
+  --text-3xl: 2.25rem;
+  --text-display: 3.5rem;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
+}
+
+/* Reset spécifique app desktop */
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  background: var(--color-charcoal);
+  color: var(--color-sand);
+  /* Empêche le drag-zoom sur trackpad et la sélection accidentelle de l'UI */
+  -webkit-user-select: none;
+  user-select: none;
+  /* Lissage des polices sur macOS / Windows */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayseale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Réautoriser la sélection dans les zones de saisie et de contenu */
+input,
+textarea,
+[contenteditable="true"],
+.selectable {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+/* Scrollbars discrètes cohérentes avec la palette MAILLON */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(255 255 255 / 0.08);
+  border-radius: var(--radius-pill);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(255 255 255 / 0.16);
+}
+
+/* Focus visible accessibilité — WCAG AA */
+:focus-visible {
+  outline: 2px solid var(--color-moss);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

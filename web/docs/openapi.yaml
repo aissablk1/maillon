@@ -1,0 +1,260 @@
+openapi: 3.1.0
+info:
+  title: MAILLON Fleet Manager API
+  version: "1.0.0"
+  summary: API publique du SaaS MAILLON — gestion de flotte mesh radio.
+  description: |
+    API REST versionnée du Fleet Manager MAILLON. Multi-tenant strict :
+    chaque appel authentifié par session est borné à l'organisation active
+    de l'utilisateur. L'ingestion (positions, télémétrie) utilise un Bearer
+    token dédié partagé avec le bridge MQTT.
+
+    Hébergement : UE (Scaleway Paris primaire, OVH Roubaix backup).
+  contact:
+    name: MAILLON
+    url: https://maillon.fr
+  license:
+    name: Proprietary
+servers:
+  - url: https://app.maillon.fr/api/v1
+    description: Production (UE)
+  - url: http://localhost:3000/api/v1
+    description: Local
+
+security:
+  - sessionCookie: []
+
+tags:
+  - name: nodes
+    description: Inventaire des nœuds.
+  - name: positions
+    description: Ingestion temps série depuis le bridge MQTT.
+  - name: health
+    description: Sondes de disponibilité (publiques).
+
+paths:
+  /health:
+    get:
+      tags: [health]
+      summary: Statut global du SaaS et des dépendances
+      security: []
+      responses:
+        "200":
+          description: Système OK ou dégradé
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Health"
+        "503":
+          description: Service indisponible
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Health"
+
+  /nodes:
+    get:
+      tags: [nodes]
+      summary: Lister les nœuds de l'organisation courante
+      parameters:
+        - in: query
+          name: status
+          schema:
+            $ref: "#/components/schemas/NodeStatus"
+        - in: query
+          name: cursor
+          schema: { type: string }
+        - in: query
+          name: limit
+          schema: { type: integer, minimum: 1, maximum: 200, default: 50 }
+      responses:
+        "200":
+          description: Page de résultats
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [data, cursor]
+                properties:
+                  data:
+                    type: array
+                    items: { $ref: "#/components/schemas/Node" }
+                  cursor:
+                    type: object
+                    properties:
+                      next: { type: string, nullable: true }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "503": { $ref: "#/components/responses/Unavailable" }
+
+    post:
+      tags: [nodes]
+      summary: Enrôler un nœud dans l'organisation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NodeCreate"
+      responses:
+        "201":
+          description: Nœud créé
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data: { $ref: "#/components/schemas/Node" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "409":
+          description: ID matériel déjà enrôlé
+        "422": { $ref: "#/components/responses/ValidationError" }
+
+  /positions:
+    post:
+      tags: [positions]
+      summary: Ingestion d'une position ou d'un lot de positions
+      security:
+        - ingestToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: "#/components/schemas/PositionInput"
+                - type: array
+                  maxItems: 500
+                  items: { $ref: "#/components/schemas/PositionInput" }
+      responses:
+        "201":
+          description: Lot ingéré
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ingested: { type: integer }
+                  skipped: { type: integer }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "404":
+          description: Aucun nœud correspondant
+        "422": { $ref: "#/components/responses/ValidationError" }
+
+components:
+  securitySchemes:
+    sessionCookie:
+      type: apiKey
+      in: cookie
+      name: maillon.session_token
+      description: Cookie de session Better-Auth (httpOnly, secure).
+    ingestToken:
+      type: http
+      scheme: bearer
+      bearerFormat: opaque
+      description: |
+        Token applicatif partagé avec le bridge MQTT (`MQTT_INGEST_TOKEN`).
+        À rotater régulièrement, à ne jamais exposer côté client.
+
+  responses:
+    Unauthorized:
+      description: Authentification manquante ou invalide
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/Error" }
+    ValidationError:
+      description: Validation échouée
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/Error" }
+    Unavailable:
+      description: Service temporairement indisponible
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/Error" }
+
+  schemas:
+    Error:
+      type: object
+      required: [error]
+      properties:
+        error: { type: string }
+        issues: { type: object, additionalProperties: true }
+        detail: { type: string }
+
+    NodeStatus:
+      type: string
+      enum: [PROVISIONED, ACTIVE, INACTIVE, LOST, DECOMMISSIONED]
+
+    NodeType:
+      type: string
+      enum: [HANDHELD, FIXED_RELAY, VEHICLE, SENSOR, GATEWAY]
+
+    Node:
+      type: object
+      required: [id, orgId, hardwareId, name, type, status, createdAt]
+      properties:
+        id: { type: string }
+        orgId: { type: string }
+        hardwareId: { type: string }
+        name: { type: string, maxLength: 80 }
+        type: { $ref: "#/components/schemas/NodeType" }
+        status: { $ref: "#/components/schemas/NodeStatus" }
+        firmwareVer: { type: string, nullable: true }
+        lastSeenAt: { type: string, format: date-time, nullable: true }
+        lastBatteryPc: { type: integer, nullable: true }
+        lastLat: { type: number, nullable: true }
+        lastLon: { type: number, nullable: true }
+        createdAt: { type: string, format: date-time }
+        updatedAt: { type: string, format: date-time }
+
+    NodeCreate:
+      type: object
+      required: [hardwareId, name]
+      properties:
+        hardwareId:
+          type: string
+          minLength: 4
+          maxLength: 32
+          pattern: "^[A-Fa-f0-9!_-]+$"
+        name: { type: string, minLength: 1, maxLength: 80 }
+        type: { $ref: "#/components/schemas/NodeType" }
+        pskEncrypted: { type: string, maxLength: 512 }
+
+    PositionInput:
+      type: object
+      required: [nodeHardwareId, lat, lon]
+      properties:
+        nodeHardwareId: { type: string, minLength: 4, maxLength: 32 }
+        ts:
+          oneOf:
+            - { type: string, format: date-time }
+            - { type: integer, minimum: 0 }
+        lat: { type: number, minimum: -90, maximum: 90 }
+        lon: { type: number, minimum: -180, maximum: 180 }
+        altitudeM: { type: number }
+        accuracyM: { type: number, minimum: 0 }
+        source:
+          type: string
+          enum: [MQTT, BLE, MANUAL, IMPORT]
+          default: MQTT
+
+    Health:
+      type: object
+      required: [status, checkedAt, services]
+      properties:
+        status: { type: string, enum: [ok, degraded, down] }
+        checkedAt: { type: string, format: date-time }
+        version: { type: string, nullable: true }
+        services:
+          type: object
+          properties:
+            db:
+              type: object
+              properties:
+                status: { type: string, enum: [ok, degraded, down] }
+                latencyMs: { type: integer }
+            mqtt:
+              type: object
+              properties:
+                status: { type: string, enum: [ok, degraded, down] }
+                reason: { type: string }
