@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { NodeStatus } from "@prisma/client";
 import { getCurrentSession, getCurrentOrgId, prisma } from "@lib/auth";
 
 // Liste des nœuds — Server Component, query Prisma directe.
@@ -8,13 +9,20 @@ export const dynamic = "force-dynamic";
 
 type SearchParams = Promise<{ status?: string; q?: string }>;
 
-const STATUS_LABELS: Record<string, string> = {
+const STATUS_LABELS: Record<NodeStatus, string> = {
   PROVISIONED: "Pré-configuré",
   ACTIVE: "Actif",
   INACTIVE: "Inactif",
   LOST: "Perdu",
   DECOMMISSIONED: "Mis hors service",
 };
+
+function parseStatus(raw: string | undefined): NodeStatus | undefined {
+  if (!raw) return undefined;
+  return (Object.values(NodeStatus) as string[]).includes(raw)
+    ? (raw as NodeStatus)
+    : undefined;
+}
 
 export default async function NodesPage({
   searchParams,
@@ -28,7 +36,7 @@ export default async function NodesPage({
   if (!orgId) return null;
 
   const sp = await searchParams;
-  const status = typeof sp.status === "string" ? sp.status : undefined;
+  const status = parseStatus(typeof sp.status === "string" ? sp.status : undefined);
   const q = typeof sp.q === "string" ? sp.q.trim() : undefined;
 
   let nodes: Awaited<ReturnType<typeof prisma.node.findMany>> = [];
@@ -37,9 +45,7 @@ export default async function NodesPage({
     nodes = await prisma.node.findMany({
       where: {
         orgId,
-        ...(status && status in STATUS_LABELS
-          ? { status: status as keyof typeof STATUS_LABELS }
-          : {}),
+        ...(status ? { status } : {}),
         ...(q
           ? {
               OR: [

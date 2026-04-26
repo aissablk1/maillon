@@ -156,11 +156,14 @@ async function handleMessage(t: ParsedTopic, raw: Buffer) {
   });
   if (!node || node.orgId !== t.orgId) return;
   // On stocke le ciphertext brut. MAILLON ne possède pas la clé.
+  // Copie vers un ArrayBuffer pur (Prisma `Bytes` refuse SharedArrayBuffer en Node 22+).
+  const payload = new Uint8Array(raw.byteLength);
+  payload.set(raw);
   await prisma.message.create({
     data: {
       orgId: node.orgId,
       nodeFrom: t.nodeHardwareId,
-      contentEncrypted: raw,
+      contentEncrypted: payload,
       ts: new Date(),
     },
   });
