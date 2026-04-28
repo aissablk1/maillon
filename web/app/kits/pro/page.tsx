@@ -202,8 +202,8 @@ export default function KitProPage() {
             </p>
             <ul className="space-y-5 text-base text-[color:var(--color-charcoal)]/85">
               <li>
-                <strong>Pas un substitut au 112 ni au réseau Antarès.</strong>
-                {" "}MAILLON complète vos comms officielles, ne les remplace pas.
+                <strong>MAILLON ne se substitue pas au 112 ni au réseau Antarès.</strong>
+                {" "}Il complète vos comms officielles, ne les remplace pas.
               </li>
               <li>
                 <strong>Voix non supportée.</strong> Le LoRa transporte du

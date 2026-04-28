@@ -172,8 +172,8 @@ export default function KitDecouvertePage() {
               <li>
                 <strong>Ce n&apos;est pas un service de secours officiel.</strong>{" "}
                 En cas d&apos;urgence vitale, composez le 112. MAILLON
-                est un outil d&apos;appoint, jamais un substitut au SAMU
-                ou aux pompiers.
+                est un outil d&apos;appoint, ne se substitue ni au SAMU
+                ni aux pompiers.
               </li>
               <li>
                 <strong>La portée dépend du terrain.</strong> 5 à 10 km

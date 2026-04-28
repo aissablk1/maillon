@@ -34,7 +34,7 @@
 - Cadeau différenciant pour amateur outdoor
 
 ## Limites à connaître (transparence)
-- **Pas un substitut au 112** : MAILLON est un outil d'appoint, pas un service de secours officiel.
+- **MAILLON ne se substitue pas au 112** : c'est un outil d'appoint, pas un service de secours officiel.
 - Portée < 1 km en intérieur béton.
 - Hop limit configuré à 3 par défaut (suffisant 99 % des cas, ajustable).
 - Pas de SOS satellite : si vous êtes seul·e en zone vraiment isolée pour de longues durées, considérez un Garmin inReach en complément.

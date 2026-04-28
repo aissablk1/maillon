@@ -56,7 +56,7 @@
 **Économie sur an 1 : ~15 300 € pour une asso bénévole équipant 6 secouristes.** Cumulable avec les économies sur les ans 2 et 3.
 
 ## Limites à connaître
-- **Pas un substitut au 112 ni au réseau Antarès officiel des sapeurs-pompiers.** MAILLON est un outil d'appoint, qui complète mais ne remplace pas les comms officielles de la sécurité civile.
+- **MAILLON ne se substitue pas au 112 ni au réseau Antarès officiel des sapeurs-pompiers.** C'est un outil d'appoint, qui complète mais ne remplace pas les comms officielles de la sécurité civile.
 - Voix non supportée (texte + position).
 - Demande 30 minutes de mise en place sur site (positionnement relais).
 - Relais nécessite alimentation : USB powerbank pour quelques heures, ou alimentation externe pour usage long.

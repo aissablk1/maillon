@@ -245,7 +245,7 @@ export default function KitSecoursPage() {
         <section className="bg-[color:var(--color-charcoal)]/95 text-[color:var(--color-sand)] py-12">
           <div className="mx-auto max-w-4xl px-6 lg:px-10">
             <p className="font-semibold mb-3">
-              Important — MAILLON n&apos;est pas un substitut au réseau Antarès
+              Important — MAILLON ne se substitue ni au réseau Antarès
               ni au 112.
             </p>
             <p className="text-sm text-[color:var(--color-sand)]/70">

@@ -48,7 +48,7 @@
 | **Total an 1** | ~5 000 € | ~400 € + SaaS optionnel |
 
 ## Limites à connaître
-- **Pas un substitut au 112**.
+- **MAILLON ne se substitue pas au 112.**
 - Voix non supportée (messagerie texte + position).
 - Configuration relais demande un point haut accessible (toit, mât, pylône) ; sans relais, portée réduite à ~5 km entre portatifs.
 - Le service voix marine VHF reste obligatoire pour la plaisance hauturière.

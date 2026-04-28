@@ -60,7 +60,7 @@ export function SiteFooter() {
       <div className="border-t border-[color:var(--color-divider)] py-3 px-6 lg:px-10 font-mono text-[10px] tracking-[0.2em] text-[color:var(--color-phosphor-dim)] uppercase flex flex-wrap items-center justify-between gap-2">
         <span>© {year} MAILLON SAS · Paris</span>
         <span className="text-[color:var(--color-hazard)] font-bold" role="note" aria-label="Avertissement de sécurité">
-          n&apos;est&nbsp;PAS&nbsp;un&nbsp;substitut&nbsp;au&nbsp;
+          ne&nbsp;se&nbsp;substitue&nbsp;pas&nbsp;au&nbsp;
           <a href="tel:112" className="underline maillon-link">112</a>
         </span>
       </div>

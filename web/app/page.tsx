@@ -541,8 +541,8 @@ export default function HomePage() {
               <span aria-hidden="true">[ </span>AVERTISSEMENT&nbsp;/&nbsp;OBLIGATOIRE<span aria-hidden="true"> ]</span>
             </h2>
             <p className="text-[color:var(--color-phosphor-dim)]">
-              MAILLON n&apos;est pas un service de secours officiel. En cas
-              d&apos;urgence vitale, composez le{" "}
+              MAILLON ne se substitue pas au 112 ni à aucun service officiel
+              de secours. En cas d&apos;urgence vitale, composez le{" "}
               <a href="tel:112" className="text-[color:var(--color-phosphor)] font-bold maillon-link">112</a>
               {" "}(numéro européen) ou le{" "}
               <a href="tel:15" className="text-[color:var(--color-phosphor)] font-bold maillon-link">15</a>
