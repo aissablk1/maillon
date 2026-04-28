@@ -49,7 +49,6 @@ export default async function SignUpPage({
       const userId = (result as { user?: { id: string } }).user?.id;
       if (!userId) throw new Error("Création utilisateur échouée.");
 
-      // Création atomique organisation + membership OWNER.
       let slug = slugify(orgName);
       const existing = await prisma.organization.findUnique({ where: { slug } });
       if (existing) slug = `${slug}-${Date.now().toString(36)}`;
@@ -76,20 +75,31 @@ export default async function SignUpPage({
   }
 
   return (
-    <main id="main" className="min-h-screen flex items-center justify-center px-6 py-12">
+    <main
+      id="main"
+      className="min-h-screen flex items-center justify-center px-6 py-12 bg-[color:var(--color-substrate)]"
+    >
       <div className="w-full max-w-sm">
-        <div className="text-center mb-8">
-          <p className="eyebrow text-[var(--color-moss)]">MAILLON Fleet Manager</p>
-          <h1 className="maillon-hero text-2xl mt-2">Créer un compte</h1>
-          <p className="text-sm text-[var(--color-charcoal)]/60 mt-1">
+        <div className="mb-8">
+          <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-3">
+            <span lang="en">Fleet Manager</span>
+          </p>
+          <h1 className="font-mono text-[clamp(22px,3vw,28px)] text-[color:var(--color-phosphor)] font-bold leading-[1.2] mb-2">
+            Créer un compte
+          </h1>
+          <p className="font-mono text-[12px] text-[color:var(--color-phosphor-dim)] leading-[1.5]">
             Compte personnel + organisation initiale.
           </p>
         </div>
 
         {error ? (
-          <div role="alert" className="mb-4 text-sm text-[var(--color-danger)] border border-[var(--color-danger)]/30 bg-[var(--color-danger)]/5 rounded p-3">
+          <div
+            role="alert"
+            className="mb-6 font-mono text-[12px] text-[color:var(--color-hazard)] border border-[color:var(--color-hazard)] bg-[color:var(--color-substrate-2)] p-3"
+          >
+            <span aria-hidden="true">[ ERR ] </span>
             {error === "exists"
-              ? "Un compte existe déjà avec cet e-mail."
+              ? "Un compte existe déjà avec cet email."
               : error === "weak"
                 ? "Mot de passe trop faible (12 caractères minimum)."
                 : error === "missing"
@@ -98,22 +108,43 @@ export default async function SignUpPage({
           </div>
         ) : null}
 
-        <form action={signUp} className="space-y-4">
+        <form
+          action={signUp}
+          className="space-y-5 border border-[color:var(--color-divider)] bg-[color:var(--color-substrate-2)] p-6"
+        >
           <Field label="Nom complet" name="name" type="text" autoComplete="name" />
-          <Field label="E-mail professionnel" name="email" type="email" required autoComplete="email" />
-          <Field label="Mot de passe (12+ caractères)" name="password" type="password" required minLength={12} autoComplete="new-password" />
+          <Field
+            label="Email professionnel"
+            name="email"
+            type="email"
+            required
+            autoComplete="email"
+          />
+          <Field
+            label="Mot de passe (12+ caractères)"
+            name="password"
+            type="password"
+            required
+            minLength={12}
+            autoComplete="new-password"
+          />
           <Field label="Nom de votre organisation" name="orgName" type="text" required />
+
           <button
             type="submit"
-            className="btn-primary w-full bg-[var(--color-forest)] text-[var(--color-sand)] py-2.5 rounded font-medium"
+            className="btn-tactical btn-tactical-hazard w-full justify-between"
           >
-            Créer mon compte
+            <span>Créer mon compte</span>
+            <span aria-hidden="true">{" ›"}</span>
           </button>
         </form>
 
-        <p className="mt-6 text-sm text-center text-[var(--color-charcoal)]/60">
+        <p className="mt-6 font-mono text-[12px] text-[color:var(--color-phosphor-dim)] text-center">
           Déjà un compte&nbsp;?{" "}
-          <Link href="/auth/sign-in" className="text-[var(--color-forest)] underline">
+          <Link
+            href="/auth/sign-in"
+            className="text-[color:var(--color-phosphor)] maillon-link inline-block py-1"
+          >
             Se connecter
           </Link>
         </p>
@@ -128,12 +159,13 @@ function Field({
 }: { label: string } & React.InputHTMLAttributes<HTMLInputElement>) {
   return (
     <label className="block">
-      <span className="block text-xs uppercase tracking-wider text-[var(--color-charcoal)]/60 mb-1">
+      <span className="block font-mono text-[10px] tracking-[0.18em] uppercase text-[color:var(--color-phosphor-dim)] mb-2">
         {label}
       </span>
       <input
         {...props}
-        className="w-full px-3 py-2 border border-[rgba(26,31,28,0.15)] rounded bg-white"
+        aria-required={props.required ? "true" : undefined}
+        className="w-full bg-transparent border border-[color:var(--color-divider)] px-4 py-3 font-mono text-[13px] text-[color:var(--color-phosphor)] placeholder:text-[color:var(--color-phosphor-dim)]"
       />
     </label>
   );

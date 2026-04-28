@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
+import Link from "next/link";
 import { SiteHeader } from "@components/SiteHeader";
 import { SiteFooter } from "@components/SiteFooter";
 import { ContactForm } from "@components/ContactForm";
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
   title: "Contact",
   description:
     "Demandez un devis, une démo, ou posez vos questions techniques. Contact via github.com/aissablk1.",
+  alternates: { canonical: "https://github.com/aissablk1/maillon/contact" },
 };
 
 export default function ContactPage() {
@@ -15,60 +17,77 @@ export default function ContactPage() {
     <>
       <SiteHeader />
       <main id="main">
-        <section className="py-20 lg:py-28">
+        <section
+          aria-labelledby="contact-hero"
+          className="py-20 lg:py-28 border-b border-[color:var(--color-divider)]"
+        >
           <div className="mx-auto max-w-6xl px-6 lg:px-10">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
+              {/* Colonne gauche — texte d'accueil + canaux */}
               <div className="lg:col-span-5">
-                <p className="eyebrow text-[color:var(--color-forest)] mb-6">
+                <p className="font-mono text-[11px] tracking-[0.18em] uppercase text-[color:var(--color-hazard)] mb-8">
                   Contact
                 </p>
-                <h1 className="maillon-hero text-[clamp(2rem,4.5vw,3.6rem)] mb-8 leading-[1.05]">
-                  Une question.<br />
-                  <span className="italic font-light">Une réponse.</span>
+                <h1
+                  id="contact-hero"
+                  className="font-mono text-[clamp(26px,3.5vw,44px)] text-[color:var(--color-phosphor)] leading-[1.2] font-bold mb-8"
+                >
+                  Une question. Une réponse, sous 48 heures ouvrées.
                 </h1>
-                <p className="text-lg text-[color:var(--color-charcoal)]/75 mb-10">
-                  On répond personnellement, en français, sous 48 heures
-                  ouvrées maximum. Pas de chatbot. Pas de ticketing
-                  automatique pour la première interaction.
+                <p className="font-mono text-[14px] text-[color:var(--color-phosphor-dim)] leading-[1.7] mb-12 max-w-md">
+                  On répond personnellement, en français. Pas de chatbot, pas
+                  de ticketing automatique pour la première interaction.
                 </p>
 
-                <div className="space-y-6 text-sm">
-                  <div>
-                    <p className="eyebrow text-[color:var(--color-forest)] mb-2">
-                      Email
-                    </p>
-                    <a
-                      href="https://github.com/aissablk1"
-                      className="text-base font-medium underline-offset-4 hover:underline"
-                    >
-                      github.com/aissablk1
-                    </a>
+                <dl className="space-y-8 font-mono text-[13px]">
+                  <div className="border-t border-[color:var(--color-divider)] pt-5">
+                    <dt className="text-[10px] tracking-[0.18em] uppercase text-[color:var(--color-phosphor-dim)] mb-2">
+                      Profil GitHub
+                    </dt>
+                    <dd>
+                      <Link
+                        href="https://github.com/aissablk1"
+                        className="text-[color:var(--color-phosphor)] maillon-link inline-block py-1"
+                      >
+                        github.com/aissablk1
+                      </Link>
+                    </dd>
                   </div>
-                  <div>
-                    <p className="eyebrow text-[color:var(--color-forest)] mb-2">
-                      Communauté
-                    </p>
-                    <p className="text-base">
-                      Discord MAILLON FR — réponses entraide quasi-instantanées
-                    </p>
+                  <div className="border-t border-[color:var(--color-divider)] pt-5">
+                    <dt className="text-[10px] tracking-[0.18em] uppercase text-[color:var(--color-phosphor-dim)] mb-2">
+                      Communauté Meshtastic
+                    </dt>
+                    <dd className="text-[color:var(--color-phosphor)] leading-[1.6]">
+                      Forum officiel{" "}
+                      <Link
+                        href="https://meshtastic.discourse.group/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="maillon-link inline-block py-1"
+                      >
+                        meshtastic.discourse.group
+                      </Link>
+                      {" "}— pour les questions techniques de fond.
+                    </dd>
                   </div>
-                  <div>
-                    <p className="eyebrow text-[color:var(--color-forest)] mb-2">
+                  <div className="border-t border-[color:var(--color-divider)] pt-5">
+                    <dt className="text-[10px] tracking-[0.18em] uppercase text-[color:var(--color-phosphor-dim)] mb-2">
                       Adresse postale
-                    </p>
-                    <p className="text-base text-[color:var(--color-charcoal)]/75">
+                    </dt>
+                    <dd className="text-[color:var(--color-phosphor-dim)] leading-[1.6]">
                       MAILLON SAS<br />
                       Adresse à venir, Paris<br />
                       France
-                    </p>
+                    </dd>
                   </div>
-                </div>
+                </dl>
               </div>
 
+              {/* Colonne droite — formulaire CRT (refondu en commit a040afb/efe85f0) */}
               <div className="lg:col-span-7">
                 <Suspense
                   fallback={
-                    <div className="bg-[color:var(--color-sand)] border border-[color:var(--color-charcoal)]/10 rounded-lg p-8 min-h-[600px]" />
+                    <div className="border border-[color:var(--color-divider)] bg-[color:var(--color-substrate-2)] p-6 lg:p-8 min-h-[600px]" />
                   }
                 >
                   <ContactForm />

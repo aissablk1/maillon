@@ -31,8 +31,6 @@ export default async function SignInPage({
     try {
       await auth.api.signInEmail({
         body: { email, password },
-        // Better-Auth pose le cookie via l'API runtime ; pour Next server actions,
-        // il faut généralement passer headers/cookies de façon explicite.
         headers: new Headers(),
       });
     } catch {
@@ -42,37 +40,54 @@ export default async function SignInPage({
   }
 
   return (
-    <main id="main" className="min-h-screen flex items-center justify-center px-6 py-12">
+    <main
+      id="main"
+      className="min-h-screen flex items-center justify-center px-6 py-12 bg-[color:var(--color-substrate)]"
+    >
       <div className="w-full max-w-sm">
-        <div className="text-center mb-8">
-          <p className="eyebrow text-[var(--color-moss)]">MAILLON Fleet Manager</p>
-          <h1 className="maillon-hero text-2xl mt-2">Connexion</h1>
+        <div className="mb-8">
+          <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-3">
+            <span lang="en">Fleet Manager</span>
+          </p>
+          <h1 className="font-mono text-[clamp(22px,3vw,28px)] text-[color:var(--color-phosphor)] font-bold leading-[1.2]">
+            Connexion à votre console
+          </h1>
         </div>
 
         {error ? (
-          <div role="alert" className="mb-4 text-sm text-[var(--color-danger)] border border-[var(--color-danger)]/30 bg-[var(--color-danger)]/5 rounded p-3">
+          <div
+            role="alert"
+            className="mb-6 font-mono text-[12px] text-[color:var(--color-hazard)] border border-[color:var(--color-hazard)] bg-[color:var(--color-substrate-2)] p-3"
+          >
+            <span aria-hidden="true">[ ERR ] </span>
             {error === "invalid"
               ? "Identifiants invalides."
               : "Champs requis manquants."}
           </div>
         ) : null}
 
-        <form action={signIn} className="space-y-4">
+        <form
+          action={signIn}
+          className="space-y-5 border border-[color:var(--color-divider)] bg-[color:var(--color-substrate-2)] p-6"
+        >
           <input type="hidden" name="redirect" value={redirectTo} />
+
           <label className="block">
-            <span className="block text-xs uppercase tracking-wider text-[var(--color-charcoal)]/60 mb-1">
-              E-mail
+            <span className="block font-mono text-[10px] tracking-[0.18em] uppercase text-[color:var(--color-phosphor-dim)] mb-2">
+              Adresse email
             </span>
             <input
               type="email"
               name="email"
               required
               autoComplete="email"
-              className="w-full px-3 py-2 border border-[rgba(26,31,28,0.15)] rounded bg-white"
+              aria-required="true"
+              className="w-full bg-transparent border border-[color:var(--color-divider)] px-4 py-3 font-mono text-[13px] text-[color:var(--color-phosphor)] placeholder:text-[color:var(--color-phosphor-dim)]"
             />
           </label>
+
           <label className="block">
-            <span className="block text-xs uppercase tracking-wider text-[var(--color-charcoal)]/60 mb-1">
+            <span className="block font-mono text-[10px] tracking-[0.18em] uppercase text-[color:var(--color-phosphor-dim)] mb-2">
               Mot de passe
             </span>
             <input
@@ -81,20 +96,26 @@ export default async function SignInPage({
               required
               minLength={12}
               autoComplete="current-password"
-              className="w-full px-3 py-2 border border-[rgba(26,31,28,0.15)] rounded bg-white"
+              aria-required="true"
+              className="w-full bg-transparent border border-[color:var(--color-divider)] px-4 py-3 font-mono text-[13px] text-[color:var(--color-phosphor)]"
             />
           </label>
+
           <button
             type="submit"
-            className="btn-primary w-full bg-[var(--color-forest)] text-[var(--color-sand)] py-2.5 rounded font-medium"
+            className="btn-tactical btn-tactical-hazard w-full justify-between"
           >
-            Se connecter
+            <span>Se connecter</span>
+            <span aria-hidden="true">{" ›"}</span>
           </button>
         </form>
 
-        <p className="mt-6 text-sm text-center text-[var(--color-charcoal)]/60">
+        <p className="mt-6 font-mono text-[12px] text-[color:var(--color-phosphor-dim)] text-center">
           Pas encore de compte&nbsp;?{" "}
-          <Link href="/auth/sign-up" className="text-[var(--color-forest)] underline">
+          <Link
+            href="/auth/sign-up"
+            className="text-[color:var(--color-phosphor)] maillon-link inline-block py-1"
+          >
             Créer un compte
           </Link>
         </p>
