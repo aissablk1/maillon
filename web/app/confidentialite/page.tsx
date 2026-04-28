@@ -31,7 +31,7 @@ export default function ConfidentialitePage() {
           <p>
             MAILLON SAS, en cours d&apos;immatriculation à Paris.
             Pour toute question, écrivez à{" "}
-            <a href="mailto:bonjour@maillon.fr">bonjour@maillon.fr</a>.
+            <a href="mailto:aissa.belkoussa5@gmail.com">aissa.belkoussa5@gmail.com</a>.
           </p>
 
           <h2>2. Quelles données collectons-nous&nbsp;?</h2>
@@ -155,7 +155,7 @@ export default function ConfidentialitePage() {
           <p>
             Vous pouvez exercer ces droits directement depuis votre
             compte SaaS (panneau « Mes données ») ou par email à{" "}
-            <a href="mailto:bonjour@maillon.fr">bonjour@maillon.fr</a>.
+            <a href="mailto:aissa.belkoussa5@gmail.com">aissa.belkoussa5@gmail.com</a>.
             Réponse sous 30 jours maximum.
           </p>
           <p>

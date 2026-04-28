@@ -224,7 +224,7 @@ Effort : L < 1 j · M = 1-3 j · H > 3 j.
 ## 8. Recommandations infrastructure (production)
 
 1. **Secrets vault** — HashiCorp Vault, AWS Secrets Manager ou Doppler pour Stripe/Resend/MQTT et `MAILLON_REGISTRY_KEY` du script `preconfig.py`. Jamais en `.env` sur les postes usine.
-2. **WAF Edge** — Cloudflare devant `maillon.fr` : bot fight + rate-limit applicatif + DDoS L7. Turnstile sur les formulaires.
+2. **WAF Edge** — Cloudflare devant `github.com/aissablk1/maillon` : bot fight + rate-limit applicatif + DDoS L7. Turnstile sur les formulaires.
 3. **Supervision** — Sentry (errors), Plausible (analytics privacy-first s; déjà mentionné dans `/confidentialite`), Better Stack ou UptimeRobot pour la dispo.
 4. **Backups chiffrés** — `restic` avec backend B2/Wasabi pour le registre `preconfig` + dump Postgres quotidien ; clé séparée. Tests de restauration trimestriels.
 5. **Signature de code** — Apple Developer ID pour la console macOS Tauri ; clé EV Code Signing Windows ; `.aab` Play Store ; iOS App Store. Sans signature, alertes Gatekeeper/SmartScreen.

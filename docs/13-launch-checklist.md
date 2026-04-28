@@ -8,7 +8,7 @@
 
 - [ ] **Recherche d'antériorité INPI** sur la marque MAILLON (bases marques + sociétés + noms de domaine)
 - [ ] **Dépôt INPI marque** classes 9, 38, 42 (~250 € + 50 € classe additionnelle)
-- [ ] **Réservation domaines** : `maillon.fr`, `maillon.eu`, `maillon.app`, `maillon.community`, `maillon.io` (~50 €/an)
+- [ ] **Réservation domaines** : `github.com/aissablk1/maillon`, `maillon.eu`, `maillon.app`, `maillon.community`, `maillon.io` (~50 €/an)
 - [ ] **Création SASU** (statut, K-bis, déclaration RCS Paris) — comptable Pennylane + cabinet
 - [ ] **Compte bancaire pro** Qonto ou Shine (3-5 jours)
 - [ ] **Stripe France** activé, vérification KYC complétée
@@ -55,7 +55,7 @@
 - [ ] **MQTT broker EMQX** UE déployé (TLS, auth par compte)
 - [ ] **PostgreSQL + TimescaleDB** provisionné (Scaleway managed)
 - [ ] **Backups SaaS** automatisés et testés (restoration)
-- [ ] **Status page** (status.maillon.fr) avec uptime kuma
+- [ ] **Status page** (status.example.invalid) avec uptime kuma
 
 ## 📣 Communauté & contenu (semaine 1-16)
 

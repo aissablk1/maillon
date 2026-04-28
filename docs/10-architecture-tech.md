@@ -212,7 +212,7 @@ invoices (id, org_id, stripe_id, amount, status)
 | `/docs` | Hub | Liens vers docs Meshtastic + guides FR |
 | `/contact` | Form | Form B2B + B2C |
 | `/cgv`, `/cgu`, `/mentions`, `/confidentialite` | Légal | Documents |
-| `/app` | App SaaS | Dashboard (sous-domaine app.maillon.fr) |
+| `/app` | App SaaS | Dashboard (sous-domaine app.example.invalid) |
 
 ### 5.3 Optimisations
 
@@ -239,7 +239,7 @@ invoices (id, org_id, stripe_id, amount, status)
 
 - **Incident sécurité** : runbook dédié, équipe d'astreinte (1 fondateur an 1, 1 + 1 backup an 2)
 - **Violation de données** : notification CNIL <72h, communication clients touchés
-- **Outage SaaS** : status page (status.maillon.fr), uptime kuma, incident post-mortem public
+- **Outage SaaS** : status page (status.example.invalid), uptime kuma, incident post-mortem public
 
 ### 6.3 Audits
 

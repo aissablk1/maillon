@@ -190,7 +190,7 @@ Implémentation : un panneau « Mes données » dans le SaaS dès la V1.
 
 ### 7.2 Nom de domaine
 
-- maillon.fr, maillon.eu, maillon.community, maillon.app — réservés
+- github.com/aissablk1/maillon, maillon.eu, maillon.community, maillon.app — réservés
 - Enregistrement registrar français (Gandi, OVH)
 
 ### 7.3 Code source

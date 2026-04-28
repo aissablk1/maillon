@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://maillon.fr/schemas/Node.schema.json",
+  "$id": "https://github.com/aissablk1/maillon/schemas/Node.schema.json",
   "title": "MaillonNode",
   "description": "Représentation canonique d'un nœud Meshtastic dans MAILLON. Contrat partagé entre app iOS/macOS (Swift), app Android (Kotlin) et app Desktop (Rust+TS).",
   "type": "object",

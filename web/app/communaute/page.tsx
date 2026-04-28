@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Communauté — réseau, code, terrain",
   description:
     "MAILLON ne vit pas seul. Forum Meshtastic, Discord communauté FR, code open-source compagnon, post-mortem honnête — tous les liens d'entraide et de contribution autour du mesh longue portée.",
-  alternates: { canonical: "https://maillon.fr/communaute" },
+  alternates: { canonical: "https://github.com/aissablk1/maillon/communaute" },
 };
 
 type Channel = {

@@ -20,7 +20,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://maillon.fr"),
+  metadataBase: new URL("https://github.com/aissablk1/maillon"),
   title: {
     default: "MAILLON / RÉSEAU MESH 868 MHZ",
     template: "%s · MAILLON",
@@ -38,13 +38,13 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "MAILLON" }],
   alternates: {
-    canonical: "https://maillon.fr",
-    languages: { "fr-FR": "https://maillon.fr" },
+    canonical: "https://github.com/aissablk1/maillon",
+    languages: { "fr-FR": "https://github.com/aissablk1/maillon" },
   },
   openGraph: {
     type: "website",
     locale: "fr_FR",
-    url: "https://maillon.fr",
+    url: "https://github.com/aissablk1/maillon",
     siteName: "MAILLON",
     title: "MAILLON / RÉSEAU MESH 868 MHZ",
     description:
@@ -80,10 +80,10 @@ const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "MAILLON",
-  url: "https://maillon.fr",
+  url: "https://github.com/aissablk1/maillon",
   description:
     "Communications mesh radio longue portée — kits préconfigurés et console de flotte pour secours bénévoles, BTP, événementiel et outdoor.",
-  email: "bonjour@maillon.fr",
+  email: "aissa.belkoussa5@gmail.com",
   areaServed: { "@type": "Country", name: "France" },
   sameAs: ["https://github.com/aissablk1/maillon"],
 };

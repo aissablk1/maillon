@@ -4,6 +4,8 @@
 >
 > This repository is kept public as honest documentation: what was built, why it was stopped, and what survives. If you recognise yourself in the pattern « many projects, few customers », the [POST-MORTEM](./POST-MORTEM.md) is for you.
 
+> ⚠ **Disclaimer — domaine `maillon.fr`** : le domaine `maillon.fr` appartient à un **tiers indépendant** (site WordPress actif depuis 2004, hébergé chez OVH) et n'a **aucun lien** avec ce projet. Toute référence interne au site `maillon.fr` qui aurait pu subsister dans les premiers commits est obsolète : la canonical du projet archivé est désormais `https://github.com/aissablk1/maillon`. Si vous cherchiez le `maillon.fr` historique ou une marque française nommée MAILLON, vous n'êtes pas au bon endroit — ce repo documente uniquement une exploration personnelle d'avril 2026 autour de Meshtastic.
+
 ---
 
 ## Read these first
@@ -74,4 +76,4 @@ Code in this repository under [MIT](./LICENSE) (where a LICENSE file exists at t
 ---
 
 **Aïssa Belkoussa** — Paris, April 2026
-[bonjour@maillon.fr](mailto:bonjour@maillon.fr)
+[aissa.belkoussa5@gmail.com](mailto:aissa.belkoussa5@gmail.com)

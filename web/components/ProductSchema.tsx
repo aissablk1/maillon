@@ -42,7 +42,7 @@ export function ProductSchema({
     ...(image ? { image } : {}),
     offers: {
       "@type": "Offer",
-      url: url.startsWith("http") ? url : `https://maillon.fr${url}`,
+      url: url.startsWith("http") ? url : `https://github.com/aissablk1/maillon${url}`,
       priceCurrency,
       price,
       availability: `https://schema.org/${availability}`,

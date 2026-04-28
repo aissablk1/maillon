@@ -6,7 +6,7 @@ import { LegalArticle } from "@components/LegalArticle";
 export const metadata: Metadata = {
   title: "Mentions légales",
   description:
-    "Mentions légales de MAILLON SAS, éditeur du site maillon.fr et du service Fleet Manager.",
+    "Mentions légales de MAILLON SAS, éditeur du site github.com/aissablk1/maillon et du service Fleet Manager.",
   robots: { index: true, follow: true },
 };
 
@@ -18,7 +18,7 @@ export default function MentionsLegalesPage() {
         <LegalArticle title="Mentions légales" updated="25 avril 2026">
           <h2>Éditeur du site</h2>
           <p>
-            Le présent site <strong>maillon.fr</strong> est édité par
+            Le présent site <strong>github.com/aissablk1/maillon</strong> est édité par
             MAILLON SAS, société par actions simplifiée au capital social
             à définir lors de l&apos;immatriculation, dont le siège
             social est en cours de domiciliation à Paris, France.
@@ -28,7 +28,7 @@ export default function MentionsLegalesPage() {
             <li>SIREN : à publier après immatriculation</li>
             <li>Numéro de TVA intracommunautaire : à publier</li>
             <li>Représentant légal (président) : à publier après immatriculation</li>
-            <li>Email : <a href="mailto:bonjour@maillon.fr">bonjour@maillon.fr</a></li>
+            <li>Email : <a href="mailto:aissa.belkoussa5@gmail.com">aissa.belkoussa5@gmail.com</a></li>
           </ul>
 
           <h2>Hébergeur</h2>

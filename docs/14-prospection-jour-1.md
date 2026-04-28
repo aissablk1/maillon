@@ -47,7 +47,7 @@ Pas « des asso prêtes à acheter un kit ». Pas « des PME prêtes à payer 9 
 >
 > Quelle disponibilité cette semaine ou la prochaine ?
 >
-> Aïssa Belkoussa — bonjour@maillon.fr
+> Aïssa Belkoussa — aissa.belkoussa5@gmail.com
 
 **Questions clés** :
 1. Avez-vous déjà signé un accord d'hébergement antenne (Orange, Free, TDF) ? À quelles conditions ?
@@ -83,7 +83,7 @@ Pas « des asso prêtes à acheter un kit ». Pas « des PME prêtes à payer 9 
 >
 > Vingt minutes en visio cette semaine pour cadrer la faisabilité. Aucune commande aujourd'hui — je sécurise la viabilité économique avant de lever des fonds.
 >
-> Aïssa Belkoussa — bonjour@maillon.fr — maillon.fr
+> Aïssa Belkoussa — aissa.belkoussa5@gmail.com — github.com/aissablk1/maillon
 
 **Questions clés** :
 1. Quel est le tarif catalogue pour mutualiser un emplacement micro-station (5 W) sur un pylône existant ?
@@ -123,7 +123,7 @@ Pas « des asso prêtes à acheter un kit ». Pas « des PME prêtes à payer 9 
 >
 > Vingt minutes pour explorer si l'une de ces pistes vous intéresse à un horizon 12-24 mois ? Aucune sollicitation commerciale aujourd'hui — je teste la viabilité avant levée de fonds.
 >
-> Aïssa Belkoussa — bonjour@maillon.fr
+> Aïssa Belkoussa — aissa.belkoussa5@gmail.com
 
 **Questions clés** :
 1. Existe-t-il déjà des réductions de prime conditionnées à un équipement de comms / DATI / sécurité homme isolé ?
@@ -165,7 +165,7 @@ Pas « des asso prêtes à acheter un kit ». Pas « des PME prêtes à payer 9 
 >
 > Vingt minutes en visio cette semaine. Je n'ai rien à vendre aujourd'hui — je valide la viabilité du modèle avant levée.
 >
-> Aïssa Belkoussa — bonjour@maillon.fr
+> Aïssa Belkoussa — aissa.belkoussa5@gmail.com
 
 **Questions clés** :
 1. Combien dépensez-vous par an, agrégé groupe, en équipement comms / DATI / homme isolé ?
@@ -211,7 +211,7 @@ Pas « des asso prêtes à acheter un kit ». Pas « des PME prêtes à payer 9 
 >
 > Vingt minutes en visio quand vous avez le temps.
 >
-> Aïssa Belkoussa — bonjour@maillon.fr
+> Aïssa Belkoussa — aissa.belkoussa5@gmail.com
 
 **Questions clés** :
 1. Y a-t-il déjà eu des incidents (coureur perdu, retard secours) liés à la zone blanche dans votre course ?

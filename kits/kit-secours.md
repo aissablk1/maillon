@@ -69,4 +69,4 @@
 ---
 
 **Disponible** : septembre 2026 (livraison 10–15 jours après commande, configuration personnalisée incluse)
-**Demander un devis** : maillon.fr/kits/secours — appel découverte 30 minutes offert
+**Demander un devis** : github.com/aissablk1/maillon/kits/secours — appel découverte 30 minutes offert

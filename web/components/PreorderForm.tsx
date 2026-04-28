@@ -196,7 +196,7 @@ export function PreorderForm() {
           className="font-mono text-[12px] text-[color:var(--color-hazard)] font-bold"
         >
           <span aria-hidden="true">[ ERR&nbsp;/&nbsp;TX&nbsp;FAIL ] </span>
-          Réessayer ou écrire à <a href="mailto:bonjour@maillon.fr" className="underline maillon-link">bonjour@maillon.fr</a>
+          Réessayer ou écrire à <a href="mailto:aissa.belkoussa5@gmail.com" className="underline maillon-link">aissa.belkoussa5@gmail.com</a>
         </p>
       )}
 

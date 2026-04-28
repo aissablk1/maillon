@@ -45,4 +45,4 @@ On a fait le calcul : 2 hardware Meshtastic Approved + emballage + préconfigura
 ---
 
 **Disponible** : juin 2026 (livraison France métropolitaine 5–7 jours)
-**Pré-commande** : maillon.fr/kits/decouverte
+**Pré-commande** : github.com/aissablk1/maillon/kits/decouverte

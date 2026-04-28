@@ -7,7 +7,7 @@ import { ContactForm } from "@components/ContactForm";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Demandez un devis, une démo, ou posez vos questions techniques. Réponse sous 48 heures ouvrées garantie. Email bonjour@maillon.fr.",
+    "Demandez un devis, une démo, ou posez vos questions techniques. Réponse sous 48 heures ouvrées garantie. Email aissa.belkoussa5@gmail.com.",
 };
 
 export default function ContactPage() {
@@ -38,10 +38,10 @@ export default function ContactPage() {
                       Email
                     </p>
                     <a
-                      href="mailto:bonjour@maillon.fr"
+                      href="mailto:aissa.belkoussa5@gmail.com"
                       className="text-base font-medium underline-offset-4 hover:underline"
                     >
-                      bonjour@maillon.fr
+                      aissa.belkoussa5@gmail.com
                     </a>
                   </div>
                   <div>

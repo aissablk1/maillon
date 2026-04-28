@@ -56,4 +56,4 @@
 ---
 
 **Disponible** : juin 2026 (livraison 7–10 jours)
-**Devis personnalisé** : maillon.fr/kits/pro — formulaire technique 5 questions
+**Devis personnalisé** : github.com/aissablk1/maillon/kits/pro — formulaire technique 5 questions

@@ -28,7 +28,7 @@ export default function CgvPage() {
           <p>
             Les présentes Conditions Générales de Vente (CGV) régissent
             les ventes de produits matériel (kits, accessoires) effectuées
-            par MAILLON SAS (« le Vendeur ») via le site maillon.fr aux
+            par MAILLON SAS (« le Vendeur ») via le site github.com/aissablk1/maillon aux
             consommateurs et aux professionnels (« l&apos;Acheteur »).
           </p>
 
@@ -88,7 +88,7 @@ export default function CgvPage() {
           </p>
           <p>
             Pour exercer ce droit&nbsp;: notifier MAILLON par email à{" "}
-            <a href="mailto:retours@maillon.fr">retours@maillon.fr</a>{" "}
+            <a href="mailto:aissa.belkoussa5@gmail.com">aissa.belkoussa5@gmail.com</a>{" "}
             avec le numéro de commande. Renvoyer le produit dans son
             emballage d&apos;origine, complet et en parfait état, dans
             les 14 jours suivant la notification. Frais de retour à la

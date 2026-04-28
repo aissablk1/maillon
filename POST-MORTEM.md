@@ -5,6 +5,8 @@
 >
 > Auteur : Aïssa Belkoussa — 26 avril 2026
 
+> ⚠ **Disclaimer ajouté le 28 avril 2026** : le domaine `maillon.fr` mentionné dans les premières versions de ce dossier appartient à un **tiers indépendant** (WordPress actif depuis 2004) et n'a aucun lien avec ce projet. La 6e leçon implicite de ce post-mortem est donc : **vérifier la disponibilité du nom et du domaine avant d'engager 84 fichiers de business plan dessus**. Quatre lettres communes en français (« maillon »), ça se vérifie d'abord.
+
 ---
 
 ## Ce qui a été fait
@@ -94,4 +96,4 @@ C'est la trace que je choisis de laisser sur ce projet : pas un produit, une hon
 
 **Aïssa Belkoussa**
 Paris, 26 avril 2026
-[bonjour@maillon.fr](mailto:bonjour@maillon.fr) · [maillon.fr](https://maillon.fr)
+[aissa.belkoussa5@gmail.com](mailto:aissa.belkoussa5@gmail.com) · [github.com/aissablk1/maillon](https://github.com/aissablk1/maillon)

@@ -114,7 +114,7 @@ export default async function OpenGraphImage() {
             <span>868 MHz</span>
             <span>Sans abonnement</span>
           </div>
-          <span>maillon.fr</span>
+          <span>github.com/aissablk1/maillon</span>
         </div>
       </div>
     ),

@@ -66,7 +66,7 @@ export const auth = betterAuth({
     cookiePrefix: "maillon",
     useSecureCookies: process.env.NODE_ENV === "production",
     crossSubDomainCookies: {
-      // Utile si app.maillon.fr et maillon.fr partagent la session.
+      // Utile si app.example.invalid et github.com/aissablk1/maillon partagent la session.
       enabled: false,
     },
   },

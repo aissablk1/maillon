@@ -9,7 +9,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/", "/_next/", "/.data/"],
       },
     ],
-    sitemap: "https://maillon.fr/sitemap.xml",
-    host: "https://maillon.fr",
+    sitemap: "https://github.com/aissablk1/maillon/sitemap.xml",
+    host: "https://github.com/aissablk1/maillon",
   };
 }

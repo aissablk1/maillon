@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Cinq terrains où MAILLON tient",
   description:
     "Secours bénévoles, chantiers BTP, festivals, outdoor, agriculture extensive — cinq cas d'usage où MAILLON garde une équipe en lien là où le mobile lâche et où le satellite coûte trop cher.",
-  alternates: { canonical: "https://maillon.fr/cas-usage" },
+  alternates: { canonical: "https://github.com/aissablk1/maillon/cas-usage" },
 };
 
 type Verticale = {
