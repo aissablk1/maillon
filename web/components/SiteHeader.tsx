@@ -1,9 +1,10 @@
 import Link from "next/link";
+import { MobileMenu } from "@components/MobileMenu";
 
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 bg-[color:var(--color-substrate)]/95 backdrop-blur-sm border-b border-[color:var(--color-divider)]">
-      <div className="grid grid-cols-[auto_1fr_auto] items-center gap-8 px-6 py-3 lg:px-10">
+      <div className="grid grid-cols-[auto_1fr_auto] items-center gap-4 md:gap-8 px-6 py-3 lg:px-10">
         {/* Bloc logo + uplink indicator */}
         <Link
           href="/"
@@ -17,7 +18,7 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        {/* Navigation centrale — monospace, asymétrique */}
+        {/* Navigation centrale — desktop uniquement */}
         <nav
           aria-label="Navigation principale"
           className="hidden md:flex items-center gap-6 justify-center text-[10px] tracking-[0.18em] uppercase"
@@ -54,15 +55,19 @@ export function SiteHeader() {
           </Link>
         </nav>
 
-        {/* Bloc droit — CTA + freq */}
-        <div className="flex items-center gap-4">
+        {/* Bloc droit — freq (lg+) + CTA précommande (toujours) + burger (mobile) */}
+        <div className="flex items-center gap-2 md:gap-4 justify-self-end">
           <span className="hidden lg:inline-block font-mono text-[10px] tracking-[0.15em] text-[color:var(--color-phosphor-dim)]">
             EU&nbsp;868.0&nbsp;MHz
           </span>
-          <Link href="/#preorder" className="btn-tactical btn-tactical-hazard text-[10px] py-2 px-4">
+          <Link
+            href="/#preorder"
+            className="btn-tactical btn-tactical-hazard text-[10px] py-2 px-3 md:px-4"
+          >
             <span>PRÉCOMMANDE</span>
-            <span aria-hidden="true">{" ›"}</span>
+            <span aria-hidden="true" className="hidden md:inline">{" ›"}</span>
           </Link>
+          <MobileMenu />
         </div>
       </div>
     </header>
