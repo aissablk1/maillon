@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteHeader } from "@components/SiteHeader";
 import { SiteFooter } from "@components/SiteFooter";
+import { ProductSchema } from "@components/ProductSchema";
 
 export const metadata: Metadata = {
   title: "Kit Secours — 1 199 €",
@@ -68,8 +69,16 @@ const SCENARIOS = [
 export default function KitSecoursPage() {
   return (
     <>
+      <ProductSchema
+        name="MAILLON Kit Secours"
+        description="Kit Meshtastic pour associations de secours bénévoles : 6× RAK4631 IP67 antichoc, 2× stations G2 redondantes, console PC T-Deck Plus, 6 mois SaaS Team, demi-journée formation incluse."
+        price="1199"
+        url="/kits/secours"
+        sku="MAI-KIT-SECOURS-V1"
+        availability="PreOrder"
+      />
       <SiteHeader />
-      <main>
+      <main id="main">
         <section className="bg-[color:var(--color-sand)] py-20 lg:py-28">
           <div className="mx-auto max-w-6xl px-6 lg:px-10">
             <p className="eyebrow text-[color:var(--color-signal)] mb-6">

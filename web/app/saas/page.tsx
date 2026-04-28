@@ -115,7 +115,7 @@ export default function SaasPage() {
   return (
     <>
       <SiteHeader />
-      <main>
+      <main id="main">
         <section className="bg-[color:var(--color-charcoal)] text-[color:var(--color-sand)] py-20 lg:py-28">
           <div className="mx-auto max-w-6xl px-6 lg:px-10">
             <p className="eyebrow text-[color:var(--color-moss)] mb-6">

@@ -14,7 +14,7 @@ export default function MentionsLegalesPage() {
   return (
     <>
       <SiteHeader />
-      <main>
+      <main id="main">
         <LegalArticle title="Mentions légales" updated="25 avril 2026">
           <h2>Éditeur du site</h2>
           <p>

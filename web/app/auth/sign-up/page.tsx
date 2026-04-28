@@ -76,7 +76,7 @@ export default async function SignUpPage({
   }
 
   return (
-    <main className="min-h-screen flex items-center justify-center px-6 py-12">
+    <main id="main" className="min-h-screen flex items-center justify-center px-6 py-12">
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
           <p className="eyebrow text-[var(--color-moss)]">MAILLON Fleet Manager</p>

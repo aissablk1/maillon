@@ -123,6 +123,26 @@ a.maillon-link:hover {
   text-transform: uppercase;
 }
 
+/* Alias héritage pour pages secondaires non encore refactorisées vers CRT natif.
+   À retirer une fois toutes les pages converties à .macro / direction brutalist. */
+.maillon-hero {
+  font-family: var(--font-archivo);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  text-transform: uppercase;
+  color: var(--color-phosphor);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-tag);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-hazard);
+}
+
 .tag {
   font-family: var(--font-mono);
   font-size: var(--text-tag);

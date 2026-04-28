@@ -13,7 +13,7 @@ export default function CookiesPage() {
   return (
     <>
       <SiteHeader />
-      <main>
+      <main id="main">
         <LegalArticle title="Politique cookies" updated="25 avril 2026">
           <p>
             <strong>Synthèse&nbsp;:</strong> nous n&apos;utilisons aucun

@@ -80,7 +80,7 @@ export default async function AppLayout({
           ))}
         </nav>
 
-        <main className="min-w-0">{children}</main>
+        <main id="main" className="min-w-0">{children}</main>
       </div>
     </div>
   );

@@ -35,10 +35,16 @@ export function SiteHeader() {
             <span aria-hidden="true">// </span>Console
           </Link>
           <Link
-            href="/#cas-usage"
+            href="/cas-usage"
             className="tap-target text-[color:var(--color-phosphor-dim)] hover:text-[color:var(--color-phosphor)]"
           >
             <span aria-hidden="true">// </span>Terrain
+          </Link>
+          <Link
+            href="/communaute"
+            className="tap-target text-[color:var(--color-phosphor-dim)] hover:text-[color:var(--color-phosphor)]"
+          >
+            <span aria-hidden="true">// </span>Réseau
           </Link>
           <Link
             href="/contact"

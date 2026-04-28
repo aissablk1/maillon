@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteHeader } from "@components/SiteHeader";
 import { SiteFooter } from "@components/SiteFooter";
+import { ProductSchema } from "@components/ProductSchema";
 
 export const metadata: Metadata = {
   title: "Kit Pro — 399 €",
@@ -52,8 +53,16 @@ const FEATURES = [
 export default function KitProPage() {
   return (
     <>
+      <ProductSchema
+        name="MAILLON Kit Pro"
+        description="Kit Meshtastic pour 4 portatifs + 1 station relais — couverture 10–20 km², mallette transport semi-rigide, 30 jours SaaS Team inclus, configuration sur-mesure."
+        price="399"
+        url="/kits/pro"
+        sku="MAI-KIT-PRO-V1"
+        availability="PreOrder"
+      />
       <SiteHeader />
-      <main>
+      <main id="main">
         <section className="bg-[color:var(--color-sand)] py-20 lg:py-28">
           <div className="mx-auto max-w-6xl px-6 lg:px-10">
             <p className="eyebrow text-[color:var(--color-forest)] mb-6">

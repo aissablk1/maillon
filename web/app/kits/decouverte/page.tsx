@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteHeader } from "@components/SiteHeader";
 import { SiteFooter } from "@components/SiteFooter";
+import { ProductSchema } from "@components/ProductSchema";
 
 export const metadata: Metadata = {
   title: "Kit Découverte — 99 €",
@@ -58,8 +59,16 @@ const SCENARIOS = [
 export default function KitDecouvertePage() {
   return (
     <>
+      <ProductSchema
+        name="MAILLON Kit Découverte"
+        description="Kit Meshtastic pour deux personnes : 2× LILYGO T-Echo préconfigurés EU 868 MHz, 5 jours d'autonomie, 5–10 km de portée à vue, sans abonnement."
+        price="99"
+        url="/kits/decouverte"
+        sku="MAI-KIT-DECOUVERTE-V1"
+        availability="PreOrder"
+      />
       <SiteHeader />
-      <main>
+      <main id="main">
         <section className="bg-[color:var(--color-sand)] py-20 lg:py-28">
           <div className="mx-auto max-w-6xl px-6 lg:px-10">
             <p className="eyebrow text-[color:var(--color-forest)] mb-6">

@@ -13,7 +13,7 @@ export default function CgvPage() {
   return (
     <>
       <SiteHeader />
-      <main>
+      <main id="main">
         <LegalArticle title="Conditions générales de vente" updated="25 avril 2026">
           <p>
             <em>

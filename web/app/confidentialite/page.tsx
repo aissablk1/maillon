@@ -13,7 +13,7 @@ export default function ConfidentialitePage() {
   return (
     <>
       <SiteHeader />
-      <main>
+      <main id="main">
         <LegalArticle
           title="Politique de confidentialité"
           updated="25 avril 2026"
