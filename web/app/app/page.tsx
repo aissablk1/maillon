@@ -26,7 +26,7 @@ async function loadCounters(orgId: string): Promise<Counters> {
 export default async function DashboardPage() {
   const session = await getCurrentSession();
   const userId = session?.user?.id;
-  if (!userId) return null; // le layout redirige déjà
+  if (!userId) return null;
 
   const orgId = await getCurrentOrgId(userId);
   if (!orgId) return null;
@@ -43,11 +43,18 @@ export default async function DashboardPage() {
   }
 
   return (
-    <section>
-      <header className="mb-8">
-        <p className="eyebrow text-[var(--color-moss)]">Vue d'ensemble</p>
-        <h1 className="maillon-hero text-3xl mt-2">Tableau de bord</h1>
-        <p className="text-sm text-[var(--color-charcoal)]/60 mt-1">
+    <section aria-labelledby="dashboard-heading">
+      <header className="mb-10">
+        <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-3">
+          Vue d&apos;ensemble
+        </p>
+        <h1
+          id="dashboard-heading"
+          className="font-mono text-[clamp(22px,3vw,32px)] text-[color:var(--color-phosphor)] font-bold leading-[1.2]"
+        >
+          Tableau de bord
+        </h1>
+        <p className="mt-2 font-mono text-[12px] text-[color:var(--color-phosphor-dim)]">
           Indicateurs en temps réel de votre flotte mesh.
         </p>
       </header>
@@ -55,26 +62,36 @@ export default async function DashboardPage() {
       {error ? (
         <div
           role="alert"
-          className="border border-[var(--color-danger)]/30 bg-[var(--color-danger)]/5 text-[var(--color-danger)] rounded-[var(--radius-card)] p-5"
+          className="border border-[color:var(--color-hazard)] bg-[color:var(--color-substrate-2)] p-5 font-mono text-[13px]"
         >
-          <p className="font-semibold">Indicateurs indisponibles</p>
-          <p className="text-sm mt-1 opacity-80">
-            {error} — vérifiez la connexion PostgreSQL et les variables
-            d'environnement DATABASE_URL.
+          <p className="font-bold text-[color:var(--color-hazard)] mb-2">
+            <span aria-hidden="true">[ ERR ] </span>Indicateurs indisponibles
+          </p>
+          <p className="text-[color:var(--color-phosphor-dim)] leading-[1.6]">
+            {error} — vérifiez la connexion PostgreSQL et la variable
+            d&apos;environnement <code className="bg-[color:var(--color-substrate)] border border-[color:var(--color-divider)] px-1.5 py-0.5">DATABASE_URL</code>.
           </p>
         </div>
       ) : counters ? (
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-[color:var(--color-divider)] border border-[color:var(--color-divider)]">
           <Counter label="Nœuds enrôlés" value={counters.nodesTotal} />
           <Counter label="Nœuds actifs" value={counters.nodesActive} accent />
-          <Counter label="Alertes ouvertes" value={counters.alertsOpen} danger={counters.alertsOpen > 0} />
+          <Counter
+            label="Alertes ouvertes"
+            value={counters.alertsOpen}
+            danger={counters.alertsOpen > 0}
+          />
           <Counter label="Positions 24 h" value={counters.positions24h} />
         </div>
       ) : null}
 
-      <p className="mt-10 text-sm text-[var(--color-charcoal)]/60">
+      <p className="mt-12 font-mono text-[12px] text-[color:var(--color-phosphor-dim)] leading-[1.65] max-w-2xl">
         Pour activer la carte temps réel et la messagerie, configurez le bridge
-        MQTT&nbsp;: <code className="font-mono text-[13px]">pnpm tsx lib/mqtt-bridge.ts</code>.
+        MQTT&nbsp;:{" "}
+        <code className="bg-[color:var(--color-substrate-2)] border border-[color:var(--color-divider)] px-1.5 py-0.5 text-[color:var(--color-phosphor)]">
+          pnpm tsx lib/mqtt-bridge.ts
+        </code>
+        .
       </p>
     </section>
   );
@@ -92,18 +109,18 @@ function Counter({
   danger?: boolean;
 }) {
   return (
-    <div className="kit-card rounded-[var(--radius-card)] p-5">
-      <p className="text-xs uppercase tracking-[0.18em] text-[var(--color-charcoal)]/50 font-semibold">
+    <div className="bg-[color:var(--color-substrate)] p-5 lg:p-6">
+      <p className="font-mono text-[10px] tracking-[0.18em] uppercase text-[color:var(--color-phosphor-dim)] font-bold">
         {label}
       </p>
       <p
         className={
-          "mt-2 text-3xl font-semibold tabular-nums " +
+          "mt-3 font-mono text-[clamp(24px,3vw,36px)] font-bold tabular-nums leading-none " +
           (danger
-            ? "text-[var(--color-danger)]"
+            ? "text-[color:var(--color-hazard)]"
             : accent
-              ? "text-[var(--color-moss)]"
-              : "text-[var(--color-charcoal)]")
+              ? "text-[color:var(--color-uplink)]"
+              : "text-[color:var(--color-phosphor)]")
         }
       >
         {value.toLocaleString("fr-FR")}

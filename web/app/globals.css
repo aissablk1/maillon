@@ -23,17 +23,9 @@
   --color-hazard-dim: #CC1F1F;       /* Hazard bordure UI — 3.10:1 vs substrate (AA non-text) */
   --color-uplink: #4AF626;           /* Terminal green — 15:1 vs substrate (AAA) */
 
-  /* ─── Aliases legacy (transition douce des sous-pages avant refactor complet) ─── */
-  /* Ces alias mappent les anciennes variables forest/sand/charcoal vers la palette CRT.
-     À supprimer une fois toutes les sous-pages refactorisées vers les variables CRT natives. */
-  --color-forest: var(--color-phosphor);          /* texte principal */
-  --color-sand: var(--color-substrate);           /* fond clair → fond CRT */
-  --color-sand-dim: var(--color-substrate-2);     /* fond secondaire */
-  --color-charcoal: var(--color-phosphor);        /* texte sombre → phosphor */
-  --color-charcoal-dim: var(--color-phosphor-dim);
-  --color-moss: var(--color-uplink);              /* accent positif → uplink */
-  --color-danger: var(--color-hazard);
-  --color-signal: var(--color-hazard);
+  /* Border-radius forcés à 0 partout (direction brutalist).
+     Anciens alias legacy forest/sand/charcoal/moss/signal/danger retirés
+     le 28/04 — toutes les pages utilisent désormais la palette CRT native. */
   --radius-card: 0;
   --radius-button: 0;
 
@@ -127,25 +119,9 @@ a.maillon-link:focus-visible {
   text-transform: uppercase;
 }
 
-/* Alias héritage pour pages secondaires non encore refactorisées vers CRT natif.
-   À retirer une fois toutes les pages converties à .macro / direction brutalist. */
-.maillon-hero {
-  font-family: var(--font-archivo);
-  font-weight: 900;
-  letter-spacing: -0.04em;
-  line-height: 0.9;
-  text-transform: uppercase;
-  color: var(--color-phosphor);
-}
-
-.eyebrow {
-  font-family: var(--font-mono);
-  font-size: var(--text-tag);
-  font-weight: 600;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--color-hazard);
-}
+/* Alias héritage `.maillon-hero` et `.eyebrow` retirés le 28/04 :
+   plus aucun usage dans le code, toutes les pages utilisent les classes CRT
+   natives (.macro pour macro typo, font-mono+tracking pour eyebrows). */
 
 .tag {
   font-family: var(--font-mono);
