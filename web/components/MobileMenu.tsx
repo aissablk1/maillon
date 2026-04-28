@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 
 const NAV_LINKS = [
   { href: "/#kits", label: "Kits" },
@@ -14,42 +14,45 @@ const NAV_LINKS = [
 
 export function MobileMenu() {
   const [open, setOpen] = useState(false);
-  const reduceMotion = useReducedMotion();
+  const [mounted, setMounted] = useState(false);
   const drawerId = useId();
   const triggerRef = useRef<HTMLButtonElement>(null);
-  const firstLinkRef = useRef<HTMLAnchorElement>(null);
+  const closeBtnRef = useRef<HTMLButtonElement>(null);
+
+  // Portal mounted check (évite l'hydratation mismatch SSR)
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // ESC pour fermer + body scroll lock + focus initial
   useEffect(() => {
     if (!open) return;
 
     const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") {
+        e.preventDefault();
+        close();
+      }
     };
 
     document.addEventListener("keydown", handleEsc);
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
-    // Focus initial sur le premier lien après l'animation
-    const focusTimer = window.setTimeout(() => {
-      firstLinkRef.current?.focus();
-    }, reduceMotion ? 0 : 200);
+    // Focus initial sur le bouton fermer (cible safe au lieu d'un lien qui pourrait ne pas exister)
+    const t = window.setTimeout(() => closeBtnRef.current?.focus(), 50);
 
     return () => {
       document.removeEventListener("keydown", handleEsc);
       document.body.style.overflow = previousOverflow;
-      window.clearTimeout(focusTimer);
+      window.clearTimeout(t);
     };
-  }, [open, reduceMotion]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open]);
 
-  // Retour focus sur le trigger à la fermeture
-  function handleClose() {
+  function close() {
     setOpen(false);
-    // Retour focus différé après la fin de l'animation
-    window.setTimeout(() => {
-      triggerRef.current?.focus();
-    }, reduceMotion ? 0 : 220);
+    window.setTimeout(() => triggerRef.current?.focus(), 30);
   }
 
   return (
@@ -62,7 +65,8 @@ export function MobileMenu() {
         aria-expanded={open}
         aria-controls={drawerId}
         aria-haspopup="dialog"
-        className="md:hidden inline-flex items-center justify-center w-11 h-11 border border-[color:var(--color-phosphor)] text-[color:var(--color-phosphor)] hover:bg-[color:var(--color-phosphor)] hover:text-[color:var(--color-substrate)] transition-colors duration-100"
+        className="md:hidden inline-flex items-center justify-center w-11 h-11 border border-[color:var(--color-phosphor)] text-[color:var(--color-phosphor)] hover:bg-[color:var(--color-phosphor)] hover:text-[color:var(--color-substrate)]"
+        style={{ transitionProperty: "background-color, color", transitionDuration: "100ms" }}
       >
         <span aria-hidden="true" className="flex flex-col gap-[4px]">
           <span className="block w-[18px] h-[2px] bg-current" />
@@ -71,89 +75,196 @@ export function MobileMenu() {
         </span>
       </button>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            id={drawerId}
-            role="dialog"
-            aria-modal="true"
-            aria-label="Menu de navigation principal"
-            initial={reduceMotion ? { opacity: 1 } : { opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={reduceMotion ? { opacity: 0 } : { opacity: 0 }}
-            transition={{ duration: reduceMotion ? 0 : 0.18, ease: "linear" }}
-            className="fixed inset-0 z-[100] bg-[color:var(--color-substrate)] flex flex-col md:hidden"
-          >
-            {/* Header drawer — strip identique au header principal */}
-            <div className="flex items-center justify-between px-6 py-3 border-b border-[color:var(--color-divider)]">
-              <span className="flex items-center gap-3">
-                <span className="uplink-indicator" aria-hidden="true" />
-                <span className="font-mono text-[10px] tracking-[0.22em] text-[color:var(--color-phosphor)] font-bold uppercase">
-                  MAILLON
-                  <span className="text-[color:var(--color-phosphor-dim)]" aria-hidden="true">®</span>
-                </span>
-              </span>
-
-              <button
-                type="button"
-                onClick={handleClose}
-                aria-label="Fermer le menu"
-                className="inline-flex items-center justify-center w-11 h-11 border border-[color:var(--color-hazard)] text-[color:var(--color-hazard)] hover:bg-[color:var(--color-hazard)] hover:text-[color:var(--color-substrate)] transition-colors duration-100 font-mono text-[18px] leading-none"
+      {mounted && open
+        ? createPortal(
+            <div
+              id={drawerId}
+              role="dialog"
+              aria-modal="true"
+              aria-label="Menu de navigation"
+              // Couleur inline pour éliminer tout risque Tailwind v4 / stacking context
+              style={{
+                position: "fixed",
+                inset: 0,
+                zIndex: 2147483647, // max safe int → toujours au-dessus
+                backgroundColor: "#0A0A0A",
+                color: "#EAEAEA",
+                display: "flex",
+                flexDirection: "column",
+                fontFamily: "var(--font-mono), JetBrains Mono, IBM Plex Mono, monospace",
+                animation: "maillon-menu-fadein 120ms linear",
+              }}
+            >
+              {/* Bandeau supérieur du drawer — sticky en haut */}
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  padding: "12px 24px",
+                  borderBottom: "1px solid #3A3A3A",
+                  backgroundColor: "#0A0A0A",
+                }}
               >
-                <span aria-hidden="true">×</span>
-              </button>
-            </div>
-
-            {/* Eyebrow tactique */}
-            <div className="px-6 pt-8 pb-4 border-b border-[color:var(--color-divider)] flex items-center gap-3">
-              <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)]" aria-hidden="true">
-                [ NAVIGATION&nbsp;/&nbsp;{NAV_LINKS.length}&nbsp;CHANNELS ]
-              </span>
-              <span aria-hidden="true" className="flex-1 border-t border-[color:var(--color-divider)]" />
-            </div>
-
-            {/* Liens en macro typo */}
-            <nav aria-label="Menu principal" className="flex-1 overflow-y-auto px-6 py-8">
-              <ul className="list-none p-0 m-0 space-y-1">
-                {NAV_LINKS.map((link, i) => (
-                  <motion.li
-                    key={link.href}
-                    initial={reduceMotion ? false : { opacity: 0, x: -16 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{
-                      duration: reduceMotion ? 0 : 0.3,
-                      delay: reduceMotion ? 0 : 0.08 + i * 0.04,
-                      ease: [0.16, 1, 0.3, 1],
+                <span style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                  <span className="uplink-indicator" aria-hidden="true" />
+                  <span
+                    style={{
+                      fontSize: "10px",
+                      letterSpacing: "0.22em",
+                      textTransform: "uppercase",
+                      fontWeight: 700,
+                      color: "#EAEAEA",
                     }}
-                    className="grid grid-cols-[auto_1fr] gap-x-5 items-baseline border-b border-[color:var(--color-divider)] py-5"
                   >
-                    <span
-                      className="macro text-[clamp(20px,3vw,28px)] text-[color:var(--color-hazard)] tabular-nums leading-none"
-                      aria-hidden="true"
-                    >
-                      /{String(i + 1).padStart(2, "0")}
-                    </span>
-                    <Link
-                      ref={i === 0 ? firstLinkRef : undefined}
-                      href={link.href}
-                      onClick={handleClose}
-                      className="macro text-[clamp(40px,8vw,72px)] text-[color:var(--color-phosphor)] hover:text-[color:var(--color-hazard)] focus-visible:text-[color:var(--color-hazard)] transition-colors duration-100 leading-[0.95] tap-target"
-                    >
-                      {link.label}
-                    </Link>
-                  </motion.li>
-                ))}
-              </ul>
-            </nav>
+                    MAILLON
+                    <span style={{ color: "#8A8A8A" }} aria-hidden="true">®</span>
+                  </span>
+                </span>
 
-            {/* Footer drawer — telemetry strip */}
-            <div className="px-6 py-3 border-t border-[color:var(--color-divider)] flex items-center justify-between font-mono text-[10px] tracking-[0.2em] text-[color:var(--color-phosphor-dim)] uppercase">
-              <span>EU&nbsp;868.0&nbsp;MHz</span>
-              <span>ETSI&nbsp;EN&nbsp;300&nbsp;220</span>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                <button
+                  ref={closeBtnRef}
+                  type="button"
+                  onClick={close}
+                  aria-label="Fermer le menu"
+                  style={{
+                    width: "44px",
+                    height: "44px",
+                    border: "1px solid #E61919",
+                    color: "#E61919",
+                    backgroundColor: "transparent",
+                    fontSize: "20px",
+                    lineHeight: 1,
+                    cursor: "pointer",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    transitionProperty: "background-color, color",
+                    transitionDuration: "100ms",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = "#E61919";
+                    e.currentTarget.style.color = "#0A0A0A";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = "transparent";
+                    e.currentTarget.style.color = "#E61919";
+                  }}
+                >
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+
+              {/* Eyebrow tactique */}
+              <div
+                style={{
+                  padding: "32px 24px 16px",
+                  borderBottom: "1px solid #3A3A3A",
+                  fontSize: "10px",
+                  letterSpacing: "0.22em",
+                  textTransform: "uppercase",
+                  color: "#E61919",
+                  fontWeight: 700,
+                }}
+                aria-hidden="true"
+              >
+                [ NAVIGATION&nbsp;/&nbsp;{NAV_LINKS.length}&nbsp;CHANNELS ]
+              </div>
+
+              {/* Liste des liens en macro typo — overflow auto si trop long */}
+              <nav
+                aria-label="Menu principal"
+                style={{ flex: "1 1 auto", overflowY: "auto", padding: "16px 24px" }}
+              >
+                <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                  {NAV_LINKS.map((link, i) => (
+                    <li
+                      key={link.href}
+                      style={{
+                        display: "grid",
+                        gridTemplateColumns: "auto 1fr",
+                        gap: "20px",
+                        alignItems: "baseline",
+                        padding: "20px 0",
+                        borderBottom: "1px solid #3A3A3A",
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontFamily: "var(--font-archivo), Archivo Black, sans-serif",
+                          fontWeight: 900,
+                          fontSize: "clamp(20px, 3vw, 28px)",
+                          color: "#E61919",
+                          lineHeight: 1,
+                          fontVariantNumeric: "tabular-nums",
+                        }}
+                        aria-hidden="true"
+                      >
+                        /{String(i + 1).padStart(2, "0")}
+                      </span>
+                      <Link
+                        href={link.href}
+                        onClick={close}
+                        style={{
+                          fontFamily: "var(--font-archivo), Archivo Black, sans-serif",
+                          fontWeight: 900,
+                          fontSize: "clamp(40px, 8vw, 64px)",
+                          letterSpacing: "-0.04em",
+                          textTransform: "uppercase",
+                          lineHeight: 0.95,
+                          color: "#EAEAEA",
+                          textDecoration: "none",
+                          minHeight: "44px",
+                          display: "inline-flex",
+                          alignItems: "center",
+                        }}
+                        className="maillon-mobile-link"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+
+              {/* Footer drawer — telemetry */}
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  padding: "12px 24px",
+                  borderTop: "1px solid #3A3A3A",
+                  fontSize: "10px",
+                  letterSpacing: "0.2em",
+                  textTransform: "uppercase",
+                  color: "#8A8A8A",
+                }}
+              >
+                <span>EU&nbsp;868.0&nbsp;MHz</span>
+                <span>ETSI&nbsp;EN&nbsp;300&nbsp;220</span>
+              </div>
+
+              {/* Keyframes inline (pas de dépendance Tailwind/Framer) */}
+              <style>{`
+                @keyframes maillon-menu-fadein {
+                  from { opacity: 0; }
+                  to   { opacity: 1; }
+                }
+                .maillon-mobile-link:hover,
+                .maillon-mobile-link:focus-visible {
+                  color: #E61919 !important;
+                }
+                @media (prefers-reduced-motion: reduce) {
+                  [role="dialog"][aria-modal="true"] {
+                    animation: none !important;
+                  }
+                }
+              `}</style>
+            </div>,
+            document.body,
+          )
+        : null}
     </>
   );
 }
