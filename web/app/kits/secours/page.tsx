@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Kit Secours — 1 199 €",
   description:
     "Six secouristes terrain en boîtier IP67, deux relais redondants, une console PC. Conçu pour les associations FFSS, ADRASEC, Croix-Rouge qui interviennent en zone blanche.",
+  alternates: { canonical: "https://github.com/aissablk1/maillon/kits/secours" },
 };
 
 const FEATURES = [
@@ -66,6 +67,14 @@ const SCENARIOS = [
   },
 ];
 
+const COMPARISON = [
+  ["6 radios", "9 000 €", "inclus"],
+  ["Console PC opérateur", "4 000 €", "inclus"],
+  ["Carto temps réel", "2 000 €", "inclus (SaaS)"],
+  ["Licence ARCEP (5 ans)", "4 000 €", "0 €"],
+  ["Formation", "1 500 €", "incluse (1/2 j)"],
+];
+
 export default function KitSecoursPage() {
   return (
     <>
@@ -79,68 +88,116 @@ export default function KitSecoursPage() {
       />
       <SiteHeader />
       <main id="main">
-        <section className="bg-[color:var(--color-sand)] py-20 lg:py-28">
-          <div className="mx-auto max-w-6xl px-6 lg:px-10">
-            <p className="eyebrow text-[color:var(--color-signal)] mb-6">
-              Kit Secours · 1 199 € TTC
-            </p>
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
-              <div className="lg:col-span-7">
-                <h1 className="maillon-hero text-[clamp(2.4rem,5vw,4.5rem)] leading-[1.05]">
-                  Pour les FFSS.<br />
-                  <span className="italic font-light">Pour les ADRASEC.</span>
-                </h1>
-                <p className="text-xl mt-8 text-[color:var(--color-charcoal)]/80 max-w-2xl">
-                  Six secouristes terrain en boîtier IP67, deux relais
-                  redondants, une console PC opérateur. Couverture
-                  opérationnelle 30 km². Conçu pour les associations
-                  bénévoles qui interviennent en zone blanche, sans
-                  budget pour des radios DMR à 1 500 € pièce.
+        {/* HERO */}
+        <section
+          aria-labelledby="kit-hero"
+          className="border-b border-[color:var(--color-divider)]"
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-12">
+            <div className="lg:col-span-7 px-6 lg:px-10 pt-12 lg:pt-20 pb-16 lg:border-r border-[color:var(--color-divider)]">
+              <div className="flex items-center gap-4 mb-12">
+                <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)]" aria-hidden="true">
+                  [ UNIT&nbsp;03&nbsp;/&nbsp;SECOURS ]
+                </span>
+                <span aria-hidden="true" className="flex-1 border-t border-[color:var(--color-divider)]" />
+                <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-[color:var(--color-phosphor-dim)]">
+                  REV&nbsp;0.1.0
+                </span>
+              </div>
+
+              <h1
+                id="kit-hero"
+                className="macro text-[clamp(56px,11vw,160px)] text-[color:var(--color-phosphor)]"
+              >
+                FFSS
+                <span className="text-[color:var(--color-hazard)]" aria-hidden="true">.</span>
+                <br />
+                <span className="text-[color:var(--color-phosphor-dim)]">ADRASEC.</span>
+                <br />
+                CROIX-ROUGE.
+              </h1>
+
+              <p className="mt-12 max-w-2xl font-mono text-[14px] lg:text-[15px] text-[color:var(--color-phosphor-dim)] leading-[1.7]">
+                Six secouristes terrain en boîtier IP67, deux relais
+                redondants, une console PC opérateur. Couverture opérationnelle
+                30 km². Conçu pour les associations bénévoles qui interviennent
+                en zone blanche, sans budget pour des radios DMR à 1 500 € pièce.
+              </p>
+            </div>
+
+            <aside className="lg:col-span-5 px-6 lg:px-10 pt-12 lg:pt-20 pb-16 flex items-end bg-[color:var(--color-substrate-2)]">
+              <div className="border border-[color:var(--color-hazard)] p-6 lg:p-8 w-full">
+                <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-4" aria-hidden="true">
+                  [ PRICE&nbsp;/&nbsp;TTC ]
+                </p>
+                <div className="flex items-baseline gap-3 mb-2">
+                  <span className="macro text-[clamp(60px,8vw,104px)] text-[color:var(--color-phosphor)] tabular-nums leading-none">
+                    1&nbsp;199
+                  </span>
+                  <span className="macro text-[clamp(24px,3vw,32px)] text-[color:var(--color-phosphor-dim)]">
+                    €
+                  </span>
+                </div>
+                <p className="font-mono text-[11px] tracking-[0.05em] text-[color:var(--color-phosphor-dim)] mb-6">
+                  Livré et configuré 10–15 jours. Démo terrain possible.
+                </p>
+                <span aria-hidden="true" className="block divider-solid mb-6" />
+                <Link
+                  href="/contact?sujet=kit-secours"
+                  className="btn-tactical btn-tactical-hazard w-full justify-between"
+                >
+                  <span>DEMANDER UN DEVIS</span>
+                  <span aria-hidden="true">{" ›"}</span>
+                </Link>
+                <p className="mt-4 font-mono text-[10px] tracking-[0.05em] text-[color:var(--color-phosphor-dim)] leading-[1.6]">
+                  Appel découverte 30 minutes offert.
                 </p>
               </div>
-              <div className="lg:col-span-5">
-                <div className="bg-white border border-[color:var(--color-charcoal)]/10 rounded-lg p-8">
-                  <p className="text-6xl font-bold tabular-nums">1 199 €</p>
-                  <p className="text-sm text-[color:var(--color-charcoal)]/60 mt-1 mb-8">
-                    TTC, livré et configuré 10–15 jours
-                  </p>
-                  <Link
-                    href="/contact?sujet=kit-secours"
-                    className="block w-full text-center bg-[color:var(--color-signal)] hover:bg-[color:var(--color-charcoal)] text-[color:var(--color-charcoal)] hover:text-[color:var(--color-sand)] px-6 py-3.5 rounded-md text-base font-medium transition-colors"
-                  >
-                    Demander un devis&nbsp;›
-                  </Link>
-                  <p className="mt-4 text-xs text-[color:var(--color-charcoal)]/55">
-                    Appel découverte 30 minutes offert. Démo terrain possible.
-                  </p>
-                </div>
-              </div>
-            </div>
+            </aside>
           </div>
         </section>
 
-        <section className="py-20 lg:py-28">
-          <div className="mx-auto max-w-6xl px-6 lg:px-10">
-            <h2 className="text-3xl lg:text-4xl font-bold tracking-tight mb-12">
-              Ce que vous recevez.
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-              {FEATURES.map((block) => (
-                <div key={block.title}>
-                  <p className="eyebrow text-[color:var(--color-forest)] mb-4">
-                    {block.title}
-                  </p>
-                  <ul className="space-y-3">
+        {/* FEATURES */}
+        <section
+          aria-labelledby="features-heading"
+          className="border-b border-[color:var(--color-divider)] py-20 lg:py-28"
+        >
+          <div className="max-w-7xl mx-auto px-6 lg:px-10">
+            <header className="mb-16">
+              <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-6" aria-hidden="true">
+                [ INVENTAIRE&nbsp;/&nbsp;4&nbsp;BLOCS ]
+              </p>
+              <h2
+                id="features-heading"
+                className="macro text-[clamp(40px,6vw,80px)] text-[color:var(--color-phosphor)] leading-[0.92]"
+              >
+                CE QUE
+                <br />
+                <span className="text-[color:var(--color-phosphor-dim)]">VOUS RECEVEZ.</span>
+              </h2>
+            </header>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
+              {FEATURES.map((block, i) => (
+                <div key={block.title} className="border-t border-[color:var(--color-divider)] pt-6">
+                  <div className="flex items-baseline gap-3 mb-6">
+                    <span
+                      className="macro text-[clamp(28px,3vw,40px)] text-[color:var(--color-hazard)] tabular-nums leading-none"
+                      aria-hidden="true"
+                    >
+                      /{String(i + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="macro text-[clamp(22px,2.6vw,32px)] text-[color:var(--color-phosphor)] leading-[0.95]">
+                      {block.title}
+                    </h3>
+                  </div>
+                  <ul className="font-mono text-[13px] text-[color:var(--color-phosphor-dim)] space-y-2.5 list-none p-0 m-0">
                     {block.items.map((it) => (
-                      <li
-                        key={it}
-                        className="text-base text-[color:var(--color-charcoal)]/85 flex items-start gap-3"
-                      >
-                        <span
-                          className="mt-2 block w-1.5 h-1.5 rounded-full bg-[color:var(--color-signal)] flex-shrink-0"
-                          aria-hidden
-                        />
-                        <span>{it}</span>
+                      <li key={it} className="grid grid-cols-[auto_1fr] gap-3 items-baseline">
+                        <span aria-hidden="true" className="text-[color:var(--color-hazard)] tabular-nums text-[10px]">
+                          {">>"}
+                        </span>
+                        <span className="leading-[1.55]">{it}</span>
                       </li>
                     ))}
                   </ul>
@@ -150,131 +207,178 @@ export default function KitSecoursPage() {
           </div>
         </section>
 
-        <section className="bg-[color:var(--color-charcoal)] text-[color:var(--color-sand)] py-20 lg:py-28">
-          <div className="mx-auto max-w-6xl px-6 lg:px-10">
-            <p className="eyebrow text-[color:var(--color-moss)] mb-6">
-              Trois scénarios d&apos;intervention
-            </p>
-            <h2 className="text-3xl lg:text-4xl font-bold tracking-tight mb-12">
-              Quand chaque seconde compte.
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-              {SCENARIOS.map((s) => (
-                <div
-                  key={s.title}
-                  className="border-l-2 border-[color:var(--color-signal)] pl-6"
+        {/* SCÉNARIOS */}
+        <section
+          aria-labelledby="scenarios-heading"
+          className="border-b border-[color:var(--color-divider)] py-20 lg:py-28 bg-[color:var(--color-substrate-2)]"
+        >
+          <div className="max-w-7xl mx-auto px-6 lg:px-10">
+            <header className="mb-16 grid grid-cols-1 lg:grid-cols-12 gap-6">
+              <div className="lg:col-span-9">
+                <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-6" aria-hidden="true">
+                  [ TROIS SCÉNARIOS D&apos;INTERVENTION ]
+                </p>
+                <h2
+                  id="scenarios-heading"
+                  className="macro text-[clamp(40px,6vw,80px)] text-[color:var(--color-phosphor)] leading-[0.92]"
                 >
-                  <h3 className="text-xl font-semibold mb-3">{s.title}</h3>
-                  <p className="text-[color:var(--color-sand)]/75 leading-relaxed">
+                  QUAND CHAQUE
+                  <br />
+                  <span className="text-[color:var(--color-phosphor-dim)]">SECONDE</span>
+                  <br />
+                  COMPTE.
+                </h2>
+              </div>
+            </header>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[color:var(--color-divider)] border border-[color:var(--color-divider)]">
+              {SCENARIOS.map((s, i) => (
+                <article key={s.title} className="p-6 lg:p-8">
+                  <span
+                    className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] block mb-3"
+                    aria-hidden="true"
+                  >
+                    [ SCÉNARIO&nbsp;{String(i + 1).padStart(2, "0")} ]
+                  </span>
+                  <h3 className="macro text-[clamp(20px,2.4vw,28px)] text-[color:var(--color-phosphor)] mb-4 leading-[0.95]">
+                    {s.title}
+                  </h3>
+                  <p className="font-mono text-[13px] text-[color:var(--color-phosphor-dim)] leading-[1.65]">
                     {s.body}
                   </p>
-                </div>
+                </article>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="py-20 lg:py-28">
-          <div className="mx-auto max-w-5xl px-6 lg:px-10">
-            <p className="eyebrow text-[color:var(--color-forest)] mb-6">
-              Économies réelles
-            </p>
-            <h2 className="text-3xl lg:text-4xl font-bold tracking-tight mb-12">
-              Pour 6 secouristes équipés, sur 5 ans.
-            </h2>
+        {/* ÉCONOMIES TABLE */}
+        <section
+          aria-labelledby="bench-heading"
+          className="border-b border-[color:var(--color-divider)] py-20 lg:py-28"
+        >
+          <div className="max-w-6xl mx-auto px-6 lg:px-10">
+            <header className="mb-12 grid grid-cols-1 lg:grid-cols-12 gap-6">
+              <div className="lg:col-span-9">
+                <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-6" aria-hidden="true">
+                  [ BENCH&nbsp;/&nbsp;6&nbsp;SECOURISTES&nbsp;×&nbsp;5&nbsp;ANS ]
+                </p>
+                <h2
+                  id="bench-heading"
+                  className="macro text-[clamp(36px,5vw,72px)] text-[color:var(--color-phosphor)] leading-[0.92]"
+                >
+                  KIT SECOURS
+                  <span className="text-[color:var(--color-phosphor-dim)]"> vs </span>
+                  DMR HYTERA.
+                </h2>
+              </div>
+            </header>
+
             <div className="overflow-x-auto -mx-6 lg:mx-0">
-              <table className="w-full min-w-[560px] text-base">
+              <table className="w-full min-w-[560px] font-mono text-[13px]">
+                <caption className="sr-only">
+                  Comparaison Kit Secours MAILLON et 6 radios DMR Hytera sur 5 ans.
+                </caption>
                 <thead>
-                  <tr className="border-b-2 border-[color:var(--color-charcoal)]/15">
-                    <th className="text-left py-4 px-6 text-sm font-medium text-[color:var(--color-charcoal)]/60">
+                  <tr className="border-y-2 border-[color:var(--color-phosphor)]">
+                    <th scope="col" className="text-left py-3 px-4 text-[10px] tracking-[0.2em] uppercase text-[color:var(--color-phosphor-dim)] font-normal">
                       Poste
                     </th>
-                    <th className="text-left py-4 px-6 text-sm font-medium text-[color:var(--color-charcoal)]/60">
+                    <th scope="col" className="text-left py-3 px-4 text-[10px] tracking-[0.2em] uppercase text-[color:var(--color-phosphor-dim)] font-normal">
                       DMR Hytera
                     </th>
-                    <th className="text-left py-4 px-6 text-sm font-medium text-[color:var(--color-forest)]">
+                    <th scope="col" className="text-left py-3 px-4 text-[10px] tracking-[0.2em] uppercase text-[color:var(--color-hazard)] font-bold">
                       Kit Secours MAILLON
                     </th>
                   </tr>
                 </thead>
-                <tbody className="font-mono text-sm tabular-nums">
-                  <tr className="border-b border-[color:var(--color-charcoal)]/10">
-                    <td className="py-4 px-6 font-sans">6 radios</td>
-                    <td className="py-4 px-6">9 000 €</td>
-                    <td className="py-4 px-6">inclus</td>
-                  </tr>
-                  <tr className="border-b border-[color:var(--color-charcoal)]/10">
-                    <td className="py-4 px-6 font-sans">Console PC opérateur</td>
-                    <td className="py-4 px-6">4 000 €</td>
-                    <td className="py-4 px-6">inclus</td>
-                  </tr>
-                  <tr className="border-b border-[color:var(--color-charcoal)]/10">
-                    <td className="py-4 px-6 font-sans">Carto temps réel</td>
-                    <td className="py-4 px-6">2 000 €</td>
-                    <td className="py-4 px-6">inclus (SaaS)</td>
-                  </tr>
-                  <tr className="border-b border-[color:var(--color-charcoal)]/10">
-                    <td className="py-4 px-6 font-sans">Licence ARCEP (5 ans)</td>
-                    <td className="py-4 px-6">4 000 €</td>
-                    <td className="py-4 px-6">0 €</td>
-                  </tr>
-                  <tr className="border-b border-[color:var(--color-charcoal)]/10">
-                    <td className="py-4 px-6 font-sans">Formation</td>
-                    <td className="py-4 px-6">1 500 €</td>
-                    <td className="py-4 px-6">incluse (1/2 j)</td>
-                  </tr>
-                  <tr>
-                    <td className="py-5 px-6 font-sans font-semibold">Total 5 ans</td>
-                    <td className="py-5 px-6 text-lg">~20 500 €</td>
-                    <td className="py-5 px-6 text-lg text-[color:var(--color-forest)] font-semibold">
+                <tbody className="tabular-nums">
+                  {COMPARISON.map(([poste, dmr, maillon]) => (
+                    <tr key={poste} className="border-b border-[color:var(--color-divider)]">
+                      <th scope="row" className="py-3 px-4 text-[color:var(--color-phosphor-dim)] text-left font-normal">
+                        {poste}
+                      </th>
+                      <td className="py-3 px-4 text-[color:var(--color-phosphor)]">{dmr}</td>
+                      <td className="py-3 px-4 text-[color:var(--color-phosphor)]">{maillon}</td>
+                    </tr>
+                  ))}
+                  <tr className="border-y-2 border-[color:var(--color-hazard)]">
+                    <th scope="row" className="py-4 px-4 text-[color:var(--color-phosphor)] uppercase tracking-[0.1em] text-[11px] text-left">
+                      Total 5 ans
+                    </th>
+                    <td className="py-4 px-4 text-[color:var(--color-phosphor)] text-[18px]">
+                      ~20 500 €
+                    </td>
+                    <td className="py-4 px-4 text-[color:var(--color-hazard)] text-[18px] font-bold">
                       ~1 740 €
                     </td>
                   </tr>
                 </tbody>
               </table>
             </div>
-            <p className="mt-8 text-base text-[color:var(--color-charcoal)]/70 max-w-3xl">
-              Pour une asso bénévole, c&apos;est <strong>~18 700 € économisés</strong> sur
-              cinq ans, soit l&apos;équivalent de plusieurs interventions
+
+            <p className="mt-8 font-mono text-[13px] text-[color:var(--color-phosphor-dim)] max-w-3xl leading-[1.65]">
+              Pour une asso bénévole, c&apos;est <span className="text-[color:var(--color-phosphor)] font-bold">~18 700 € économisés</span> sur cinq ans, soit l&apos;équivalent de plusieurs interventions
               majeures financées. Économies réinvestissables dans
               d&apos;autres équipements vitaux.
             </p>
           </div>
         </section>
 
-        <section className="bg-[color:var(--color-charcoal)]/95 text-[color:var(--color-sand)] py-12">
-          <div className="mx-auto max-w-4xl px-6 lg:px-10">
-            <p className="font-semibold mb-3">
-              Important — MAILLON ne se substitue ni au réseau Antarès
-              ni au 112.
-            </p>
-            <p className="text-sm text-[color:var(--color-sand)]/70">
+        {/* DISCLAIMER */}
+        <section
+          aria-labelledby="warning-heading"
+          role="region"
+          className="px-6 lg:px-10 py-10 border-b border-[color:var(--color-divider)] bg-[color:var(--color-substrate-2)]"
+        >
+          <div className="max-w-4xl mx-auto font-mono text-[12px] leading-[1.7]">
+            <h2
+              id="warning-heading"
+              className="text-[color:var(--color-hazard)] uppercase tracking-[0.15em] mb-3 font-bold text-[12px]"
+            >
+              <span aria-hidden="true">[ </span>AVERTISSEMENT&nbsp;/&nbsp;OBLIGATOIRE<span aria-hidden="true"> ]</span>
+            </h2>
+            <p className="text-[color:var(--color-phosphor-dim)]">
+              MAILLON ne se substitue ni au réseau Antarès ni au{" "}
+              <a href="tel:112" className="text-[color:var(--color-phosphor)] font-bold maillon-link">112</a>.
               Les communications officielles de la sécurité civile française
-              passent par Antarès (sapeurs-pompiers professionnels) et le
-              112. MAILLON est un outil d&apos;appoint pour les associations
-              bénévoles, qui complète mais ne remplace pas ces réseaux
-              officiels. Avant déploiement opérationnel, vérifier la
-              compatibilité avec les protocoles de votre fédération
-              (FFSS, FFRS, ADRASEC, etc.) et de votre préfecture.
+              passent par Antarès (sapeurs-pompiers professionnels) et le 112.
+              MAILLON est un outil d&apos;appoint pour les associations bénévoles,
+              qui complète mais ne remplace pas ces réseaux officiels. Avant
+              déploiement opérationnel, vérifier la compatibilité avec les
+              protocoles de votre fédération (FFSS, FFRS, ADRASEC, etc.) et
+              de votre préfecture.
             </p>
           </div>
         </section>
 
-        <section className="bg-[color:var(--color-forest)] text-[color:var(--color-sand)] py-20">
-          <div className="mx-auto max-w-3xl px-6 lg:px-10 text-center">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-6">
-              Démo terrain possible.
-            </h2>
-            <p className="text-lg text-[color:var(--color-sand)]/85 mb-8">
-              On vient avec un kit complet, on le met en route avec votre
-              équipe, on simule une intervention. Vous gardez le matériel
-              une semaine pour le tester en vrai. Aucun engagement.
+        {/* CTA */}
+        <section
+          aria-labelledby="cta-heading"
+          className="px-6 lg:px-10 py-24 border-b-2 border-[color:var(--color-hazard)]"
+        >
+          <div className="max-w-4xl mx-auto text-center">
+            <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-8" aria-hidden="true">
+              [ DÉMO TERRAIN POSSIBLE ]
             </p>
-            <Link
-              href="/contact?sujet=kit-secours"
-              className="inline-flex bg-[color:var(--color-signal)] hover:bg-[color:var(--color-sand)] hover:text-[color:var(--color-forest)] text-[color:var(--color-charcoal)] px-8 py-4 rounded-md text-base font-semibold transition-colors"
+            <h2
+              id="cta-heading"
+              className="macro text-[clamp(40px,6vw,80px)] text-[color:var(--color-phosphor)] leading-[0.9] mb-8"
             >
-              Réserver une démo&nbsp;›
+              UNE SEMAINE
+              <br />
+              <span className="text-[color:var(--color-phosphor-dim)]">POUR LE TESTER</span>
+              <br />
+              EN VRAI.
+            </h2>
+            <p className="font-mono text-[14px] text-[color:var(--color-phosphor-dim)] leading-[1.7] mb-10 max-w-2xl mx-auto">
+              On vient avec un kit complet, on le met en route avec votre équipe,
+              on simule une intervention. Vous gardez le matériel une semaine
+              pour le tester en vrai. Aucun engagement.
+            </p>
+            <Link href="/contact?sujet=kit-secours" className="btn-tactical btn-tactical-hazard inline-flex">
+              <span>DEMANDER UNE DÉMO</span>
+              <span aria-hidden="true">{" ›"}</span>
             </Link>
           </div>
         </section>

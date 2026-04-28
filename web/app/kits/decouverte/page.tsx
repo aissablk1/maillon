@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Kit Découverte — 99 €",
   description:
     "Le kit MAILLON d'entrée. Deux nœuds Meshtastic préconfigurés, 5 à 10 km de portée, 5 jours d'autonomie. Sans abonnement, sans satellite, sans licence.",
+  alternates: { canonical: "https://github.com/aissablk1/maillon/kits/decouverte" },
 };
 
 const FEATURES = [
@@ -56,6 +57,25 @@ const SCENARIOS = [
   },
 ];
 
+const LIMITES = [
+  {
+    title: "Ce n'est pas un service de secours officiel",
+    body: "MAILLON ne se substitue pas au 112 ni à aucun service officiel de secours. C'est un outil d'appoint, ne se substitue ni au SAMU ni aux pompiers.",
+  },
+  {
+    title: "La portée dépend du terrain",
+    body: "5 à 10 km en terrain ouvert. 1 à 3 km en zone urbaine dense. Moins de 1 km en intérieur béton.",
+  },
+  {
+    title: "Pas de voix",
+    body: "Le mesh LoRa transmet du texte, des positions GPS et de la télémétrie. Pas de voix temps réel — c'est un trade-off pour la portée et l'autonomie.",
+  },
+  {
+    title: "Hors couverture extrême ?",
+    body: "Si vous partez seul·e en expédition polaire ou en plein océan, un communicateur satellite Garmin reste pertinent. MAILLON couvre tous les autres usages.",
+  },
+];
+
 export default function KitDecouvertePage() {
   return (
     <>
@@ -69,67 +89,119 @@ export default function KitDecouvertePage() {
       />
       <SiteHeader />
       <main id="main">
-        <section className="bg-[color:var(--color-sand)] py-20 lg:py-28">
-          <div className="mx-auto max-w-6xl px-6 lg:px-10">
-            <p className="eyebrow text-[color:var(--color-forest)] mb-6">
-              Kit Découverte · 99 € TTC
-            </p>
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
-              <div className="lg:col-span-7">
-                <h1 className="maillon-hero text-[clamp(2.4rem,5vw,4.5rem)] leading-[1.05]">
-                  Pour deux.<br />
-                  <span className="italic font-light">Le premier pas.</span>
-                </h1>
-                <p className="text-xl mt-8 text-[color:var(--color-charcoal)]/80 max-w-2xl">
-                  Deux nœuds Meshtastic préconfigurés, prêts en trois
-                  minutes. La porte d&apos;entrée la moins chère pour
-                  comprendre ce que le mesh longue portée peut faire pour
-                  vous — sans abonnement, sans satellite, sans licence.
+        {/* HERO — split asymétrique 7/5 */}
+        <section
+          aria-labelledby="kit-hero"
+          className="border-b border-[color:var(--color-divider)]"
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-12">
+            <div className="lg:col-span-7 px-6 lg:px-10 pt-12 lg:pt-20 pb-16 lg:border-r border-[color:var(--color-divider)]">
+              <div className="flex items-center gap-4 mb-12">
+                <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)]" aria-hidden="true">
+                  [ UNIT&nbsp;01&nbsp;/&nbsp;DÉCOUVERTE ]
+                </span>
+                <span aria-hidden="true" className="flex-1 border-t border-[color:var(--color-divider)]" />
+                <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-[color:var(--color-phosphor-dim)]">
+                  REV&nbsp;0.1.0
+                </span>
+              </div>
+
+              <h1
+                id="kit-hero"
+                className="macro text-[clamp(56px,11vw,160px)] text-[color:var(--color-phosphor)]"
+              >
+                POUR
+                <br />
+                DEUX
+                <span className="text-[color:var(--color-hazard)]" aria-hidden="true">.</span>
+                <br />
+                <span className="text-[color:var(--color-phosphor-dim)]">LE PREMIER</span>
+                <br />
+                PAS.
+              </h1>
+
+              <p className="mt-12 max-w-2xl font-mono text-[14px] lg:text-[15px] text-[color:var(--color-phosphor-dim)] leading-[1.7]">
+                Deux nœuds Meshtastic préconfigurés, prêts en trois minutes.
+                La porte d&apos;entrée la moins chère pour comprendre ce que
+                le mesh longue portée peut faire pour vous — sans abonnement,
+                sans satellite, sans licence.
+              </p>
+            </div>
+
+            {/* Bloc prix brutalist */}
+            <aside className="lg:col-span-5 px-6 lg:px-10 pt-12 lg:pt-20 pb-16 flex items-end bg-[color:var(--color-substrate-2)]">
+              <div className="border border-[color:var(--color-hazard)] p-6 lg:p-8 w-full">
+                <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-4" aria-hidden="true">
+                  [ PRICE&nbsp;/&nbsp;TTC ]
+                </p>
+                <div className="flex items-baseline gap-3 mb-2">
+                  <span className="macro text-[clamp(64px,9vw,112px)] text-[color:var(--color-phosphor)] tabular-nums leading-none">
+                    99
+                  </span>
+                  <span className="macro text-[clamp(24px,3vw,32px)] text-[color:var(--color-phosphor-dim)]">
+                    €
+                  </span>
+                </div>
+                <p className="font-mono text-[11px] tracking-[0.05em] text-[color:var(--color-phosphor-dim)] mb-6">
+                  Livraison France métropolitaine 5–7 jours
+                </p>
+                <span aria-hidden="true" className="block divider-solid mb-6" />
+                <Link
+                  href="/#preorder"
+                  className="btn-tactical btn-tactical-hazard w-full justify-between"
+                >
+                  <span>PRÉ-COMMANDER</span>
+                  <span aria-hidden="true">{" ›"}</span>
+                </Link>
+                <p className="mt-4 font-mono text-[10px] tracking-[0.05em] text-[color:var(--color-phosphor-dim)] leading-[1.6]">
+                  Disponible juin 2026. Pas de paiement aujourd&apos;hui.
                 </p>
               </div>
-              <div className="lg:col-span-5">
-                <div className="bg-white border border-[color:var(--color-charcoal)]/10 rounded-lg p-8">
-                  <p className="text-6xl font-bold tabular-nums">99 €</p>
-                  <p className="text-sm text-[color:var(--color-charcoal)]/60 mt-1 mb-8">
-                    TTC, livraison France métropolitaine 5–7 jours
-                  </p>
-                  <Link
-                    href="/#preorder"
-                    className="block w-full text-center bg-[color:var(--color-forest)] hover:bg-[color:var(--color-charcoal)] text-[color:var(--color-sand)] px-6 py-3.5 rounded-md text-base font-medium transition-colors"
-                  >
-                    Pré-commander&nbsp;›
-                  </Link>
-                  <p className="mt-4 text-xs text-[color:var(--color-charcoal)]/55">
-                    Disponible juin 2026. Pas de paiement aujourd&apos;hui.
-                  </p>
-                </div>
-              </div>
-            </div>
+            </aside>
           </div>
         </section>
 
-        <section className="py-20 lg:py-28">
-          <div className="mx-auto max-w-6xl px-6 lg:px-10">
-            <h2 className="text-3xl lg:text-4xl font-bold tracking-tight mb-12">
-              Ce qu&apos;il y a dans la boîte.
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-              {FEATURES.map((block) => (
-                <div key={block.title}>
-                  <p className="eyebrow text-[color:var(--color-forest)] mb-4">
-                    {block.title}
-                  </p>
-                  <ul className="space-y-3">
+        {/* CONTENU DE LA BOÎTE */}
+        <section
+          aria-labelledby="features-heading"
+          className="border-b border-[color:var(--color-divider)] py-20 lg:py-28"
+        >
+          <div className="max-w-7xl mx-auto px-6 lg:px-10">
+            <header className="mb-16">
+              <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-6" aria-hidden="true">
+                [ INVENTAIRE&nbsp;/&nbsp;3&nbsp;BLOCS ]
+              </p>
+              <h2
+                id="features-heading"
+                className="macro text-[clamp(40px,6vw,80px)] text-[color:var(--color-phosphor)] leading-[0.92]"
+              >
+                CE QU&apos;IL Y A
+                <br />
+                <span className="text-[color:var(--color-phosphor-dim)]">DANS LA BOÎTE.</span>
+              </h2>
+            </header>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-12">
+              {FEATURES.map((block, i) => (
+                <div key={block.title} className="border-t border-[color:var(--color-divider)] pt-6">
+                  <div className="flex items-baseline gap-3 mb-6">
+                    <span
+                      className="macro text-[clamp(28px,3vw,40px)] text-[color:var(--color-hazard)] tabular-nums leading-none"
+                      aria-hidden="true"
+                    >
+                      /{String(i + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="macro text-[clamp(20px,2.4vw,28px)] text-[color:var(--color-phosphor)] leading-[0.95]">
+                      {block.title}
+                    </h3>
+                  </div>
+                  <ul className="font-mono text-[13px] text-[color:var(--color-phosphor-dim)] space-y-2.5 list-none p-0 m-0">
                     {block.items.map((it) => (
-                      <li
-                        key={it}
-                        className="text-base text-[color:var(--color-charcoal)]/85 flex items-start gap-3"
-                      >
-                        <span
-                          className="mt-2 block w-1.5 h-1.5 rounded-full bg-[color:var(--color-forest)] flex-shrink-0"
-                          aria-hidden
-                        />
-                        <span>{it}</span>
+                      <li key={it} className="grid grid-cols-[auto_1fr] gap-3 items-baseline">
+                        <span aria-hidden="true" className="text-[color:var(--color-hazard)] tabular-nums text-[10px]">
+                          {">>"}
+                        </span>
+                        <span className="leading-[1.55]">{it}</span>
                       </li>
                     ))}
                   </ul>
@@ -139,77 +211,122 @@ export default function KitDecouvertePage() {
           </div>
         </section>
 
-        <section className="bg-[color:var(--color-charcoal)] text-[color:var(--color-sand)] py-20 lg:py-28">
-          <div className="mx-auto max-w-6xl px-6 lg:px-10">
-            <p className="eyebrow text-[color:var(--color-moss)] mb-6">
-              Trois usages concrets
-            </p>
-            <h2 className="text-3xl lg:text-4xl font-bold tracking-tight mb-12">
-              Quand ça change la donne.
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-              {SCENARIOS.map((s) => (
-                <div key={s.title} className="border-l-2 border-[color:var(--color-moss)] pl-6">
-                  <h3 className="text-xl font-semibold mb-3">{s.title}</h3>
-                  <p className="text-[color:var(--color-sand)]/75 leading-relaxed">
+        {/* SCÉNARIOS */}
+        <section
+          aria-labelledby="scenarios-heading"
+          className="border-b border-[color:var(--color-divider)] py-20 lg:py-28 bg-[color:var(--color-substrate-2)]"
+        >
+          <div className="max-w-7xl mx-auto px-6 lg:px-10">
+            <header className="mb-16 grid grid-cols-1 lg:grid-cols-12 gap-6">
+              <div className="lg:col-span-8">
+                <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-6" aria-hidden="true">
+                  [ TROIS USAGES CONCRETS ]
+                </p>
+                <h2
+                  id="scenarios-heading"
+                  className="macro text-[clamp(40px,6vw,80px)] text-[color:var(--color-phosphor)] leading-[0.92]"
+                >
+                  QUAND ÇA
+                  <br />
+                  <span className="text-[color:var(--color-phosphor-dim)]">CHANGE LA</span>
+                  <br />
+                  DONNE.
+                </h2>
+              </div>
+            </header>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[color:var(--color-divider)] border border-[color:var(--color-divider)]">
+              {SCENARIOS.map((s, i) => (
+                <article key={s.title} className="p-6 lg:p-8">
+                  <span
+                    className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] block mb-3"
+                    aria-hidden="true"
+                  >
+                    [ SCÉNARIO&nbsp;{String(i + 1).padStart(2, "0")} ]
+                  </span>
+                  <h3 className="macro text-[clamp(20px,2.4vw,28px)] text-[color:var(--color-phosphor)] mb-4 leading-[0.95]">
+                    {s.title}
+                  </h3>
+                  <p className="font-mono text-[13px] text-[color:var(--color-phosphor-dim)] leading-[1.65]">
                     {s.body}
                   </p>
-                </div>
+                </article>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="py-20 lg:py-28">
-          <div className="mx-auto max-w-3xl px-6 lg:px-10">
-            <p className="eyebrow text-[color:var(--color-forest)] mb-6">
-              Limites à connaître
-            </p>
-            <h2 className="text-3xl font-bold tracking-tight mb-8">
-              On préfère vous le dire avant l&apos;achat.
-            </h2>
-            <ul className="space-y-5 text-base text-[color:var(--color-charcoal)]/85">
-              <li>
-                <strong>Ce n&apos;est pas un service de secours officiel.</strong>{" "}
-                En cas d&apos;urgence vitale, composez le 112. MAILLON
-                est un outil d&apos;appoint, ne se substitue ni au SAMU
-                ni aux pompiers.
-              </li>
-              <li>
-                <strong>La portée dépend du terrain.</strong> 5 à 10 km
-                en terrain ouvert. 1 à 3 km en zone urbaine dense.
-                Moins de 1 km en intérieur béton.
-              </li>
-              <li>
-                <strong>Pas de voix.</strong> Le mesh LoRa transmet du
-                texte, des positions GPS et de la télémétrie. Pas de
-                voix temps réel — c&apos;est un trade-off pour la
-                portée et l&apos;autonomie.
-              </li>
-              <li>
-                <strong>Hors couverture extrême&nbsp;?</strong> Si vous
-                partez seul·e en expédition polaire ou en plein océan,
-                un communicateur satellite Garmin reste pertinent.
-                MAILLON couvre tous les autres usages.
-              </li>
-            </ul>
+        {/* LIMITES */}
+        <section
+          aria-labelledby="limites-heading"
+          className="border-b border-[color:var(--color-divider)] py-20 lg:py-28"
+        >
+          <div className="max-w-4xl mx-auto px-6 lg:px-10">
+            <header className="mb-12">
+              <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-6" aria-hidden="true">
+                [ LIMITES&nbsp;/&nbsp;TRANSPARENCE ]
+              </p>
+              <h2
+                id="limites-heading"
+                className="macro text-[clamp(36px,5vw,64px)] text-[color:var(--color-phosphor)] leading-[0.92]"
+              >
+                ON PRÉFÈRE
+                <br />
+                <span className="text-[color:var(--color-phosphor-dim)]">VOUS LE DIRE</span>
+                <br />
+                AVANT L&apos;ACHAT.
+              </h2>
+            </header>
+
+            <ol className="list-none p-0 m-0">
+              {LIMITES.map((l, i) => (
+                <li
+                  key={l.title}
+                  className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 py-6 border-t border-[color:var(--color-divider)] last:border-b"
+                >
+                  <span
+                    className="macro text-[clamp(20px,2vw,28px)] text-[color:var(--color-hazard)] tabular-nums leading-none"
+                    aria-hidden="true"
+                  >
+                    /{String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <h3 className="macro text-[clamp(18px,2vw,24px)] text-[color:var(--color-phosphor)] leading-[0.95] mb-2">
+                      {l.title}
+                    </h3>
+                    <p className="font-mono text-[13px] text-[color:var(--color-phosphor-dim)] leading-[1.65] max-w-[60ch]">
+                      {l.body}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ol>
           </div>
         </section>
 
-        <section className="bg-[color:var(--color-forest)] text-[color:var(--color-sand)] py-20">
-          <div className="mx-auto max-w-3xl px-6 lg:px-10 text-center">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-6">
-              Prêt à démarrer&nbsp;?
-            </h2>
-            <p className="text-lg text-[color:var(--color-sand)]/85 mb-8">
-              Inscrivez-vous à la pré-commande. Vous recevrez un email
-              au moment du lancement, sans engagement.
+        {/* CTA */}
+        <section
+          aria-labelledby="cta-heading"
+          className="px-6 lg:px-10 py-24 border-b-2 border-[color:var(--color-hazard)]"
+        >
+          <div className="max-w-4xl mx-auto text-center">
+            <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-8" aria-hidden="true">
+              [ PRÊT À DÉMARRER ? ]
             </p>
-            <Link
-              href="/#preorder"
-              className="inline-flex bg-[color:var(--color-signal)] hover:bg-[color:var(--color-sand)] hover:text-[color:var(--color-forest)] text-[color:var(--color-charcoal)] px-8 py-4 rounded-md text-base font-semibold transition-colors"
+            <h2
+              id="cta-heading"
+              className="macro text-[clamp(40px,6vw,80px)] text-[color:var(--color-phosphor)] leading-[0.9] mb-8"
             >
-              Pré-commander le Kit Découverte&nbsp;›
+              INSCRIVEZ-VOUS.
+              <br />
+              <span className="text-[color:var(--color-phosphor-dim)]">SANS ENGAGEMENT.</span>
+            </h2>
+            <p className="font-mono text-[14px] text-[color:var(--color-phosphor-dim)] leading-[1.7] mb-10 max-w-2xl mx-auto">
+              Vous recevez un email au lancement. Vous décidez à ce moment-là.
+            </p>
+            <Link href="/#preorder" className="btn-tactical btn-tactical-hazard inline-flex">
+              <span>PRÉ-COMMANDER LE KIT DÉCOUVERTE</span>
+              <span aria-hidden="true">{" ›"}</span>
             </Link>
           </div>
         </section>
