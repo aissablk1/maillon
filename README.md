@@ -76,4 +76,4 @@ Code in this repository under [MIT](./LICENSE) (where a LICENSE file exists at t
 ---
 
 **Aïssa Belkoussa** — Paris, April 2026
-[aissa.belkoussa5@gmail.com](mailto:aissa.belkoussa5@gmail.com)
+[github.com/aissablk1](https://github.com/aissablk1)

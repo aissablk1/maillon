@@ -88,7 +88,7 @@ export default function CgvPage() {
           </p>
           <p>
             Pour exercer ce droit&nbsp;: notifier MAILLON par email à{" "}
-            <a href="mailto:aissa.belkoussa5@gmail.com">aissa.belkoussa5@gmail.com</a>{" "}
+            <a href="https://github.com/aissablk1">github.com/aissablk1</a>{" "}
             avec le numéro de commande. Renvoyer le produit dans son
             emballage d&apos;origine, complet et en parfait état, dans
             les 14 jours suivant la notification. Frais de retour à la

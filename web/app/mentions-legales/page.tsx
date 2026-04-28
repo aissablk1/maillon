@@ -28,7 +28,7 @@ export default function MentionsLegalesPage() {
             <li>SIREN : à publier après immatriculation</li>
             <li>Numéro de TVA intracommunautaire : à publier</li>
             <li>Représentant légal (président) : à publier après immatriculation</li>
-            <li>Email : <a href="mailto:aissa.belkoussa5@gmail.com">aissa.belkoussa5@gmail.com</a></li>
+            <li>Email : <a href="https://github.com/aissablk1">github.com/aissablk1</a></li>
           </ul>
 
           <h2>Hébergeur</h2>

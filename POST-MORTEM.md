@@ -96,4 +96,4 @@ C'est la trace que je choisis de laisser sur ce projet : pas un produit, une hon
 
 **Aïssa Belkoussa**
 Paris, 26 avril 2026
-[aissa.belkoussa5@gmail.com](mailto:aissa.belkoussa5@gmail.com) · [github.com/aissablk1/maillon](https://github.com/aissablk1/maillon)
+[github.com/aissablk1](https://github.com/aissablk1) · [github.com/aissablk1/maillon](https://github.com/aissablk1/maillon)

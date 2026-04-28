@@ -7,7 +7,7 @@ import { ContactForm } from "@components/ContactForm";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Demandez un devis, une démo, ou posez vos questions techniques. Réponse sous 48 heures ouvrées garantie. Email aissa.belkoussa5@gmail.com.",
+    "Demandez un devis, une démo, ou posez vos questions techniques. Contact via github.com/aissablk1.",
 };
 
 export default function ContactPage() {
@@ -38,10 +38,10 @@ export default function ContactPage() {
                       Email
                     </p>
                     <a
-                      href="mailto:aissa.belkoussa5@gmail.com"
+                      href="https://github.com/aissablk1"
                       className="text-base font-medium underline-offset-4 hover:underline"
                     >
-                      aissa.belkoussa5@gmail.com
+                      github.com/aissablk1
                     </a>
                   </div>
                   <div>

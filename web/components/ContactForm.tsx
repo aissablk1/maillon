@@ -105,8 +105,8 @@ export function ContactForm() {
         <p className="font-mono text-[13px] text-[color:var(--color-phosphor-dim)] leading-[1.6]">
           Réponse sous 48&nbsp;heures ouvrées. Si c&apos;est urgent, écrivez en
           parallèle à{" "}
-          <a href="mailto:aissa.belkoussa5@gmail.com?subject=Urgent" className="maillon-link">
-            aissa.belkoussa5@gmail.com
+          <a href="https://github.com/aissablk1" className="maillon-link">
+            github.com/aissablk1
           </a>{" "}
           en mentionnant «&nbsp;Urgent&nbsp;» dans l&apos;objet.
         </p>
@@ -289,8 +289,8 @@ export function ContactForm() {
         >
           <span aria-hidden="true">[ ERR ] </span>
           {error}. Vous pouvez aussi écrire directement à{" "}
-          <a href="mailto:aissa.belkoussa5@gmail.com" className="underline maillon-link">
-            aissa.belkoussa5@gmail.com
+          <a href="https://github.com/aissablk1" className="underline maillon-link">
+            github.com/aissablk1
           </a>.
         </p>
       )}

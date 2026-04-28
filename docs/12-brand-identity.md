@@ -218,7 +218,7 @@ Budget : 1 200–2 000 € freelance senior.
 
 ### Branding emails
 
-- Adresses : aissa.belkoussa5@gmail.com (humaines), aissa.belkoussa5@gmail.com (général)
+- Adresses : github.com/aissablk1 (humaines), github.com/aissablk1 (général)
 - Signature : nom, fonction, MAILLON, URL, courte phrase de marque
 - HTML simple, pas de design lourd
 

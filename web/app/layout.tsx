@@ -83,9 +83,8 @@ const organizationSchema = {
   url: "https://github.com/aissablk1/maillon",
   description:
     "Communications mesh radio longue portée — kits préconfigurés et console de flotte pour secours bénévoles, BTP, événementiel et outdoor.",
-  email: "aissa.belkoussa5@gmail.com",
   areaServed: { "@type": "Country", name: "France" },
-  sameAs: ["https://github.com/aissablk1/maillon"],
+  sameAs: ["https://github.com/aissablk1/maillon", "https://github.com/aissablk1"],
 };
 
 export default function RootLayout({
