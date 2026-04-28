@@ -6,16 +6,18 @@ export function SiteFooter() {
 
   return (
     <footer className="border-t border-[color:var(--color-divider)] mt-32" role="contentinfo">
-      {/* Strip de transmission ASCII */}
-      <div className="border-b border-[color:var(--color-divider)] py-3 px-6 lg:px-10 font-mono text-[10px] tracking-[0.2em] text-[color:var(--color-phosphor-dim)] uppercase flex flex-wrap items-center gap-x-6 gap-y-1">
-        <span><span aria-hidden="true">{">>> "}</span>TRANSMISSION OK</span>
+      {/* Strip de transmission ASCII — décor purement visuel, redondant avec docs/legal-compliance,
+          masqué aux lecteurs d'écran pour éviter la pollution sonore. */}
+      <div
+        aria-hidden="true"
+        className="border-b border-[color:var(--color-divider)] py-3 px-6 lg:px-10 font-mono text-[10px] tracking-[0.2em] text-[color:var(--color-phosphor-dim)] uppercase flex flex-wrap items-center gap-x-6 gap-y-1"
+      >
+        <span>{">>> "}TRANSMISSION OK</span>
         <span>EU&nbsp;868.0–868.6&nbsp;MHz</span>
         <span>ETSI&nbsp;EN&nbsp;300&nbsp;220</span>
         <span>HOP_LIMIT=3</span>
         <span>DUTY_CYCLE&nbsp;1%</span>
-        <span className="ml-auto">
-          REV&nbsp;0.1.0&nbsp;/&nbsp;<time dateTime={buildDate}>{buildDate}</time>
-        </span>
+        <span className="ml-auto">REV&nbsp;0.1.0&nbsp;/&nbsp;{buildDate}</span>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-6 px-6 lg:px-10 py-12 max-w-7xl mx-auto">
@@ -61,7 +63,7 @@ export function SiteFooter() {
         <span>© {year} MAILLON SAS · Paris</span>
         <span className="text-[color:var(--color-hazard)] font-bold" role="note" aria-label="Avertissement de sécurité">
           ne&nbsp;se&nbsp;substitue&nbsp;pas&nbsp;au&nbsp;
-          <a href="tel:112" className="underline maillon-link">112</a>
+          <a href="tel:112" className="underline maillon-link inline-block py-1 px-1 -my-1">112</a>
         </span>
       </div>
     </footer>

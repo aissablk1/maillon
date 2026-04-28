@@ -72,7 +72,9 @@ export default function HomePage() {
             <div className="lg:col-span-5 px-6 lg:px-10 pt-12 lg:pt-20 pb-16 flex flex-col">
               <div className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-phosphor-dim)] mb-4 flex items-center gap-2">
                 <span className="uplink-indicator" aria-hidden="true" />
-                <span>UPLINK ACTIF · 7 NODES SIM</span>
+                <span lang="en">UPLINK</span>
+                <span> ACTIF · 7 </span>
+                <span lang="en">NODES SIM</span>
               </div>
               <MeshDiagram />
               <p className="mt-4 font-mono text-[11px] tracking-[0.05em] text-[color:var(--color-phosphor-dim)] leading-[1.5]">
@@ -543,13 +545,13 @@ export default function HomePage() {
             <p className="text-[color:var(--color-phosphor-dim)]">
               MAILLON ne se substitue pas au 112 ni à aucun service officiel
               de secours. En cas d&apos;urgence vitale, composez le{" "}
-              <a href="tel:112" className="text-[color:var(--color-phosphor)] font-bold maillon-link">112</a>
+              <a href="tel:112" className="text-[color:var(--color-phosphor)] font-bold maillon-link inline-block py-1 px-1 -my-1">112</a>
               {" "}(numéro européen) ou le{" "}
-              <a href="tel:15" className="text-[color:var(--color-phosphor)] font-bold maillon-link">15</a>
+              <a href="tel:15" className="text-[color:var(--color-phosphor)] font-bold maillon-link inline-block py-1 px-1 -my-1">15</a>
               {" "}(SAMU),{" "}
-              <a href="tel:17" className="text-[color:var(--color-phosphor)] font-bold maillon-link">17</a>
+              <a href="tel:17" className="text-[color:var(--color-phosphor)] font-bold maillon-link inline-block py-1 px-1 -my-1">17</a>
               {" "}(police),{" "}
-              <a href="tel:18" className="text-[color:var(--color-phosphor)] font-bold maillon-link">18</a>
+              <a href="tel:18" className="text-[color:var(--color-phosphor)] font-bold maillon-link inline-block py-1 px-1 -my-1">18</a>
               {" "}(pompiers). MAILLON est un outil de communication d&apos;appoint et de
               coordination, qui complète mais ne remplace jamais les comms
               officielles de la sécurité civile.

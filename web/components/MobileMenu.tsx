@@ -24,31 +24,55 @@ export function MobileMenu() {
     setMounted(true);
   }, []);
 
-  // ESC pour fermer + body scroll lock + focus initial
+  // ESC + Tab focus trap + body scroll lock + focus initial
   useEffect(() => {
     if (!open) return;
 
-    const handleEsc = (e: KeyboardEvent) => {
+    const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         e.preventDefault();
         close();
+        return;
+      }
+
+      // Focus trap WAI-ARIA Authoring Practices — modal dialog
+      if (e.key !== "Tab") return;
+
+      const drawer = document.getElementById(drawerId);
+      if (!drawer) return;
+
+      const focusables = drawer.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      );
+      if (focusables.length === 0) return;
+
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      const active = document.activeElement;
+
+      if (e.shiftKey && active === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && active === last) {
+        e.preventDefault();
+        first.focus();
       }
     };
 
-    document.addEventListener("keydown", handleEsc);
+    document.addEventListener("keydown", handleKeyDown);
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
-    // Focus initial sur le bouton fermer (cible safe au lieu d'un lien qui pourrait ne pas exister)
+    // Focus initial sur le bouton fermer (cible safe SSR + sortie évidente)
     const t = window.setTimeout(() => closeBtnRef.current?.focus(), 50);
 
     return () => {
-      document.removeEventListener("keydown", handleEsc);
+      document.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = previousOverflow;
       window.clearTimeout(t);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [open]);
+  }, [open, drawerId]);
 
   function close() {
     setOpen(false);
@@ -102,7 +126,7 @@ export function MobileMenu() {
                   alignItems: "center",
                   justifyContent: "space-between",
                   padding: "12px 24px",
-                  borderBottom: "1px solid #3A3A3A",
+                  borderBottom: "1px solid #5A5A5A",
                   backgroundColor: "#0A0A0A",
                 }}
               >
@@ -130,8 +154,8 @@ export function MobileMenu() {
                   style={{
                     width: "44px",
                     height: "44px",
-                    border: "1px solid #E61919",
-                    color: "#E61919",
+                    border: "1px solid #F23A3A",
+                    color: "#F23A3A",
                     backgroundColor: "transparent",
                     fontSize: "20px",
                     lineHeight: 1,
@@ -143,12 +167,12 @@ export function MobileMenu() {
                     transitionDuration: "100ms",
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = "#E61919";
+                    e.currentTarget.style.backgroundColor = "#F23A3A";
                     e.currentTarget.style.color = "#0A0A0A";
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.backgroundColor = "transparent";
-                    e.currentTarget.style.color = "#E61919";
+                    e.currentTarget.style.color = "#F23A3A";
                   }}
                 >
                   <span aria-hidden="true">×</span>
@@ -159,11 +183,11 @@ export function MobileMenu() {
               <div
                 style={{
                   padding: "32px 24px 16px",
-                  borderBottom: "1px solid #3A3A3A",
+                  borderBottom: "1px solid #5A5A5A",
                   fontSize: "10px",
                   letterSpacing: "0.22em",
                   textTransform: "uppercase",
-                  color: "#E61919",
+                  color: "#F23A3A",
                   fontWeight: 700,
                 }}
                 aria-hidden="true"
@@ -186,7 +210,7 @@ export function MobileMenu() {
                         gap: "20px",
                         alignItems: "baseline",
                         padding: "20px 0",
-                        borderBottom: "1px solid #3A3A3A",
+                        borderBottom: "1px solid #5A5A5A",
                       }}
                     >
                       <span
@@ -194,7 +218,7 @@ export function MobileMenu() {
                           fontFamily: "var(--font-archivo), Archivo Black, sans-serif",
                           fontWeight: 900,
                           fontSize: "clamp(20px, 3vw, 28px)",
-                          color: "#E61919",
+                          color: "#F23A3A",
                           lineHeight: 1,
                           fontVariantNumeric: "tabular-nums",
                         }}
@@ -234,7 +258,7 @@ export function MobileMenu() {
                   alignItems: "center",
                   justifyContent: "space-between",
                   padding: "12px 24px",
-                  borderTop: "1px solid #3A3A3A",
+                  borderTop: "1px solid #5A5A5A",
                   fontSize: "10px",
                   letterSpacing: "0.2em",
                   textTransform: "uppercase",
@@ -253,7 +277,7 @@ export function MobileMenu() {
                 }
                 .maillon-mobile-link:hover,
                 .maillon-mobile-link:focus-visible {
-                  color: #E61919 !important;
+                  color: #F23A3A !important;
                 }
                 @media (prefers-reduced-motion: reduce) {
                   [role="dialog"][aria-modal="true"] {

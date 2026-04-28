@@ -97,7 +97,9 @@ export function ContactForm() {
         className="border border-[color:var(--color-uplink)] bg-[color:var(--color-substrate-2)] p-8 lg:p-10"
       >
         <p className="font-mono text-[10px] tracking-[0.22em] text-[color:var(--color-uplink)] uppercase mb-4 font-bold">
-          <span aria-hidden="true">[ </span>MSG&nbsp;ACK&nbsp;/&nbsp;200&nbsp;OK<span aria-hidden="true"> ]</span>
+          <span aria-hidden="true">[ </span>
+          <span lang="en">MSG&nbsp;ACK&nbsp;/&nbsp;200&nbsp;OK</span>
+          <span aria-hidden="true"> ]</span>
         </p>
         <h2 className="macro text-[clamp(28px,3vw,40px)] text-[color:var(--color-phosphor)] mb-4 leading-[0.95]">
           Message reçu.
@@ -122,12 +124,12 @@ export function ContactForm() {
       noValidate
     >
       <div className="flex items-center justify-between border-b border-[color:var(--color-divider)] pb-3 mb-2">
-        <h2
+        <h3
           id={`${formId}-heading`}
           className="font-mono text-[10px] tracking-[0.22em] text-[color:var(--color-hazard)] uppercase font-bold"
         >
-          <span aria-hidden="true">[ </span>FORM&nbsp;/&nbsp;CONTACT<span aria-hidden="true"> ]</span>
-        </h2>
+          <span aria-hidden="true">[ </span>Contact<span aria-hidden="true"> ]</span>
+        </h3>
         <span className="font-mono text-[10px] tracking-[0.18em] text-[color:var(--color-phosphor-dim)] uppercase">
           REV&nbsp;0.1.0
         </span>

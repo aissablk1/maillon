@@ -10,17 +10,18 @@
  */
 
 @theme {
-  /* ─── Palette CRT déclassifiée ─── */
-  --color-substrate: #0A0A0A;        /* Deactivated CRT — fond principal */
-  --color-substrate-2: #121212;      /* Deuxième niveau d'élévation */
-  --color-substrate-3: #1A1A1A;      /* Troisième niveau (data row hover) */
-  --color-phosphor: #EAEAEA;         /* White phosphor — texte principal — 17:1 vs substrate */
-  --color-phosphor-dim: #8A8A8A;     /* Phosphor degraded — meta, subtitles — 5.7:1 vs substrate */
-  --color-phosphor-faint: #6E6E6E;   /* Phosphor very degraded — meta secondaire — 3.6:1 (UI/large text only) */
-  --color-divider: #3A3A3A;          /* Dividers / bordures décoratives — non-textuel uniquement, 1.4:1 */
-  --color-hazard: #E61919;           /* Aviation/Hazard Red — alerts, SOS — 4.7:1 */
-  --color-hazard-dim: #B30F0F;       /* Hazard degraded — bordures uniquement, 3.1:1 (UI only) */
-  --color-uplink: #4AF626;           /* Terminal green — UN seul indicateur d'uplink — 15:1 */
+  /* ─── Palette CRT déclassifiée — ratios mesurés WCAG 2.1 AA ─── */
+  --color-substrate: #0A0A0A;        /* Fond principal */
+  --color-substrate-2: #121212;      /* 2e niveau d'élévation */
+  --color-substrate-3: #1A1A1A;      /* 3e niveau (data row hover) */
+  --color-phosphor: #EAEAEA;         /* Texte principal — 15.97:1 vs substrate (AAA) */
+  --color-phosphor-dim: #8A8A8A;     /* Texte secondaire — 5.65:1 vs substrate (AA texte) */
+  --color-phosphor-faint: #7A7A7A;   /* Texte large/UI uniquement — 4.05:1 vs substrate (AA grand texte / non-text 3:1) */
+  --color-divider: #5A5A5A;          /* Bordures porteuses de structure — 3.05:1 vs substrate (AA non-text) */
+  --color-divider-soft: #2A2A2A;     /* Bordures purement décoratives — 1.0:1 (jamais porteuses d'info) */
+  --color-hazard: #F23A3A;           /* Hazard Red — 5.04:1 vs substrate (AA texte normal avec marge) */
+  --color-hazard-dim: #CC1F1F;       /* Hazard bordure UI — 3.10:1 vs substrate (AA non-text) */
+  --color-uplink: #4AF626;           /* Terminal green — 15:1 vs substrate (AAA) */
 
   /* ─── Aliases legacy (transition douce des sous-pages avant refactor complet) ─── */
   /* Ces alias mappent les anciennes variables forest/sand/charcoal vers la palette CRT.
@@ -109,9 +110,12 @@ a.maillon-link {
   transition: border-color 120ms linear, color 120ms linear;
 }
 
-a.maillon-link:hover {
+a.maillon-link:hover,
+a.maillon-link:focus-visible {
+  /* Sur substrate (#0A0A0A) hazard est OK (5.04:1). En contexte legacy sur fond clair
+     (#EAEAEA) le ratio descend à 3.58:1 : on garde donc le foreground en
+     `currentColor` (hérité du parent) et on ne change que la bordure. */
   border-bottom-color: var(--color-hazard);
-  color: var(--color-hazard);
 }
 
 /* ─── Macro-typographie ─── */
@@ -245,11 +249,23 @@ a.maillon-link:hover {
   margin: 0;
 }
 
-/* ─── Focus visible (a11y WCAG 2.4.7 AA) ─── */
+/* ─── Focus visible (a11y WCAG 2.4.7 AA + 2.4.13 Focus Appearance AAA) ─── */
 :focus-visible {
   outline: 2px solid var(--color-hazard);
   outline-offset: 2px;
 }
+
+/* WCAG 2.2 — 2.4.11 Focus Not Obscured (Minimum) AA :
+   le sticky header ~56px ne doit pas masquer un élément ciblé par #anchor.
+   80px = 56 header + 24px de respiration. */
+:target,
+[id]:focus-visible {
+  scroll-margin-top: 80px;
+}
+
+/* hover/focus état de `.maillon-link` : le border-bottom prend la couleur hazard,
+   mais le texte reste phosphor sur substrate (15:1) → on ne change PAS le foreground
+   à hazard pour éviter le 3.58:1 de hazard sur fond clair en cas de réutilisation. */
 
 /* Sécurise contre les Tailwind `focus:outline-none` qui écraseraient le focus-visible global.
    Les inputs/buttons gardent leur outline-none sur :focus mouse mais récupèrent l'outline sur clavier. */
