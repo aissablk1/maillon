@@ -96,13 +96,10 @@ export default function KitSecoursPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12">
             <div className="lg:col-span-7 px-6 lg:px-10 pt-12 lg:pt-20 pb-16 lg:border-r border-[color:var(--color-divider)]">
               <div className="flex items-center gap-4 mb-12">
-                <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)]" aria-hidden="true">
-                  [ UNIT&nbsp;03&nbsp;/&nbsp;SECOURS ]
+                <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-[color:var(--color-hazard)]">
+                  Kit&nbsp;03 · Secours
                 </span>
                 <span aria-hidden="true" className="flex-1 border-t border-[color:var(--color-divider)]" />
-                <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-[color:var(--color-phosphor-dim)]">
-                  REV&nbsp;0.1.0
-                </span>
               </div>
 
               <h1
@@ -127,8 +124,8 @@ export default function KitSecoursPage() {
 
             <aside className="lg:col-span-5 px-6 lg:px-10 pt-12 lg:pt-20 pb-16 flex items-end bg-[color:var(--color-substrate-2)]">
               <div className="border border-[color:var(--color-hazard)] p-6 lg:p-8 w-full">
-                <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-4" aria-hidden="true">
-                  [ PRICE&nbsp;/&nbsp;TTC ]
+                <p className="font-mono text-[11px] tracking-[0.18em] uppercase text-[color:var(--color-hazard)] mb-4 font-bold">
+                  Prix TTC
                 </p>
                 <div className="flex items-baseline gap-3 mb-2">
                   <span className="macro text-[clamp(60px,8vw,104px)] text-[color:var(--color-phosphor)] tabular-nums leading-none">
@@ -146,7 +143,7 @@ export default function KitSecoursPage() {
                   href="/contact?sujet=kit-secours"
                   className="btn-tactical btn-tactical-hazard w-full justify-between"
                 >
-                  <span>DEMANDER UN DEVIS</span>
+                  <span>Demander un devis</span>
                   <span aria-hidden="true">{" ›"}</span>
                 </Link>
                 <p className="mt-4 font-mono text-[10px] tracking-[0.05em] text-[color:var(--color-phosphor-dim)] leading-[1.6]">
@@ -164,33 +161,23 @@ export default function KitSecoursPage() {
         >
           <div className="max-w-7xl mx-auto px-6 lg:px-10">
             <header className="mb-16">
-              <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-6" aria-hidden="true">
-                [ INVENTAIRE&nbsp;/&nbsp;4&nbsp;BLOCS ]
+              <p className="font-mono text-[11px] tracking-[0.18em] uppercase text-[color:var(--color-phosphor-dim)] mb-4">
+                Inventaire complet
               </p>
               <h2
                 id="features-heading"
-                className="macro text-[clamp(40px,6vw,80px)] text-[color:var(--color-phosphor)] leading-[0.92]"
+                className="font-mono text-[clamp(24px,3vw,40px)] text-[color:var(--color-phosphor)] leading-[1.2] font-bold"
               >
-                CE QUE
-                <br />
-                <span className="text-[color:var(--color-phosphor-dim)]">VOUS RECEVEZ.</span>
+                Ce que vous recevez.
               </h2>
             </header>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
-              {FEATURES.map((block, i) => (
+              {FEATURES.map((block) => (
                 <div key={block.title} className="border-t border-[color:var(--color-divider)] pt-6">
-                  <div className="flex items-baseline gap-3 mb-6">
-                    <span
-                      className="macro text-[clamp(28px,3vw,40px)] text-[color:var(--color-hazard)] tabular-nums leading-none"
-                      aria-hidden="true"
-                    >
-                      /{String(i + 1).padStart(2, "0")}
-                    </span>
-                    <h3 className="macro text-[clamp(22px,2.6vw,32px)] text-[color:var(--color-phosphor)] leading-[0.95]">
-                      {block.title}
-                    </h3>
-                  </div>
+                  <h3 className="font-mono text-[16px] text-[color:var(--color-phosphor)] mb-6 font-bold">
+                    {block.title}
+                  </h3>
                   <ul className="font-mono text-[13px] text-[color:var(--color-phosphor-dim)] space-y-2.5 list-none p-0 m-0">
                     {block.items.map((it) => (
                       <li key={it} className="grid grid-cols-[auto_1fr] gap-3 items-baseline">
@@ -215,32 +202,22 @@ export default function KitSecoursPage() {
           <div className="max-w-7xl mx-auto px-6 lg:px-10">
             <header className="mb-16 grid grid-cols-1 lg:grid-cols-12 gap-6">
               <div className="lg:col-span-9">
-                <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-6" aria-hidden="true">
-                  [ TROIS SCÉNARIOS D&apos;INTERVENTION ]
+                <p className="font-mono text-[11px] tracking-[0.18em] uppercase text-[color:var(--color-phosphor-dim)] mb-4">
+                  Trois scénarios d&apos;intervention
                 </p>
                 <h2
                   id="scenarios-heading"
-                  className="macro text-[clamp(40px,6vw,80px)] text-[color:var(--color-phosphor)] leading-[0.92]"
+                  className="font-mono text-[clamp(24px,3vw,40px)] text-[color:var(--color-phosphor)] leading-[1.2] font-bold"
                 >
-                  QUAND CHAQUE
-                  <br />
-                  <span className="text-[color:var(--color-phosphor-dim)]">SECONDE</span>
-                  <br />
-                  COMPTE.
+                  Quand chaque seconde compte.
                 </h2>
               </div>
             </header>
 
             <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[color:var(--color-divider)] border border-[color:var(--color-divider)]">
-              {SCENARIOS.map((s, i) => (
+              {SCENARIOS.map((s) => (
                 <article key={s.title} className="p-6 lg:p-8">
-                  <span
-                    className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] block mb-3"
-                    aria-hidden="true"
-                  >
-                    [ SCÉNARIO&nbsp;{String(i + 1).padStart(2, "0")} ]
-                  </span>
-                  <h3 className="macro text-[clamp(20px,2.4vw,28px)] text-[color:var(--color-phosphor)] mb-4 leading-[0.95]">
+                  <h3 className="font-mono text-[16px] text-[color:var(--color-phosphor)] mb-3 font-bold">
                     {s.title}
                   </h3>
                   <p className="font-mono text-[13px] text-[color:var(--color-phosphor-dim)] leading-[1.65]">
@@ -260,16 +237,14 @@ export default function KitSecoursPage() {
           <div className="max-w-6xl mx-auto px-6 lg:px-10">
             <header className="mb-12 grid grid-cols-1 lg:grid-cols-12 gap-6">
               <div className="lg:col-span-9">
-                <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-6" aria-hidden="true">
-                  [ BENCH&nbsp;/&nbsp;6&nbsp;SECOURISTES&nbsp;×&nbsp;5&nbsp;ANS ]
+                <p className="font-mono text-[11px] tracking-[0.18em] uppercase text-[color:var(--color-phosphor-dim)] mb-4">
+                  Comparaison sur 5&nbsp;ans — 6 secouristes
                 </p>
                 <h2
                   id="bench-heading"
-                  className="macro text-[clamp(36px,5vw,72px)] text-[color:var(--color-phosphor)] leading-[0.92]"
+                  className="font-mono text-[clamp(24px,3vw,40px)] text-[color:var(--color-phosphor)] leading-[1.2] font-bold"
                 >
-                  KIT SECOURS
-                  <span className="text-[color:var(--color-phosphor-dim)]"> vs </span>
-                  DMR HYTERA.
+                  Kit Secours <span className="text-[color:var(--color-phosphor-dim)]">vs</span> DMR Hytera.
                 </h2>
               </div>
             </header>
@@ -358,18 +333,14 @@ export default function KitSecoursPage() {
           className="px-6 lg:px-10 py-24 border-b-2 border-[color:var(--color-hazard)]"
         >
           <div className="max-w-4xl mx-auto text-center">
-            <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-8" aria-hidden="true">
-              [ DÉMO TERRAIN POSSIBLE ]
+            <p className="font-mono text-[11px] tracking-[0.18em] uppercase text-[color:var(--color-phosphor-dim)] mb-4">
+              Démo terrain possible
             </p>
             <h2
               id="cta-heading"
-              className="macro text-[clamp(40px,6vw,80px)] text-[color:var(--color-phosphor)] leading-[0.9] mb-8"
+              className="font-mono text-[clamp(22px,3vw,36px)] text-[color:var(--color-phosphor)] leading-[1.2] font-bold mb-6"
             >
-              UNE SEMAINE
-              <br />
-              <span className="text-[color:var(--color-phosphor-dim)]">POUR LE TESTER</span>
-              <br />
-              EN VRAI.
+              Une semaine pour le tester en vrai.
             </h2>
             <p className="font-mono text-[14px] text-[color:var(--color-phosphor-dim)] leading-[1.7] mb-10 max-w-2xl mx-auto">
               On vient avec un kit complet, on le met en route avec votre équipe,
@@ -377,7 +348,7 @@ export default function KitSecoursPage() {
               pour le tester en vrai. Aucun engagement.
             </p>
             <Link href="/contact?sujet=kit-secours" className="btn-tactical btn-tactical-hazard inline-flex">
-              <span>DEMANDER UNE DÉMO</span>
+              <span>Demander une démo</span>
               <span aria-hidden="true">{" ›"}</span>
             </Link>
           </div>

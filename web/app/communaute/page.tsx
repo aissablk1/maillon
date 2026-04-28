@@ -153,23 +153,16 @@ export default function CommunautePage() {
 
             {/* Bloc droit — titre + manifeste */}
             <div className="lg:col-span-7 px-6 lg:px-10 pt-12 lg:pt-20 pb-16">
-              <div className="flex items-center gap-4 mb-12">
-                <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)]" aria-hidden="true">
-                  [ COMMUN&nbsp;/&nbsp;OPEN ]
-                </span>
-                <span aria-hidden="true" className="flex-1 border-t border-[color:var(--color-divider)]" />
-              </div>
+              <p className="font-mono text-[11px] tracking-[0.18em] uppercase text-[color:var(--color-hazard)] mb-8">
+                Ouvert par construction
+              </p>
 
               <h1
                 id="comm-hero"
-                className="macro text-[clamp(56px,11vw,160px)] text-[color:var(--color-phosphor)]"
+                className="font-mono text-[clamp(28px,4vw,52px)] text-[color:var(--color-phosphor)] leading-[1.15] font-bold max-w-3xl"
               >
-                ON NE
-                <br />
-                FERME
-                <br />
-                <span className="text-[color:var(--color-phosphor-dim)]">RIEN</span>
-                <span className="text-[color:var(--color-hazard)]" aria-hidden="true">.</span>
+                Le code, l&apos;état de l&apos;art et le post-mortem du projet
+                sont publics. Vous tenez aussi les nœuds.
               </h1>
 
               <p className="mt-12 max-w-2xl font-mono text-[14px] lg:text-[15px] text-[color:var(--color-phosphor-dim)] leading-[1.7]">
@@ -190,16 +183,14 @@ export default function CommunautePage() {
           className="border-b border-[color:var(--color-divider)] py-20 lg:py-28"
         >
           <header className="px-6 lg:px-10 mb-16 max-w-7xl mx-auto">
-            <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-6" aria-hidden="true">
-              [ CHANNELS&nbsp;/&nbsp;5 ]
+            <p className="font-mono text-[11px] tracking-[0.18em] uppercase text-[color:var(--color-phosphor-dim)] mb-4">
+              Cinq canaux d&apos;entraide
             </p>
             <h2
               id="canaux-heading"
-              className="macro text-[clamp(40px,6vw,80px)] text-[color:var(--color-phosphor)] leading-[0.92]"
+              className="font-mono text-[clamp(24px,3vw,40px)] text-[color:var(--color-phosphor)] leading-[1.2] font-bold max-w-3xl"
             >
-              CINQ CANAUX
-              <br />
-              <span className="text-[color:var(--color-phosphor-dim)]">D&apos;ENTRAIDE.</span>
+              Là où la communauté se rencontre, contribue, et nous tient honnêtes.
             </h2>
           </header>
 
@@ -261,18 +252,14 @@ export default function CommunautePage() {
         >
           <div className="max-w-6xl mx-auto px-6 lg:px-10 grid grid-cols-1 lg:grid-cols-12 gap-12">
             <header className="lg:col-span-4">
-              <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-6" aria-hidden="true">
-                [ ENGAGEMENTS&nbsp;/&nbsp;4 ]
+              <p className="font-mono text-[11px] tracking-[0.18em] uppercase text-[color:var(--color-phosphor-dim)] mb-4">
+                Quatre engagements
               </p>
               <h2
                 id="engagements-heading"
-                className="macro text-[clamp(36px,5vw,72px)] text-[color:var(--color-phosphor)] leading-[0.92]"
+                className="font-mono text-[clamp(22px,3vw,36px)] text-[color:var(--color-phosphor)] leading-[1.2] font-bold"
               >
-                CE QU&apos;ON
-                <br />
-                <span className="text-[color:var(--color-phosphor-dim)]">PROMET</span>
-                <br />
-                EN COMMUN.
+                Ce qu&apos;on promet en commun.
               </h2>
             </header>
 
@@ -297,18 +284,14 @@ export default function CommunautePage() {
           className="px-6 lg:px-10 py-24 border-b-2 border-[color:var(--color-hazard)]"
         >
           <div className="max-w-4xl mx-auto text-center">
-            <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-8" aria-hidden="true">
-              [ CONTRIBUER ]
+            <p className="font-mono text-[11px] tracking-[0.18em] uppercase text-[color:var(--color-phosphor-dim)] mb-4">
+              Contribuer
             </p>
             <h2
               id="contrib-cta"
-              className="macro text-[clamp(40px,6vw,80px)] text-[color:var(--color-phosphor)] leading-[0.9] mb-8"
+              className="font-mono text-[clamp(22px,3vw,36px)] text-[color:var(--color-phosphor)] leading-[1.2] font-bold mb-6"
             >
-              VOUS AVEZ
-              <br />
-              UN REX
-              <br />
-              <span className="text-[color:var(--color-hazard)]">À PARTAGER ?</span>
+              Vous avez un retour d&apos;expérience à partager ?
             </h2>
             <p className="font-mono text-[14px] text-[color:var(--color-phosphor-dim)] leading-[1.7] mb-10 max-w-2xl mx-auto">
               Test terrain, métrologie portée, debug protocole, intégration

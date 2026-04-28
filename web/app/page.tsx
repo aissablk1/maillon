@@ -20,8 +20,8 @@ export default function HomePage() {
             <div className="lg:col-span-7 px-6 lg:px-10 pt-12 lg:pt-20 pb-16 lg:border-r border-[color:var(--color-divider)]">
               <HeroEntrance>
                 <div className="flex items-center gap-4 mb-12">
-                  <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)]" aria-hidden="true">
-                    [ TRANSMIT-001 / MAILLON ]
+                  <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-[color:var(--color-hazard)] font-bold">
+                    Transmit-001 — MAILLON
                   </span>
                   <span aria-hidden="true" className="flex-1 border-t border-[color:var(--color-divider)]" />
                   <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-[color:var(--color-phosphor-dim)]">
@@ -90,20 +90,20 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[color:var(--color-phosphor-faint)]">
             {[
               {
-                tag: "[ PORTÉE / À VUE ]",
+                tag: "Portée — à vue",
                 value: "30",
-                unit: "KM",
+                unit: "km",
                 note: "Mesurés en terrain ouvert avec antenne 7 dBi. Record mondial point-à-point : 331 km.",
               },
               {
-                tag: "[ MULTI-HOP / RELAIS ]",
+                tag: "Multi-hop — relais",
                 value: "300",
-                unit: "KM",
+                unit: "km",
                 note: "Avec un maillage de relais bien placés. Chaque nœud devient routeur du précédent.",
                 hazard: true,
               },
               {
-                tag: "[ ABONNEMENT ]",
+                tag: "Abonnement",
                 value: "0",
                 unit: "€",
                 note: "Bande ISM 868 MHz libre. Pas d'opérateur, pas de constellation, pas de licence.",
@@ -113,7 +113,7 @@ export default function HomePage() {
                 key={item.tag}
                 className="px-6 lg:px-10 py-12 lg:py-16"
               >
-                <p className={`font-mono text-[10px] tracking-[0.22em] uppercase mb-6 ${item.hazard ? "text-[color:var(--color-hazard)]" : "text-[color:var(--color-phosphor-dim)]"}`}>
+                <p className={`font-mono text-[11px] tracking-[0.18em] uppercase mb-4 ${item.hazard ? "text-[color:var(--color-hazard)] font-bold" : "text-[color:var(--color-phosphor-dim)]"}`}>
                   {item.tag}
                 </p>
                 <div className="flex items-baseline gap-2">
@@ -135,18 +135,12 @@ export default function HomePage() {
         {/* ─────────── COMMENT ÇA MARCHE — 4 étapes éditoriales ─────────── */}
         <section className="border-b border-[color:var(--color-phosphor-faint)]">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-6">
-            <header className="lg:col-span-4 px-6 lg:px-10 py-16 border-r border-[color:var(--color-phosphor-faint)]">
-              <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-6">
-                [ DÉPLOIEMENT&nbsp;/&nbsp;T+0 ]
+            <header className="lg:col-span-4 px-6 lg:px-10 py-16 border-r border-[color:var(--color-divider)]">
+              <p className="font-mono text-[11px] tracking-[0.18em] uppercase text-[color:var(--color-phosphor-dim)] mb-4">
+                Déploiement à T+0
               </p>
-              <h2 className="macro text-[clamp(40px,6vw,88px)] text-[color:var(--color-phosphor)] leading-[0.9]">
-                CHAQUE
-                <br />
-                NŒUD
-                <br />
-                <span className="text-[color:var(--color-phosphor-dim)]">EST UN</span>
-                <br />
-                MAILLON.
+              <h2 className="font-mono text-[clamp(24px,3vw,40px)] text-[color:var(--color-phosphor)] leading-[1.2] font-bold">
+                Chaque nœud est un maillon.
               </h2>
               <p className="mt-8 font-mono text-[13px] text-[color:var(--color-phosphor-dim)] leading-[1.6]">
                 MAILLON s&apos;appuie sur Meshtastic, le firmware open-source
@@ -186,11 +180,11 @@ export default function HomePage() {
                     key={step.n}
                     className="grid grid-cols-[auto_1fr] gap-6 lg:gap-12 py-8 first:pt-0"
                   >
-                    <span className="macro text-[clamp(32px,4vw,56px)] text-[color:var(--color-hazard)] tabular-nums leading-none">
+                    <span className="font-mono text-[clamp(28px,3vw,40px)] text-[color:var(--color-hazard)] tabular-nums leading-none font-bold">
                       {step.n}
                     </span>
                     <div className="pt-1">
-                      <h3 className="macro text-[clamp(18px,2vw,28px)] text-[color:var(--color-phosphor)] mb-2 leading-[0.95] uppercase">
+                      <h3 className="font-mono text-[16px] text-[color:var(--color-phosphor)] mb-2 leading-[1.3] font-bold">
                         {step.t}
                       </h3>
                       <p className="font-mono text-[13px] text-[color:var(--color-phosphor-dim)] leading-[1.55] max-w-[60ch]">
@@ -211,15 +205,11 @@ export default function HomePage() {
         >
           <header className="px-6 lg:px-10 py-16 border-b border-[color:var(--color-phosphor-faint)] grid grid-cols-1 lg:grid-cols-12 gap-6">
             <div className="lg:col-span-7 lg:col-start-1">
-              <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-6">
-                [ CATALOGUE&nbsp;/&nbsp;3&nbsp;UNITS ]
+              <p className="font-mono text-[11px] tracking-[0.18em] uppercase text-[color:var(--color-phosphor-dim)] mb-4">
+                Catalogue — 3 unités
               </p>
-              <h2 className="macro text-[clamp(48px,8vw,128px)] text-[color:var(--color-phosphor)] leading-[0.88]">
-                DU BIVOUAC
-                <br />
-                <span className="text-[color:var(--color-phosphor-dim)]">AU PC</span>
-                <br />
-                COMMANDE.
+              <h2 className="font-mono text-[clamp(28px,4vw,52px)] text-[color:var(--color-phosphor)] leading-[1.15] font-bold">
+                Du bivouac au PC commande.
               </h2>
             </div>
             <div className="lg:col-span-4 lg:col-start-9 self-end">
@@ -303,15 +293,11 @@ export default function HomePage() {
         <section id="cas-usage" aria-labelledby="cas-usage-heading" className="border-b border-[color:var(--color-divider)]">
           <header className="px-6 lg:px-10 py-16 grid grid-cols-1 lg:grid-cols-12 gap-6">
             <div className="lg:col-span-8">
-              <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-6" aria-hidden="true">
-                [ TERRAINS&nbsp;/&nbsp;5&nbsp;CIBLES ]
+              <p className="font-mono text-[11px] tracking-[0.18em] uppercase text-[color:var(--color-phosphor-dim)] mb-4">
+                Cinq terrains
               </p>
-              <h2 id="cas-usage-heading" className="macro text-[clamp(40px,6vw,88px)] text-[color:var(--color-phosphor)] leading-[0.92]">
-                CINQ MONDES.
-                <br />
-                <span className="text-[color:var(--color-phosphor-dim)]">UN MÊME BESOIN&nbsp;:</span>
-                <br />
-                RESTER EN LIEN.
+              <h2 id="cas-usage-heading" className="font-mono text-[clamp(24px,3vw,40px)] text-[color:var(--color-phosphor)] leading-[1.2] font-bold">
+                Cinq mondes, un même besoin&nbsp;: rester en lien.
               </h2>
             </div>
           </header>
@@ -356,15 +342,11 @@ export default function HomePage() {
         <section aria-labelledby="bench-heading" className="border-b border-[color:var(--color-divider)] px-6 lg:px-10 py-20">
           <header className="mb-12 grid grid-cols-1 lg:grid-cols-12 gap-6">
             <div className="lg:col-span-9">
-              <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-6" aria-hidden="true">
-                [ BENCH&nbsp;/&nbsp;6 SECOURISTES&nbsp;×&nbsp;5 ANS ]
+              <p className="font-mono text-[11px] tracking-[0.18em] uppercase text-[color:var(--color-phosphor-dim)] mb-4">
+                Comparaison sur 5&nbsp;ans — 6 secouristes
               </p>
-              <h2 id="bench-heading" className="macro text-[clamp(40px,6vw,80px)] text-[color:var(--color-phosphor)] leading-[0.92]">
-                MAILLON
-                <span className="text-[color:var(--color-phosphor-dim)]"> vs </span>
-                INREACH
-                <span className="text-[color:var(--color-phosphor-dim)]"> vs </span>
-                <span className="text-[color:var(--color-phosphor-dim)]">DMR.</span>
+              <h2 id="bench-heading" className="font-mono text-[clamp(24px,3vw,40px)] text-[color:var(--color-phosphor)] leading-[1.2] font-bold">
+                MAILLON <span className="text-[color:var(--color-phosphor-dim)]">vs</span> inReach <span className="text-[color:var(--color-phosphor-dim)]">vs</span> DMR.
               </h2>
             </div>
           </header>
@@ -440,15 +422,11 @@ export default function HomePage() {
         {/* ─────────── OPEN-SOURCE COMMITMENT ─────────── */}
         <section aria-labelledby="open-heading" className="border-b border-[color:var(--color-divider)] px-6 lg:px-10 py-24">
           <div className="max-w-4xl mx-auto text-center">
-            <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-8" aria-hidden="true">
-              [ COMMUN / GPL-V3 ]
+            <p className="font-mono text-[11px] tracking-[0.18em] uppercase text-[color:var(--color-phosphor-dim)] mb-4">
+              Commun open-source GPL&nbsp;v3
             </p>
-            <h2 id="open-heading" className="macro text-[clamp(56px,9vw,144px)] text-[color:var(--color-phosphor)] leading-[0.88] mb-12">
-              ON NE
-              <br />
-              FERME
-              <br />
-              <span className="text-[color:var(--color-phosphor-dim)]">RIEN.</span>
+            <h2 id="open-heading" className="font-mono text-[clamp(28px,4vw,52px)] text-[color:var(--color-phosphor)] leading-[1.15] font-bold mb-12">
+              On ne ferme rien.
             </h2>
             <p className="font-mono text-[14px] text-[color:var(--color-phosphor-dim)] leading-[1.7] mb-10 max-w-2xl mx-auto">
               Le firmware Meshtastic est open-source GPL&nbsp;v3. MAILLON
@@ -504,15 +482,13 @@ export default function HomePage() {
         >
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
             <div className="lg:col-span-7">
-              <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-6" aria-hidden="true">
-                [ TX&nbsp;/&nbsp;PRÉCOMMANDE ]
+              <p className="font-mono text-[11px] tracking-[0.18em] uppercase text-[color:var(--color-hazard)] mb-6 font-bold">
+                Précommande
               </p>
               <h2 id="preorder-heading" className="macro text-[clamp(48px,7vw,96px)] text-[color:var(--color-phosphor)] leading-[0.9] mb-8">
                 LIVRAISON
                 <br />
-                JUIN
-                <br />
-                <span className="text-[color:var(--color-hazard)]">2026.</span>
+                JUIN <span className="text-[color:var(--color-hazard)]">2026.</span>
               </h2>
               <p className="font-mono text-[14px] text-[color:var(--color-phosphor-dim)] leading-[1.7] mb-6 max-w-xl">
                 Pas de paiement aujourd&apos;hui. Vous recevez un email quand
@@ -538,9 +514,9 @@ export default function HomePage() {
           <div className="max-w-4xl mx-auto font-mono text-[12px] leading-[1.7]">
             <h2
               id="warning-heading"
-              className="text-[color:var(--color-hazard)] uppercase tracking-[0.15em] mb-3 font-bold text-[12px]"
+              className="text-[color:var(--color-hazard)] uppercase tracking-[0.18em] mb-3 font-bold text-[11px]"
             >
-              <span aria-hidden="true">[ </span>AVERTISSEMENT&nbsp;/&nbsp;OBLIGATOIRE<span aria-hidden="true"> ]</span>
+              Avertissement obligatoire
             </h2>
             <p className="text-[color:var(--color-phosphor-dim)]">
               MAILLON ne se substitue pas au 112 ni à aucun service officiel

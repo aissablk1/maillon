@@ -181,8 +181,8 @@ export default function CasUsagePage() {
 
             <aside className="lg:col-span-4 px-6 lg:px-10 pt-12 lg:pt-20 pb-16">
               <div className="border border-[color:var(--color-divider)] p-6 bg-[color:var(--color-substrate-2)]">
-                <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-4" aria-hidden="true">
-                  [ SOMMAIRE ]
+                <p className="font-mono text-[11px] tracking-[0.18em] uppercase text-[color:var(--color-phosphor-dim)] mb-4">
+                  Sommaire
                 </p>
                 <ul className="font-mono text-[12px] uppercase tracking-[0.1em] space-y-3 list-none p-0 m-0">
                   {VERTICALES.map((v) => (
@@ -219,18 +219,18 @@ export default function CasUsagePage() {
               <header className="lg:col-span-4">
                 <div className="flex items-baseline gap-4 mb-6">
                   <span
-                    className="macro text-[clamp(72px,8vw,128px)] text-[color:var(--color-hazard)] tabular-nums leading-none"
+                    className="font-mono text-[clamp(48px,5vw,72px)] text-[color:var(--color-hazard)] tabular-nums leading-none font-bold"
                     aria-hidden="true"
                   >
                     {v.index}
                   </span>
-                  <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-phosphor-dim)]">
-                    DOSSIER
+                  <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-[color:var(--color-phosphor-dim)]">
+                    Dossier
                   </span>
                 </div>
                 <h2
                   id={`${v.id}-title`}
-                  className="macro text-[clamp(32px,4vw,56px)] text-[color:var(--color-phosphor)] leading-[0.92] mb-6"
+                  className="font-mono text-[clamp(24px,3vw,40px)] text-[color:var(--color-phosphor)] leading-[1.2] font-bold mb-4"
                 >
                   {v.title}
                 </h2>
@@ -251,8 +251,8 @@ export default function CasUsagePage() {
                 ))}
 
                 <div className="mt-10 border-t border-[color:var(--color-divider)] pt-6">
-                  <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-3" aria-hidden="true">
-                    [ PROTAGONISTES ]
+                  <p className="font-mono text-[11px] tracking-[0.18em] uppercase text-[color:var(--color-phosphor-dim)] mb-3">
+                    Protagonistes
                   </p>
                   <ul className="flex flex-wrap gap-x-3 gap-y-1 list-none p-0 m-0 font-mono text-[11px] uppercase tracking-[0.12em] text-[color:var(--color-phosphor-dim)]">
                     {v.protagonists.map((p, idx) => (
@@ -270,8 +270,8 @@ export default function CasUsagePage() {
               {/* Colonne droite — métriques + recommandation kit */}
               <aside className="lg:col-span-3 flex flex-col gap-6">
                 <div className="border border-[color:var(--color-divider)] p-5">
-                  <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-4" aria-hidden="true">
-                    [ MÉTRIQUES ]
+                  <p className="font-mono text-[11px] tracking-[0.18em] uppercase text-[color:var(--color-phosphor-dim)] mb-4">
+                    Métriques
                   </p>
                   <dl className="space-y-3 font-mono text-[12px]">
                     {v.metrics.map((m) => (
@@ -288,10 +288,10 @@ export default function CasUsagePage() {
                 </div>
 
                 <div className="border border-[color:var(--color-hazard)] p-5">
-                  <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-3" aria-hidden="true">
-                    [ KIT RECOMMANDÉ ]
+                  <p className="font-mono text-[11px] tracking-[0.18em] uppercase text-[color:var(--color-hazard)] mb-3 font-bold">
+                    Kit recommandé
                   </p>
-                  <p className="macro text-[28px] text-[color:var(--color-phosphor)] mb-3 leading-[0.95]">
+                  <p className="font-mono text-[20px] text-[color:var(--color-phosphor)] mb-3 leading-[1.2] font-bold">
                     {v.recommendedKit.name}
                   </p>
                   <p className="font-mono text-[18px] text-[color:var(--color-hazard)] tabular-nums mb-4">
@@ -316,16 +316,14 @@ export default function CasUsagePage() {
           className="px-6 lg:px-10 py-24 border-b-2 border-[color:var(--color-hazard)]"
         >
           <div className="max-w-4xl mx-auto text-center">
-            <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-8" aria-hidden="true">
-              [ VOTRE TERRAIN N&apos;EST PAS LISTÉ ? ]
+            <p className="font-mono text-[11px] tracking-[0.18em] uppercase text-[color:var(--color-phosphor-dim)] mb-4">
+              Votre terrain n&apos;est pas listé ?
             </p>
             <h2
               id="cas-cta"
-              className="macro text-[clamp(40px,6vw,80px)] text-[color:var(--color-phosphor)] leading-[0.9] mb-8"
+              className="font-mono text-[clamp(22px,3vw,36px)] text-[color:var(--color-phosphor)] leading-[1.2] font-bold mb-6"
             >
-              ON EN PARLE.
-              <br />
-              <span className="text-[color:var(--color-phosphor-dim)]">VINGT MINUTES.</span>
+              On en parle vingt minutes.
             </h2>
             <p className="font-mono text-[14px] text-[color:var(--color-phosphor-dim)] leading-[1.7] mb-10 max-w-2xl mx-auto">
               Vous opérez en zone blanche dans un secteur que nous n&apos;avons pas

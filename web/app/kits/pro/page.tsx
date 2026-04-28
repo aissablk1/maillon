@@ -99,13 +99,10 @@ export default function KitProPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12">
             <div className="lg:col-span-7 px-6 lg:px-10 pt-12 lg:pt-20 pb-16 lg:border-r border-[color:var(--color-divider)]">
               <div className="flex items-center gap-4 mb-12">
-                <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)]" aria-hidden="true">
-                  [ UNIT&nbsp;02&nbsp;/&nbsp;PRO ]
+                <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-[color:var(--color-hazard)]">
+                  Kit&nbsp;02 · Pro
                 </span>
                 <span aria-hidden="true" className="flex-1 border-t border-[color:var(--color-divider)]" />
-                <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-[color:var(--color-phosphor-dim)]">
-                  REV&nbsp;0.1.0
-                </span>
               </div>
 
               <h1
@@ -130,8 +127,8 @@ export default function KitProPage() {
 
             <aside className="lg:col-span-5 px-6 lg:px-10 pt-12 lg:pt-20 pb-16 flex items-end bg-[color:var(--color-substrate-2)]">
               <div className="border border-[color:var(--color-hazard)] p-6 lg:p-8 w-full">
-                <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-4" aria-hidden="true">
-                  [ PRICE&nbsp;/&nbsp;TTC ]
+                <p className="font-mono text-[11px] tracking-[0.18em] uppercase text-[color:var(--color-hazard)] mb-4 font-bold">
+                  Prix TTC
                 </p>
                 <div className="flex items-baseline gap-3 mb-2">
                   <span className="macro text-[clamp(64px,9vw,112px)] text-[color:var(--color-phosphor)] tabular-nums leading-none">
@@ -149,7 +146,7 @@ export default function KitProPage() {
                   href="/contact?sujet=kit-pro"
                   className="btn-tactical btn-tactical-hazard w-full justify-between"
                 >
-                  <span>DEMANDER UN DEVIS</span>
+                  <span>Demander un devis</span>
                   <span aria-hidden="true">{" ›"}</span>
                 </Link>
                 <p className="mt-4 font-mono text-[10px] tracking-[0.05em] text-[color:var(--color-phosphor-dim)] leading-[1.6]">
@@ -167,33 +164,23 @@ export default function KitProPage() {
         >
           <div className="max-w-7xl mx-auto px-6 lg:px-10">
             <header className="mb-16">
-              <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-6" aria-hidden="true">
-                [ INVENTAIRE&nbsp;/&nbsp;4&nbsp;BLOCS ]
+              <p className="font-mono text-[11px] tracking-[0.18em] uppercase text-[color:var(--color-phosphor-dim)] mb-4">
+                Inventaire complet
               </p>
               <h2
                 id="features-heading"
-                className="macro text-[clamp(40px,6vw,80px)] text-[color:var(--color-phosphor)] leading-[0.92]"
+                className="font-mono text-[clamp(24px,3vw,40px)] text-[color:var(--color-phosphor)] leading-[1.2] font-bold"
               >
-                TOUT CE QUE
-                <br />
-                <span className="text-[color:var(--color-phosphor-dim)]">VOUS RECEVEZ.</span>
+                Tout ce que vous recevez.
               </h2>
             </header>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
-              {FEATURES.map((block, i) => (
+              {FEATURES.map((block) => (
                 <div key={block.title} className="border-t border-[color:var(--color-divider)] pt-6">
-                  <div className="flex items-baseline gap-3 mb-6">
-                    <span
-                      className="macro text-[clamp(28px,3vw,40px)] text-[color:var(--color-hazard)] tabular-nums leading-none"
-                      aria-hidden="true"
-                    >
-                      /{String(i + 1).padStart(2, "0")}
-                    </span>
-                    <h3 className="macro text-[clamp(22px,2.6vw,32px)] text-[color:var(--color-phosphor)] leading-[0.95]">
-                      {block.title}
-                    </h3>
-                  </div>
+                  <h3 className="font-mono text-[16px] text-[color:var(--color-phosphor)] mb-6 font-bold">
+                    {block.title}
+                  </h3>
                   <ul className="font-mono text-[13px] text-[color:var(--color-phosphor-dim)] space-y-2.5 list-none p-0 m-0">
                     {block.items.map((it) => (
                       <li key={it} className="grid grid-cols-[auto_1fr] gap-3 items-baseline">
@@ -218,16 +205,14 @@ export default function KitProPage() {
           <div className="max-w-6xl mx-auto px-6 lg:px-10">
             <header className="mb-12 grid grid-cols-1 lg:grid-cols-12 gap-6">
               <div className="lg:col-span-9">
-                <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-6" aria-hidden="true">
-                  [ BENCH&nbsp;/&nbsp;4&nbsp;TALKIES&nbsp;DMR&nbsp;PROS ]
+                <p className="font-mono text-[11px] tracking-[0.18em] uppercase text-[color:var(--color-phosphor-dim)] mb-4">
+                  Comparaison sur an&nbsp;1 — 4 secouristes
                 </p>
                 <h2
                   id="bench-heading"
-                  className="macro text-[clamp(36px,5vw,72px)] text-[color:var(--color-phosphor)] leading-[0.92]"
+                  className="font-mono text-[clamp(24px,3vw,40px)] text-[color:var(--color-phosphor)] leading-[1.2] font-bold"
                 >
-                  KIT PRO
-                  <span className="text-[color:var(--color-phosphor-dim)]"> vs </span>
-                  DMR.
+                  Kit Pro <span className="text-[color:var(--color-phosphor-dim)]">vs</span> 4 talkies DMR.
                 </h2>
               </div>
             </header>
@@ -284,33 +269,25 @@ export default function KitProPage() {
         >
           <div className="max-w-4xl mx-auto px-6 lg:px-10">
             <header className="mb-12">
-              <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-6" aria-hidden="true">
-                [ LIMITES&nbsp;/&nbsp;TRANSPARENCE ]
+              <p className="font-mono text-[11px] tracking-[0.18em] uppercase text-[color:var(--color-phosphor-dim)] mb-4">
+                Limites — transparence
               </p>
               <h2
                 id="limites-heading"
-                className="macro text-[clamp(36px,5vw,64px)] text-[color:var(--color-phosphor)] leading-[0.92]"
+                className="font-mono text-[clamp(24px,3vw,40px)] text-[color:var(--color-phosphor)] leading-[1.2] font-bold"
               >
-                CE QU&apos;ON
-                <br />
-                <span className="text-[color:var(--color-phosphor-dim)]">NE FAIT PAS.</span>
+                Ce qu&apos;on ne fait pas.
               </h2>
             </header>
 
             <ol className="list-none p-0 m-0">
-              {LIMITES.map((l, i) => (
+              {LIMITES.map((l) => (
                 <li
                   key={l.title}
-                  className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 py-6 border-t border-[color:var(--color-divider)] last:border-b"
+                  className="py-6 border-t border-[color:var(--color-divider)] last:border-b"
                 >
-                  <span
-                    className="macro text-[clamp(20px,2vw,28px)] text-[color:var(--color-hazard)] tabular-nums leading-none"
-                    aria-hidden="true"
-                  >
-                    /{String(i + 1).padStart(2, "0")}
-                  </span>
                   <div>
-                    <h3 className="macro text-[clamp(18px,2vw,24px)] text-[color:var(--color-phosphor)] leading-[0.95] mb-2">
+                    <h3 className="font-mono text-[15px] text-[color:var(--color-phosphor)] leading-[1.3] mb-2 font-bold">
                       {l.title}
                     </h3>
                     <p className="font-mono text-[13px] text-[color:var(--color-phosphor-dim)] leading-[1.65] max-w-[60ch]">
@@ -329,25 +306,21 @@ export default function KitProPage() {
           className="px-6 lg:px-10 py-24 border-b-2 border-[color:var(--color-hazard)]"
         >
           <div className="max-w-4xl mx-auto text-center">
-            <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-8" aria-hidden="true">
-              [ CONFIGURATION&nbsp;SUR-MESURE ]
+            <p className="font-mono text-[11px] tracking-[0.18em] uppercase text-[color:var(--color-phosphor-dim)] mb-4">
+              Configuration sur-mesure
             </p>
             <h2
               id="cta-heading"
-              className="macro text-[clamp(40px,6vw,80px)] text-[color:var(--color-phosphor)] leading-[0.9] mb-8"
+              className="font-mono text-[clamp(22px,3vw,36px)] text-[color:var(--color-phosphor)] leading-[1.2] font-bold mb-6"
             >
-              VINGT MINUTES
-              <br />
-              <span className="text-[color:var(--color-phosphor-dim)]">POUR CADRER</span>
-              <br />
-              VOTRE BESOIN.
+              Vingt minutes pour cadrer votre besoin.
             </h2>
             <p className="font-mono text-[14px] text-[color:var(--color-phosphor-dim)] leading-[1.7] mb-10 max-w-2xl mx-auto">
               On vous appelle, on comprend votre théâtre d&apos;opération, on
-              vous envoie un devis chiffré sous 48h. Aucun engagement.
+              vous envoie un devis chiffré sous 48&nbsp;h. Aucun engagement.
             </p>
             <Link href="/contact?sujet=kit-pro" className="btn-tactical btn-tactical-hazard inline-flex">
-              <span>PRENDRE RENDEZ-VOUS</span>
+              <span>Prendre rendez-vous</span>
               <span aria-hidden="true">{" ›"}</span>
             </Link>
           </div>

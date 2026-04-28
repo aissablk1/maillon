@@ -97,13 +97,10 @@ export default function KitDecouvertePage() {
           <div className="grid grid-cols-1 lg:grid-cols-12">
             <div className="lg:col-span-7 px-6 lg:px-10 pt-12 lg:pt-20 pb-16 lg:border-r border-[color:var(--color-divider)]">
               <div className="flex items-center gap-4 mb-12">
-                <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)]" aria-hidden="true">
-                  [ UNIT&nbsp;01&nbsp;/&nbsp;DÉCOUVERTE ]
+                <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-[color:var(--color-hazard)]">
+                  Kit&nbsp;01 · Découverte
                 </span>
                 <span aria-hidden="true" className="flex-1 border-t border-[color:var(--color-divider)]" />
-                <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-[color:var(--color-phosphor-dim)]">
-                  REV&nbsp;0.1.0
-                </span>
               </div>
 
               <h1
@@ -131,8 +128,8 @@ export default function KitDecouvertePage() {
             {/* Bloc prix brutalist */}
             <aside className="lg:col-span-5 px-6 lg:px-10 pt-12 lg:pt-20 pb-16 flex items-end bg-[color:var(--color-substrate-2)]">
               <div className="border border-[color:var(--color-hazard)] p-6 lg:p-8 w-full">
-                <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-4" aria-hidden="true">
-                  [ PRICE&nbsp;/&nbsp;TTC ]
+                <p className="font-mono text-[11px] tracking-[0.18em] uppercase text-[color:var(--color-hazard)] mb-4 font-bold">
+                  Prix TTC
                 </p>
                 <div className="flex items-baseline gap-3 mb-2">
                   <span className="macro text-[clamp(64px,9vw,112px)] text-[color:var(--color-phosphor)] tabular-nums leading-none">
@@ -168,33 +165,23 @@ export default function KitDecouvertePage() {
         >
           <div className="max-w-7xl mx-auto px-6 lg:px-10">
             <header className="mb-16">
-              <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-6" aria-hidden="true">
-                [ INVENTAIRE&nbsp;/&nbsp;3&nbsp;BLOCS ]
+              <p className="font-mono text-[11px] tracking-[0.18em] uppercase text-[color:var(--color-phosphor-dim)] mb-4">
+                Inventaire complet
               </p>
               <h2
                 id="features-heading"
-                className="macro text-[clamp(40px,6vw,80px)] text-[color:var(--color-phosphor)] leading-[0.92]"
+                className="font-mono text-[clamp(24px,3vw,40px)] text-[color:var(--color-phosphor)] leading-[1.2] font-bold"
               >
-                CE QU&apos;IL Y A
-                <br />
-                <span className="text-[color:var(--color-phosphor-dim)]">DANS LA BOÎTE.</span>
+                Ce qu&apos;il y a dans la boîte.
               </h2>
             </header>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-12">
               {FEATURES.map((block, i) => (
                 <div key={block.title} className="border-t border-[color:var(--color-divider)] pt-6">
-                  <div className="flex items-baseline gap-3 mb-6">
-                    <span
-                      className="macro text-[clamp(28px,3vw,40px)] text-[color:var(--color-hazard)] tabular-nums leading-none"
-                      aria-hidden="true"
-                    >
-                      /{String(i + 1).padStart(2, "0")}
-                    </span>
-                    <h3 className="macro text-[clamp(20px,2.4vw,28px)] text-[color:var(--color-phosphor)] leading-[0.95]">
-                      {block.title}
-                    </h3>
-                  </div>
+                  <h3 className="font-mono text-[16px] text-[color:var(--color-phosphor)] mb-6 font-bold">
+                    {block.title}
+                  </h3>
                   <ul className="font-mono text-[13px] text-[color:var(--color-phosphor-dim)] space-y-2.5 list-none p-0 m-0">
                     {block.items.map((it) => (
                       <li key={it} className="grid grid-cols-[auto_1fr] gap-3 items-baseline">
@@ -219,32 +206,22 @@ export default function KitDecouvertePage() {
           <div className="max-w-7xl mx-auto px-6 lg:px-10">
             <header className="mb-16 grid grid-cols-1 lg:grid-cols-12 gap-6">
               <div className="lg:col-span-8">
-                <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-6" aria-hidden="true">
-                  [ TROIS USAGES CONCRETS ]
+                <p className="font-mono text-[11px] tracking-[0.18em] uppercase text-[color:var(--color-phosphor-dim)] mb-4">
+                  Trois usages concrets
                 </p>
                 <h2
                   id="scenarios-heading"
-                  className="macro text-[clamp(40px,6vw,80px)] text-[color:var(--color-phosphor)] leading-[0.92]"
+                  className="font-mono text-[clamp(24px,3vw,40px)] text-[color:var(--color-phosphor)] leading-[1.2] font-bold"
                 >
-                  QUAND ÇA
-                  <br />
-                  <span className="text-[color:var(--color-phosphor-dim)]">CHANGE LA</span>
-                  <br />
-                  DONNE.
+                  Quand ça change la donne.
                 </h2>
               </div>
             </header>
 
             <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[color:var(--color-divider)] border border-[color:var(--color-divider)]">
-              {SCENARIOS.map((s, i) => (
+              {SCENARIOS.map((s) => (
                 <article key={s.title} className="p-6 lg:p-8">
-                  <span
-                    className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] block mb-3"
-                    aria-hidden="true"
-                  >
-                    [ SCÉNARIO&nbsp;{String(i + 1).padStart(2, "0")} ]
-                  </span>
-                  <h3 className="macro text-[clamp(20px,2.4vw,28px)] text-[color:var(--color-phosphor)] mb-4 leading-[0.95]">
+                  <h3 className="font-mono text-[16px] text-[color:var(--color-phosphor)] mb-3 font-bold">
                     {s.title}
                   </h3>
                   <p className="font-mono text-[13px] text-[color:var(--color-phosphor-dim)] leading-[1.65]">
@@ -263,35 +240,25 @@ export default function KitDecouvertePage() {
         >
           <div className="max-w-4xl mx-auto px-6 lg:px-10">
             <header className="mb-12">
-              <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-6" aria-hidden="true">
-                [ LIMITES&nbsp;/&nbsp;TRANSPARENCE ]
+              <p className="font-mono text-[11px] tracking-[0.18em] uppercase text-[color:var(--color-phosphor-dim)] mb-4">
+                Limites — transparence
               </p>
               <h2
                 id="limites-heading"
-                className="macro text-[clamp(36px,5vw,64px)] text-[color:var(--color-phosphor)] leading-[0.92]"
+                className="font-mono text-[clamp(24px,3vw,40px)] text-[color:var(--color-phosphor)] leading-[1.2] font-bold"
               >
-                ON PRÉFÈRE
-                <br />
-                <span className="text-[color:var(--color-phosphor-dim)]">VOUS LE DIRE</span>
-                <br />
-                AVANT L&apos;ACHAT.
+                On préfère vous le dire avant l&apos;achat.
               </h2>
             </header>
 
-            <ol className="list-none p-0 m-0">
-              {LIMITES.map((l, i) => (
+            <ol className="list-none p-0 m-0 space-y-0">
+              {LIMITES.map((l) => (
                 <li
                   key={l.title}
-                  className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 py-6 border-t border-[color:var(--color-divider)] last:border-b"
+                  className="py-6 border-t border-[color:var(--color-divider)] last:border-b"
                 >
-                  <span
-                    className="macro text-[clamp(20px,2vw,28px)] text-[color:var(--color-hazard)] tabular-nums leading-none"
-                    aria-hidden="true"
-                  >
-                    /{String(i + 1).padStart(2, "0")}
-                  </span>
                   <div>
-                    <h3 className="macro text-[clamp(18px,2vw,24px)] text-[color:var(--color-phosphor)] leading-[0.95] mb-2">
+                    <h3 className="font-mono text-[15px] text-[color:var(--color-phosphor)] leading-[1.3] mb-2 font-bold">
                       {l.title}
                     </h3>
                     <p className="font-mono text-[13px] text-[color:var(--color-phosphor-dim)] leading-[1.65] max-w-[60ch]">
@@ -310,22 +277,20 @@ export default function KitDecouvertePage() {
           className="px-6 lg:px-10 py-24 border-b-2 border-[color:var(--color-hazard)]"
         >
           <div className="max-w-4xl mx-auto text-center">
-            <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-8" aria-hidden="true">
-              [ PRÊT À DÉMARRER ? ]
+            <p className="font-mono text-[11px] tracking-[0.18em] uppercase text-[color:var(--color-phosphor-dim)] mb-4">
+              Prêt à démarrer ?
             </p>
             <h2
               id="cta-heading"
-              className="macro text-[clamp(40px,6vw,80px)] text-[color:var(--color-phosphor)] leading-[0.9] mb-8"
+              className="font-mono text-[clamp(22px,3vw,36px)] text-[color:var(--color-phosphor)] leading-[1.2] font-bold mb-6"
             >
-              INSCRIVEZ-VOUS.
-              <br />
-              <span className="text-[color:var(--color-phosphor-dim)]">SANS ENGAGEMENT.</span>
+              Inscrivez-vous, sans engagement.
             </h2>
             <p className="font-mono text-[14px] text-[color:var(--color-phosphor-dim)] leading-[1.7] mb-10 max-w-2xl mx-auto">
               Vous recevez un email au lancement. Vous décidez à ce moment-là.
             </p>
             <Link href="/#preorder" className="btn-tactical btn-tactical-hazard inline-flex">
-              <span>PRÉ-COMMANDER LE KIT DÉCOUVERTE</span>
+              <span>Pré-commander le Kit Découverte</span>
               <span aria-hidden="true">{" ›"}</span>
             </Link>
           </div>
