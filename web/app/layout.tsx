@@ -62,6 +62,30 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  formatDetection: {
+    telephone: false,
+    address: false,
+    email: false,
+  },
+};
+
+export const viewport = {
+  themeColor: "#0A0A0A",
+  colorScheme: "dark",
+  width: "device-width",
+  initialScale: 1,
+};
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "MAILLON",
+  url: "https://maillon.fr",
+  description:
+    "Communications mesh radio longue portée — kits préconfigurés et console de flotte pour secours bénévoles, BTP, événementiel et outdoor.",
+  email: "bonjour@maillon.fr",
+  areaServed: { "@type": "Country", name: "France" },
+  sameAs: ["https://github.com/aissablk1/maillon"],
 };
 
 export default function RootLayout({
@@ -71,7 +95,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr" className={`${archivoBlack.variable} ${jetbrainsMono.variable}`}>
-      <body>{children}</body>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+      </head>
+      <body>
+        <a href="#main" className="skip-link">
+          Aller au contenu principal
+        </a>
+        {children}
+      </body>
     </html>
   );
 }

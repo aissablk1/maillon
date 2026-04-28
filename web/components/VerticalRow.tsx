@@ -23,19 +23,19 @@ export function VerticalRow({ index, title, tags, description }: VerticalRowProp
       </div>
 
       {/* Tags monospace, séparés par tube */}
-      <div className="lg:col-span-3 flex flex-wrap items-start gap-x-3 gap-y-1">
+      <ul className="lg:col-span-3 flex flex-wrap items-start gap-x-3 gap-y-1 list-none p-0 m-0">
         {tags.map((t, i) => (
-          <span
+          <li
             key={t}
             className="font-mono text-[10px] uppercase tracking-[0.15em] text-[color:var(--color-phosphor-dim)]"
           >
             {t}
             {i < tags.length - 1 && (
-              <span className="ml-3 text-[color:var(--color-phosphor-faint)]">|</span>
+              <span aria-hidden="true" className="ml-3 text-[color:var(--color-phosphor-dim)]">|</span>
             )}
-          </span>
+          </li>
         ))}
-      </div>
+      </ul>
 
       {/* Description data-monospace */}
       <div className="lg:col-span-4">

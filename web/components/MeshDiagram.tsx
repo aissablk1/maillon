@@ -1,9 +1,15 @@
+"use client";
+
+import { useReducedMotion } from "motion/react";
+
 /**
  * Diagramme mesh — visuel hero CRT terminal.
- * SVG pur, animé en CSS via .mesh-node-tactical (voir globals via class).
- * Représente 7 nœuds reliés en maillage avec liens animés en pointillé phosphore.
+ * SVG client-side ; les <animate> SMIL sont conditionnés sur prefers-reduced-motion
+ * (les @media CSS ne pilotent pas les animations SMIL).
  */
 export function MeshDiagram() {
+  const reduceMotion = useReducedMotion();
+
   const nodes: { id: string; x: number; y: number; label: string; alert?: boolean }[] = [
     { id: "n1", x: 100, y: 80, label: "RELAIS-A", alert: true },
     { id: "n2", x: 240, y: 60, label: "REFUGE-01" },
@@ -32,22 +38,18 @@ export function MeshDiagram() {
   const nodeMap = Object.fromEntries(nodes.map((n) => [n.id, n]));
 
   return (
-    <div
-      role="img"
-      aria-label="Sept nœuds MAILLON connectés en maillage, simulation d'un réseau mesh longue portée"
-      className="border border-[color:var(--color-phosphor-faint)] bg-[color:var(--color-substrate-2)] relative"
-    >
-      {/* Coordonnées tactiques en coin */}
-      <div className="absolute top-3 left-3 font-mono text-[10px] tracking-[0.18em] text-[color:var(--color-phosphor-dim)] uppercase z-10">
+    <figure className="border border-[color:var(--color-divider)] bg-[color:var(--color-substrate-2)] relative m-0">
+      {/* Coordonnées tactiques en coin (purement décoratives) */}
+      <div className="absolute top-3 left-3 font-mono text-[10px] tracking-[0.18em] text-[color:var(--color-phosphor-dim)] uppercase z-10" aria-hidden="true">
         [ MESH&nbsp;/&nbsp;7&nbsp;NODES ]
       </div>
-      <div className="absolute top-3 right-3 font-mono text-[10px] tracking-[0.15em] text-[color:var(--color-hazard)] z-10">
+      <div className="absolute top-3 right-3 font-mono text-[10px] tracking-[0.15em] text-[color:var(--color-hazard)] z-10" aria-hidden="true">
         LIVE&nbsp;{">>>"}
       </div>
-      <div className="absolute bottom-3 left-3 font-mono text-[10px] tracking-[0.18em] text-[color:var(--color-phosphor-faint)] uppercase z-10">
+      <div className="absolute bottom-3 left-3 font-mono text-[10px] tracking-[0.18em] text-[color:var(--color-phosphor-dim)] uppercase z-10" aria-hidden="true">
         EU_868 / LF / HOP_3
       </div>
-      <div className="absolute bottom-3 right-3 font-mono text-[10px] tracking-[0.15em] text-[color:var(--color-phosphor-dim)] z-10 tabular-nums">
+      <div className="absolute bottom-3 right-3 font-mono text-[10px] tracking-[0.15em] text-[color:var(--color-phosphor-dim)] z-10 tabular-nums" aria-hidden="true">
         45.832°N / 6.864°E
       </div>
 
@@ -55,8 +57,17 @@ export function MeshDiagram() {
         viewBox="0 0 400 400"
         xmlns="http://www.w3.org/2000/svg"
         className="w-full h-auto"
-        aria-hidden
+        role="img"
+        aria-labelledby="mesh-title mesh-desc"
       >
+        <title id="mesh-title">Réseau mesh à 7 nœuds</title>
+        <desc id="mesh-desc">
+          Diagramme schématique d&apos;un réseau mesh MAILLON composé de sept nœuds —
+          relais, refuge, vallon, PC base, mobile, patrouille, second relais — connectés
+          entre eux par douze liaisons radio longue portée. Le nœud relais principal est
+          marqué en rouge pour signaler une alerte simulée.
+        </desc>
+
         {/* Grille technique de fond */}
         <defs>
           <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
@@ -65,8 +76,8 @@ export function MeshDiagram() {
         </defs>
         <rect width="400" height="400" fill="url(#grid)" />
 
-        {/* Liens — pointillé phosphore avec animation flow */}
-        <g stroke="var(--color-phosphor-faint)" strokeWidth="1">
+        {/* Liens — pointillé phosphore avec animation flow (coupée si reduced motion) */}
+        <g stroke="var(--color-divider)" strokeWidth="1">
           {links.map(([a, b], i) => {
             const A = nodeMap[a]!;
             const B = nodeMap[b]!;
@@ -79,13 +90,15 @@ export function MeshDiagram() {
                 y2={B.y}
                 strokeDasharray="2 4"
               >
-                <animate
-                  attributeName="stroke-dashoffset"
-                  from="0"
-                  to="-12"
-                  dur={`${2.5 + (i % 4) * 0.5}s`}
-                  repeatCount="indefinite"
-                />
+                {!reduceMotion && (
+                  <animate
+                    attributeName="stroke-dashoffset"
+                    from="0"
+                    to="-12"
+                    dur={`${2.5 + (i % 4) * 0.5}s`}
+                    repeatCount="indefinite"
+                  />
+                )}
               </line>
             );
           })}
@@ -133,6 +146,6 @@ export function MeshDiagram() {
           </g>
         ))}
       </svg>
-    </div>
+    </figure>
   );
 }

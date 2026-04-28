@@ -12,25 +12,27 @@ export default function HomePage() {
     <>
       <SiteHeader />
 
-      <main>
+      <main id="main">
         {/* ─────────── HERO — split asymétrique 7/5 brutalist ─────────── */}
-        <section className="border-b border-[color:var(--color-phosphor-faint)]">
+        <section aria-labelledby="hero-heading" className="border-b border-[color:var(--color-divider)]">
           <div className="grid grid-cols-1 lg:grid-cols-12">
             {/* Bloc gauche — macro typographie */}
-            <div className="lg:col-span-7 px-6 lg:px-10 pt-12 lg:pt-20 pb-16 border-r border-[color:var(--color-phosphor-faint)]">
+            <div className="lg:col-span-7 px-6 lg:px-10 pt-12 lg:pt-20 pb-16 lg:border-r border-[color:var(--color-divider)]">
               <HeroEntrance>
                 <div className="flex items-center gap-4 mb-12">
-                  <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)]">
+                  <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)]" aria-hidden="true">
                     [ TRANSMIT-001 / MAILLON ]
                   </span>
-                  <hr className="flex-1 divider-solid" />
-                  <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-[color:var(--color-phosphor-faint)]">
-                    {new Date().toISOString().slice(0, 10)}
+                  <span aria-hidden="true" className="flex-1 border-t border-[color:var(--color-divider)]" />
+                  <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-[color:var(--color-phosphor-dim)]">
+                    <time dateTime={new Date().toISOString().slice(0, 10)}>
+                      {new Date().toISOString().slice(0, 10)}
+                    </time>
                   </span>
                 </div>
 
                 {/* Titre macro — viewport-bleeding */}
-                <h1 className="macro text-[clamp(72px,15vw,220px)] text-[color:var(--color-phosphor)]">
+                <h1 id="hero-heading" className="macro text-[clamp(72px,15vw,220px)] text-[color:var(--color-phosphor)]">
                   RÉSEAU
                   <br />
                   <span className="text-[color:var(--color-hazard)]">QUI</span>
@@ -38,7 +40,7 @@ export default function HomePage() {
                   PORTE
                   <br />
                   LOIN
-                  <span className="text-[color:var(--color-hazard)]">.</span>
+                  <span className="text-[color:var(--color-hazard)]" aria-hidden="true">.</span>
                 </h1>
 
                 <div className="mt-12 max-w-2xl">
@@ -56,11 +58,11 @@ export default function HomePage() {
                 <div className="mt-12 flex flex-wrap items-center gap-4">
                   <Link href="#preorder" className="btn-tactical btn-tactical-hazard">
                     <span>PRÉCOMMANDER</span>
-                    <span aria-hidden>{">>"}</span>
+                    <span aria-hidden="true">{" ›"}</span>
                   </Link>
                   <Link href="#kits" className="btn-tactical">
                     <span>VOIR LES KITS</span>
-                    <span aria-hidden>{">>"}</span>
+                    <span aria-hidden="true">{" ›"}</span>
                   </Link>
                 </div>
               </HeroEntrance>
@@ -69,11 +71,11 @@ export default function HomePage() {
             {/* Bloc droit — diagramme mesh */}
             <div className="lg:col-span-5 px-6 lg:px-10 pt-12 lg:pt-20 pb-16 flex flex-col">
               <div className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-phosphor-dim)] mb-4 flex items-center gap-2">
-                <span className="uplink-indicator" aria-hidden />
+                <span className="uplink-indicator" aria-hidden="true" />
                 <span>UPLINK ACTIF · 7 NODES SIM</span>
               </div>
               <MeshDiagram />
-              <p className="mt-4 font-mono text-[11px] tracking-[0.05em] text-[color:var(--color-phosphor-faint)] leading-[1.5]">
+              <p className="mt-4 font-mono text-[11px] tracking-[0.05em] text-[color:var(--color-phosphor-dim)] leading-[1.5]">
                 Démonstration multi-hop. Chaque nœud relaie pour son voisin.
                 Perdez-en un, le maillage trouve un autre chemin.
               </p>
@@ -290,19 +292,19 @@ export default function HomePage() {
               Flotte de 50, 200 ou 1&nbsp;000 nœuds&nbsp;? Étude personnalisée.
             </p>
             <Link href="/contact" className="font-mono text-[12px] uppercase tracking-[0.18em] text-[color:var(--color-hazard)] maillon-link">
-              {">>"} Sur-mesure / devis volume
+              <span aria-hidden="true">{">> "}</span>Sur-mesure / devis volume
             </Link>
           </div>
         </section>
 
         {/* ─────────── VERTICALES ─────────── */}
-        <section className="border-b border-[color:var(--color-phosphor-faint)]">
+        <section id="cas-usage" aria-labelledby="cas-usage-heading" className="border-b border-[color:var(--color-divider)]">
           <header className="px-6 lg:px-10 py-16 grid grid-cols-1 lg:grid-cols-12 gap-6">
             <div className="lg:col-span-8">
-              <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-6">
+              <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-6" aria-hidden="true">
                 [ TERRAINS&nbsp;/&nbsp;5&nbsp;CIBLES ]
               </p>
-              <h2 className="macro text-[clamp(40px,6vw,88px)] text-[color:var(--color-phosphor)] leading-[0.92]">
+              <h2 id="cas-usage-heading" className="macro text-[clamp(40px,6vw,88px)] text-[color:var(--color-phosphor)] leading-[0.92]">
                 CINQ MONDES.
                 <br />
                 <span className="text-[color:var(--color-phosphor-dim)]">UN MÊME BESOIN&nbsp;:</span>
@@ -313,7 +315,7 @@ export default function HomePage() {
           </header>
 
           <div className="px-6 lg:px-10">
-            <div className="border-t border-[color:var(--color-phosphor-faint)]">
+            <div className="border-t border-[color:var(--color-divider)]">
               <VerticalRow
                 index="01"
                 title="Secours bénévoles"
@@ -349,17 +351,17 @@ export default function HomePage() {
         </section>
 
         {/* ─────────── COMPARAISON — table tactique ─────────── */}
-        <section className="border-b border-[color:var(--color-phosphor-faint)] px-6 lg:px-10 py-20">
+        <section aria-labelledby="bench-heading" className="border-b border-[color:var(--color-divider)] px-6 lg:px-10 py-20">
           <header className="mb-12 grid grid-cols-1 lg:grid-cols-12 gap-6">
             <div className="lg:col-span-9">
-              <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-6">
+              <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-6" aria-hidden="true">
                 [ BENCH&nbsp;/&nbsp;6 SECOURISTES&nbsp;×&nbsp;5 ANS ]
               </p>
-              <h2 className="macro text-[clamp(40px,6vw,80px)] text-[color:var(--color-phosphor)] leading-[0.92]">
+              <h2 id="bench-heading" className="macro text-[clamp(40px,6vw,80px)] text-[color:var(--color-phosphor)] leading-[0.92]">
                 MAILLON
-                <span className="text-[color:var(--color-phosphor-faint)]"> vs </span>
+                <span className="text-[color:var(--color-phosphor-dim)]"> vs </span>
                 INREACH
-                <span className="text-[color:var(--color-phosphor-faint)]"> vs </span>
+                <span className="text-[color:var(--color-phosphor-dim)]"> vs </span>
                 <span className="text-[color:var(--color-phosphor-dim)]">DMR.</span>
               </h2>
             </div>
@@ -367,18 +369,21 @@ export default function HomePage() {
 
           <div className="overflow-x-auto -mx-6 lg:mx-0">
             <table className="w-full min-w-[640px] font-mono text-[13px]">
+              <caption className="sr-only">
+                Comparaison des coûts sur 5 ans pour 6 secouristes bénévoles entre DMR Hytera, Garmin inReach et MAILLON.
+              </caption>
               <thead>
                 <tr className="border-y-2 border-[color:var(--color-phosphor)]">
-                  <th className="text-left py-3 px-4 text-[10px] tracking-[0.2em] uppercase text-[color:var(--color-phosphor-dim)] font-normal">
-                    POSTE
+                  <th scope="col" className="text-left py-3 px-4 text-[10px] tracking-[0.2em] uppercase text-[color:var(--color-phosphor-dim)] font-normal">
+                    Poste
                   </th>
-                  <th className="text-left py-3 px-4 text-[10px] tracking-[0.2em] uppercase text-[color:var(--color-phosphor-dim)] font-normal">
-                    DMR HYTERA
+                  <th scope="col" className="text-left py-3 px-4 text-[10px] tracking-[0.2em] uppercase text-[color:var(--color-phosphor-dim)] font-normal">
+                    DMR Hytera
                   </th>
-                  <th className="text-left py-3 px-4 text-[10px] tracking-[0.2em] uppercase text-[color:var(--color-phosphor-dim)] font-normal">
-                    GARMIN INREACH
+                  <th scope="col" className="text-left py-3 px-4 text-[10px] tracking-[0.2em] uppercase text-[color:var(--color-phosphor-dim)] font-normal">
+                    Garmin inReach
                   </th>
-                  <th className="text-left py-3 px-4 text-[10px] tracking-[0.2em] uppercase text-[color:var(--color-hazard)] font-normal">
+                  <th scope="col" className="text-left py-3 px-4 text-[10px] tracking-[0.2em] uppercase text-[color:var(--color-hazard)] font-bold">
                     MAILLON
                   </th>
                 </tr>
@@ -393,20 +398,20 @@ export default function HomePage() {
                 ].map(([poste, dmr, garmin, maillon]) => (
                   <tr
                     key={poste}
-                    className="border-b border-[color:var(--color-phosphor-faint)]"
+                    className="border-b border-[color:var(--color-divider)]"
                   >
-                    <td className="py-3 px-4 text-[color:var(--color-phosphor-dim)]">
+                    <th scope="row" className="py-3 px-4 text-[color:var(--color-phosphor-dim)] text-left font-normal">
                       {poste}
-                    </td>
+                    </th>
                     <td className="py-3 px-4 text-[color:var(--color-phosphor)]">{dmr}</td>
                     <td className="py-3 px-4 text-[color:var(--color-phosphor)]">{garmin}</td>
                     <td className="py-3 px-4 text-[color:var(--color-phosphor)]">{maillon}</td>
                   </tr>
                 ))}
                 <tr className="border-y-2 border-[color:var(--color-hazard)]">
-                  <td className="py-4 px-4 text-[color:var(--color-phosphor)] uppercase tracking-[0.1em] text-[11px]">
+                  <th scope="row" className="py-4 px-4 text-[color:var(--color-phosphor)] uppercase tracking-[0.1em] text-[11px] text-left">
                     Total 5 ans
-                  </td>
+                  </th>
                   <td className="py-4 px-4 text-[color:var(--color-phosphor)] text-[18px]">
                     17 000 €
                   </td>
@@ -421,7 +426,7 @@ export default function HomePage() {
             </table>
           </div>
 
-          <p className="mt-6 font-mono text-[11px] text-[color:var(--color-phosphor-faint)] max-w-3xl">
+          <p className="mt-6 font-mono text-[11px] text-[color:var(--color-phosphor-dim)] max-w-3xl">
             Comparaison à valeur d&apos;usage équivalente pour une asso de 6
             secouristes bénévoles. Garmin reste pertinent pour les expéditions
             polaires extrêmes (Iridium). DMR reste obligatoire pour les
@@ -431,12 +436,12 @@ export default function HomePage() {
         </section>
 
         {/* ─────────── OPEN-SOURCE COMMITMENT ─────────── */}
-        <section className="border-b border-[color:var(--color-phosphor-faint)] px-6 lg:px-10 py-24">
+        <section aria-labelledby="open-heading" className="border-b border-[color:var(--color-divider)] px-6 lg:px-10 py-24">
           <div className="max-w-4xl mx-auto text-center">
-            <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-8">
+            <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-8" aria-hidden="true">
               [ COMMUN / GPL-V3 ]
             </p>
-            <h2 className="macro text-[clamp(56px,9vw,144px)] text-[color:var(--color-phosphor)] leading-[0.88] mb-12">
+            <h2 id="open-heading" className="macro text-[clamp(56px,9vw,144px)] text-[color:var(--color-phosphor)] leading-[0.88] mb-12">
               ON NE
               <br />
               FERME
@@ -451,41 +456,56 @@ export default function HomePage() {
               Données exportables JSON à tout moment. Pas de verrouillage.
               Pas de chantage.
             </p>
-            <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 font-mono text-[11px] uppercase tracking-[0.18em]">
-              <a
-                href="https://meshtastic.org"
-                rel="noopener noreferrer"
-                target="_blank"
-                className="text-[color:var(--color-phosphor)] maillon-link"
-              >
-                {">>"} meshtastic.org
-              </a>
-              <a
-                href="https://github.com/meshtastic/firmware"
-                rel="noopener noreferrer"
-                target="_blank"
-                className="text-[color:var(--color-phosphor)] maillon-link"
-              >
-                {">>"} github / firmware
-              </a>
-              <Link href="/communaute" className="text-[color:var(--color-phosphor)] maillon-link">
-                {">>"} communauté FR
-              </Link>
-            </div>
+            <ul className="flex flex-wrap justify-center gap-x-8 gap-y-3 font-mono text-[11px] uppercase tracking-[0.18em] list-none p-0 m-0">
+              <li>
+                <a
+                  href="https://meshtastic.org"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  className="tap-target text-[color:var(--color-phosphor)] maillon-link"
+                >
+                  <span aria-hidden="true">{">> "}</span>meshtastic.org
+                  <span className="sr-only"> (nouvelle fenêtre)</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://github.com/meshtastic/firmware"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  className="tap-target text-[color:var(--color-phosphor)] maillon-link"
+                >
+                  <span aria-hidden="true">{">> "}</span>github / firmware
+                  <span className="sr-only"> (nouvelle fenêtre)</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://meshtastic.discourse.group/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  className="tap-target text-[color:var(--color-phosphor)] maillon-link"
+                >
+                  <span aria-hidden="true">{">> "}</span>forum communauté
+                  <span className="sr-only"> (nouvelle fenêtre)</span>
+                </a>
+              </li>
+            </ul>
           </div>
         </section>
 
         {/* ─────────── PRECOMMANDE ─────────── */}
         <section
           id="preorder"
+          aria-labelledby="preorder-heading"
           className="border-b-2 border-[color:var(--color-hazard)] px-6 lg:px-10 py-20"
         >
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
             <div className="lg:col-span-7">
-              <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-6">
+              <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-[color:var(--color-hazard)] mb-6" aria-hidden="true">
                 [ TX&nbsp;/&nbsp;PRÉCOMMANDE ]
               </p>
-              <h2 className="macro text-[clamp(48px,7vw,96px)] text-[color:var(--color-phosphor)] leading-[0.9] mb-8">
+              <h2 id="preorder-heading" className="macro text-[clamp(48px,7vw,96px)] text-[color:var(--color-phosphor)] leading-[0.9] mb-8">
                 LIVRAISON
                 <br />
                 JUIN
@@ -496,8 +516,8 @@ export default function HomePage() {
                 Pas de paiement aujourd&apos;hui. Vous recevez un email quand
                 les premiers kits arrivent. Vous décidez à ce moment-là.
               </p>
-              <p className="font-mono text-[12px] text-[color:var(--color-phosphor-faint)] uppercase tracking-[0.1em]">
-                {">>>"} 100 précommandes ouvrent une remise fondateurs de
+              <p className="font-mono text-[12px] text-[color:var(--color-phosphor-dim)] uppercase tracking-[0.1em]">
+                <span aria-hidden="true">{">>> "}</span>100 précommandes ouvrent une remise fondateurs de
                 -10&nbsp;% sur le premier achat.
               </p>
             </div>
@@ -508,16 +528,29 @@ export default function HomePage() {
         </section>
 
         {/* ─────────── DISCLAIMER ─────────── */}
-        <section className="px-6 lg:px-10 py-10 border-b border-[color:var(--color-phosphor-faint)] bg-[color:var(--color-substrate-2)]">
+        <section
+          aria-labelledby="warning-heading"
+          role="region"
+          className="px-6 lg:px-10 py-10 border-b border-[color:var(--color-divider)] bg-[color:var(--color-substrate-2)]"
+        >
           <div className="max-w-4xl mx-auto font-mono text-[12px] leading-[1.7]">
-            <p className="text-[color:var(--color-hazard)] uppercase tracking-[0.15em] mb-3 font-bold">
-              [ AVERTISSEMENT&nbsp;/&nbsp;OBLIGATOIRE ]
-            </p>
+            <h2
+              id="warning-heading"
+              className="text-[color:var(--color-hazard)] uppercase tracking-[0.15em] mb-3 font-bold text-[12px]"
+            >
+              <span aria-hidden="true">[ </span>AVERTISSEMENT&nbsp;/&nbsp;OBLIGATOIRE<span aria-hidden="true"> ]</span>
+            </h2>
             <p className="text-[color:var(--color-phosphor-dim)]">
               MAILLON n&apos;est pas un service de secours officiel. En cas
-              d&apos;urgence vitale, composez le <span className="text-[color:var(--color-phosphor)] font-bold">112</span> (numéro européen) ou
-              le <span className="text-[color:var(--color-phosphor)] font-bold">15</span> (SAMU), <span className="text-[color:var(--color-phosphor)] font-bold">17</span> (police), <span className="text-[color:var(--color-phosphor)] font-bold">18</span> (pompiers).
-              MAILLON est un outil de communication d&apos;appoint et de
+              d&apos;urgence vitale, composez le{" "}
+              <a href="tel:112" className="text-[color:var(--color-phosphor)] font-bold maillon-link">112</a>
+              {" "}(numéro européen) ou le{" "}
+              <a href="tel:15" className="text-[color:var(--color-phosphor)] font-bold maillon-link">15</a>
+              {" "}(SAMU),{" "}
+              <a href="tel:17" className="text-[color:var(--color-phosphor)] font-bold maillon-link">17</a>
+              {" "}(police),{" "}
+              <a href="tel:18" className="text-[color:var(--color-phosphor)] font-bold maillon-link">18</a>
+              {" "}(pompiers). MAILLON est un outil de communication d&apos;appoint et de
               coordination, qui complète mais ne remplace jamais les comms
               officielles de la sécurité civile.
             </p>
